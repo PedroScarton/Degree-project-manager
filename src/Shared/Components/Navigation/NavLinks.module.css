@@ -1,0 +1,21 @@
+.container {}
+
+.navItem {}
+
+.LinkList {}
+
+.LinkContainer {}
+
+.Link {}
+
+/* MEDIA QUERY PARA PANTALLAS MEDIANAS */
+@media (min-width: 768px) {}
+
+/* MEDIA QUERY PARA PANTALLAS MEDIA-GRANDE */
+@media (min-width: 992px) {}
+
+/* MEDIA QUERY PARA PANTALLAS GRANDE */
+@media (min-width: 1200px) {}
+
+/* MEDIA QUERY PARA PANTALLAS EXTRA GRANDE */
+@media (min-width: 1600px) {}

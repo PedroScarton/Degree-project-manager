@@ -1,0 +1,91 @@
+* {
+  box-sizing: border-box;
+  outline: none;
+  margin: 0;
+  padding: 0;
+}
+
+*:focus {
+  outline: none;
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Lato', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: #F9FDFF;
+}
+
+/* GENERAL STYLES */
+h1 {
+  font-size: 24px;
+  font-weight: 700;
+}
+
+h2 {
+  font-size: 20px;
+  font-weight: 700;
+}
+
+h3 {
+  font-size: 18px;
+  font-weight: 700;
+}
+
+p {
+  font-size: 14px;
+}
+
+span {
+  font-size: 14px;
+  font-weight: 700;
+}
+
+/* UTILITY CLASSES */
+.center {
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* ANIMATING */
+.slide-in-left-enter {
+  transform: translateX(-100%);
+}
+
+.slide-in-left-enter-active {
+  transform: translateX(0);
+  opacity: 1;
+  transition-timing-function: ease-in;
+  transition: all 400ms;
+}
+
+.slide-in-left-exit {
+  transform: translateX(0%);
+  opacity: 1;
+}
+
+.slide-in-left-exit-active {
+  transform: translateX(-100%);
+  opacity: 0;
+  transition-timing-function: ease-in;
+  transition: all 400ms;
+}
+
+/* GENERAL MEDIA QUERIES */
+
+/* MEDIA QUERY PARA PANTALLAS MEDIANAS */
+@media (min-width: 768px) {}
+
+/* MEDIA QUERY PARA PANTALLAS MEDIA-GRANDE */
+@media (min-width: 992px) {}
+
+/* MEDIA QUERY PARA PANTALLAS GRANDE */
+@media (min-width: 1200px) {}
+
+/* MEDIA QUERY PARA PANTALLAS EXTRA GRANDE */
+@media (min-width: 1600px) {}

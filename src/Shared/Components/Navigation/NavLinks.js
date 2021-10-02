@@ -1,0 +1,29 @@
+import React from 'react';
+import { NavLink } from 'react-router-dom';
+
+import classes from './NavLinks.module.css';
+
+const CustomNavLink = (props) => (
+	<li className={classes.LinkContainer}>
+		<NavLink className={classes.Link} exact={props.exact} to={props.to}>
+			{props.children}
+		</NavLink>
+	</li>
+);
+
+const NavLinks = (props) => {
+	return (
+		<div className={classes.container}>
+			<nav className={classes.navItem}>
+				<ul className={classes.LinkList}>
+					{props.links &&
+						props.links.map((link) => (
+							<CustomNavLink to={link.href}>{link.name}</CustomNavLink>
+						))}
+				</ul>
+			</nav>
+		</div>
+	);
+};
+
+export default NavLinks;

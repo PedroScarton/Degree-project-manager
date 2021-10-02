@@ -1,25 +1,32 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+import { AuthContext } from './Shared/Context/auth-context';
+import { useAuth } from './Shared/Hooks/auth-hook';
+
+import MainWrapper from './Shared/Components/Layout/MainWrapper';
+
+const App = () => {
+	const { token, id, name, lastname, email, rut, imageUrl, role, login, logout } =
+		useAuth();
+	return (
+		<AuthContext.Provider
+			value={{
+				isLoggedIn: !!token,
+				token,
+				id,
+				name,
+				lastname,
+				email,
+				rut,
+				imageUrl,
+				role,
+				login,
+				logout,
+			}}
+		>
+			<MainWrapper></MainWrapper>
+		</AuthContext.Provider>
+	);
+};
 
 export default App;
