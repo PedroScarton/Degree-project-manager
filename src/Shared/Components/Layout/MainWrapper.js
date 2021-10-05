@@ -9,12 +9,22 @@ import classes from './MainWrapper.module.css';
 
 import { roles } from '../../../Assets/config/nav.config';
 
+const getRoutes = (role) => {
+	// obtengo los modulos
+	const modules = Object.keys(roles[role]);
+	const routes = [];
+	for (const module of modules) {
+		routes.push(...roles[role][module]);
+	}
+	return routes;
+};
+
 const MainWrapper = (props) => {
 	// estados de rutas
 	const { role } = props;
 	const modules = Object.keys(roles[props.role]);
+	const routes = getRoutes(props.role);
 
-	const [routes, setRoutes] = useState([]);
 	const [moduleTools, setModuleTools] = useState(false);
 
 	const location = useLocation();
@@ -39,7 +49,7 @@ const MainWrapper = (props) => {
 		// obtenemos las rutas de ese modulo
 		const tools = roles[role][actualModule];
 		// generamos rutas para ese modulo
-		console.log(tools);
+		setModuleTools(tools);
 	}, [role, modules, location.pathname]);
 
 	const obtenerNuevasSolicitudes = useCallback(() => {}, []);
@@ -48,12 +58,21 @@ const MainWrapper = (props) => {
 		<React.Fragment>
 			<MainNavigation modules={modules} />
 			<div className={classes.wrapper}>
-				<Sidebar />
+				<Sidebar tools={moduleTools} />
 				<main className={classes.mainContainer}>
-					<Switch></Switch>
+					<div className={classes.routerContainer}>
+						<Switch>
+							{routes.map((route) => (
+								<Route
+									key={route.href}
+									path={route.href}
+									render={() => <h1 className="center">Hola</h1>}
+								/>
+							))}
+						</Switch>
+					</div>
 				</main>
 			</div>
-			{/* <Redirect from="" to={`/${modules[0]}`} /> */}
 		</React.Fragment>
 	);
 };

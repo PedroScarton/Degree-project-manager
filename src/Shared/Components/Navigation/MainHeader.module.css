@@ -3,6 +3,7 @@
   height: 70px;
   display: flex;
   align-items: center;
+  justify-content: center;
   position: fixed;
   top: 0;
   left: 0;
@@ -10,7 +11,6 @@
   padding: 0 1rem;
   z-index: 10;
   box-sizing: border-box;
-  justify-content: space-between;
 }
 
 .sideNavigation {
@@ -21,6 +21,5 @@
 @media (min-width: 768px) {
   .mainHeader {
     padding: 0 3rem;
-    justify-content: space-between;
   }
 }
