@@ -1,5 +1,8 @@
 // IMPORT DE COMPONENTES PARA RUTAS
 // componentes de memorias
+import Solicitudes from '../../Memorias/Solicitudes/Pages/Solicitudes';
+import Aprobadas from '../../Memorias/Aprobadas/Pages/Aprobadas';
+import Activas from '../../Memorias/Activas/Pages/Activas';
 // componentes de agenda
 // componentes de docentes
 // componentes de alumnos
@@ -7,18 +10,18 @@
 // IMPORT DE ICONOS
 
 // iconos de memorias
-import { ReactComponent as Solicitudes } from '../icons/solicitudes.svg';
-import { ReactComponent as Lista } from '../icons/lista.svg';
-import { ReactComponent as Aprobadas } from '../icons/aprobadas.svg';
-import { ReactComponent as Exito } from '../icons/exito.svg';
-import { ReactComponent as Comenzar } from '../icons/comenzar.svg';
+import { ReactComponent as SolicitudesIcon } from '../icons/solicitudes.svg';
+import { ReactComponent as ListaIcon } from '../icons/lista.svg';
+import { ReactComponent as AprobadasIcon } from '../icons/aprobadas.svg';
+import { ReactComponent as ExitoIcon } from '../icons/exito.svg';
+import { ReactComponent as ComenzarIcon } from '../icons/comenzar.svg';
 
 // iconos de agenda
 
 // iconos de docentes
 
 // iconos de alumnos
-import { ReactComponent as Validacion } from '../icons/validacion.svg';
+import { ReactComponent as ValidacionIcon } from '../icons/validacion.svg';
 
 export const roles = {
 	coordinador: {
@@ -35,13 +38,9 @@ export const roles = {
 			{
 				type: 'notification',
 				name: 'Lista de solicitudes',
-				icon: Solicitudes,
+				icon: SolicitudesIcon,
 				href: '/memorias/solicitudes',
-				component: (
-					<div className="center">
-						<h1>lista de solicitudes</h1>
-					</div>
-				),
+				component: <Solicitudes />,
 			},
 			{
 				type: 'nested',
@@ -54,13 +53,9 @@ export const roles = {
 			},
 			{
 				name: 'Memorias activas',
-				icon: Lista,
+				icon: ListaIcon,
 				href: '/memorias/activas',
-				component: (
-					<div className="center">
-						<h1>lista de memorias activas</h1>
-					</div>
-				),
+				component: <Activas />,
 			},
 			{
 				type: 'nested',
@@ -73,13 +68,9 @@ export const roles = {
 			},
 			{
 				name: 'Memorias aprobadas',
-				icon: Aprobadas,
+				icon: AprobadasIcon,
 				href: '/memorias/aprobadas',
-				component: (
-					<div className="center">
-						<h1>lista de memorias aprobadas</h1>
-					</div>
-				),
+				component: <Aprobadas />,
 			},
 		],
 		agenda: [],
@@ -87,7 +78,7 @@ export const roles = {
 		alumnos: [
 			{
 				name: 'Verificar practicas',
-				icon: Validacion,
+				icon: ValidacionIcon,
 				href: '/alumnos/verificar/practicas',
 				component: (
 					<div className="center">
@@ -101,17 +92,13 @@ export const roles = {
 		memorias: [
 			{
 				name: 'Memorias activas',
-				icon: Lista,
+				icon: ListaIcon,
 				href: '/memorias/activas',
-				component: (
-					<div className="center">
-						<h1>Hola</h1>
-					</div>
-				),
+				component: <Activas />,
 			},
 			{
 				name: 'Participaciones',
-				icon: Exito,
+				icon: ExitoIcon,
 				href: '/memorias/participaciones',
 				component: (
 					<div className="center">
@@ -121,13 +108,9 @@ export const roles = {
 			},
 			{
 				name: 'Memorias aprobadas',
-				icon: Aprobadas,
+				icon: AprobadasIcon,
 				href: '/memorias/aprobadas',
-				component: (
-					<div className="center">
-						<h1>Hola</h1>
-					</div>
-				),
+				component: <Aprobadas />,
 			},
 		],
 		agenda: [],
@@ -137,7 +120,7 @@ export const roles = {
 		memorias: [
 			{
 				name: 'Iniciar solicitud',
-				icon: Comenzar,
+				icon: ComenzarIcon,
 				href: '/memorias/solicitud',
 				component: (
 					<div className="center">
@@ -147,7 +130,7 @@ export const roles = {
 			},
 			{
 				name: 'Mi memoria',
-				icon: Lista,
+				icon: ListaIcon,
 				href: '/memorias/mi-memoria',
 				component: (
 					<div className="center">
@@ -157,13 +140,9 @@ export const roles = {
 			},
 			{
 				name: 'Memorias aprobadas',
-				icon: Aprobadas,
+				icon: AprobadasIcon,
 				href: '/memorias/aprobadas',
-				component: (
-					<div className="center">
-						<h1>Hola</h1>
-					</div>
-				),
+				component: <Aprobadas />,
 			},
 		],
 		agenda: [],
