@@ -8,3 +8,47 @@
     border-right: 2px solid #d6d6d6;
     padding: 30px 0;
 }
+
+.item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+    width: 90%;
+    overflow: hidden;
+    background-color: white;
+}
+
+.itemLink {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    text-decoration: none;
+    height: 100%;
+    padding: 13px 0;
+    padding-left: 20px;
+    border-radius: 0px 25px 25px 0px;
+    background-color: white;
+}
+
+.itemLink p {
+    font-size: 1rem;
+    color: black;
+    font-weight: 700;
+    margin-left: 10px;
+}
+
+.itemLink:hover,
+.itemLink:active,
+.itemLinkActive {
+    background-color: #DCF3FF;
+}
+
+.itemLink:hover p,
+.itemLink:hover svg,
+.itemLink:active p,
+.itemLink:active svg,
+.itemLinkActive p,
+.itemLinkActive svg {
+    fill: #1089CB;
+    color: #1089CB;
+}
