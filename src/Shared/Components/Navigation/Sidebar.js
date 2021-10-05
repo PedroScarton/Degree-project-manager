@@ -9,12 +9,11 @@ const SideBarItem = (props) => {
 			<NavLink
 				className={classes.itemLink}
 				activeClassName={classes.itemLinkActive}
-				exact
 				to={props.href}
 			>
 				<props.icon />
 				<p>{props.name}</p>
-				{props.type === 'notification' && (
+				{!!props.count && props.type === 'notification' && (
 					<div className={classes.countItem}>
 						<p>{props.count}</p>
 					</div>

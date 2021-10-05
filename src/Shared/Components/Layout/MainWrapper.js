@@ -26,6 +26,7 @@ const MainWrapper = (props) => {
 	const routes = getRoutes(props.role);
 
 	const [moduleTools, setModuleTools] = useState(false);
+	const [memoryCount, setMemoryCount] = useState(0);
 
 	const location = useLocation();
 	const history = useHistory();
@@ -47,7 +48,7 @@ const MainWrapper = (props) => {
 			// obtengo el primer modulo
 			const firstModule = modules[0];
 			// busco la primera herramienta del primer modulo
-			const firstTool = roles[role][firstModule][0];
+			const firstTool = roles[role][firstModule][1];
 			// enviamos al usuario a la primera herramienta
 			history.push(firstTool.href);
 			return;
@@ -57,19 +58,23 @@ const MainWrapper = (props) => {
 	useEffect(() => {
 		// obtenemos el modulo
 		const actualModule = location.pathname.split('/')[1];
-		// obtenemos las rutas de ese modulo
-		const tools = roles[role][actualModule];
-		// generamos rutas para ese modulo
-		setModuleTools(tools);
-	}, [role, modules, location.pathname]);
+		if (actualModule) {
+			// obtenemos las rutas de ese modulo
+			const tools = roles[role][actualModule].filter(
+				(tool) => tool.type !== 'nested' && tool
+			);
+			// generamos rutas para ese modulo
+			// setModuleTools(tools);
+		}
+	}, [role, modules, moduleTools, location.pathname]);
 
-	const obtenerNuevasSolicitudes = useCallback(() => {}, []);
+	const getNewRequest = useCallback(() => {}, []);
 
 	return (
 		<React.Fragment>
 			<MainNavigation modules={modules} />
 			<div className={classes.wrapper}>
-				<Sidebar tools={moduleTools} count={10} />
+				<Sidebar tools={moduleTools} count={memoryCount} />
 				<main className={classes.mainContainer}>
 					<div className={classes.routerContainer}>
 						<Switch>
@@ -80,6 +85,7 @@ const MainWrapper = (props) => {
 									render={() => route.component}
 								/>
 							))}
+							<Redirect to="/" />
 						</Switch>
 					</div>
 				</main>

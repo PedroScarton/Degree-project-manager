@@ -24,13 +24,31 @@ export const roles = {
 	coordinador: {
 		memorias: [
 			{
+				type: 'nested',
+				href: '/memorias/solicitudes/:id',
+				component: (
+					<div className="center">
+						<h1>solicitud de memoria</h1>
+					</div>
+				),
+			},
+			{
 				type: 'notification',
 				name: 'Lista de solicitudes',
 				icon: Solicitudes,
 				href: '/memorias/solicitudes',
 				component: (
 					<div className="center">
-						<h1>Hola</h1>
+						<h1>lista de solicitudes</h1>
+					</div>
+				),
+			},
+			{
+				type: 'nested',
+				href: '/memorias/activas/:id',
+				component: (
+					<div className="center">
+						<h1>memoria activa</h1>
 					</div>
 				),
 			},
@@ -40,7 +58,16 @@ export const roles = {
 				href: '/memorias/activas',
 				component: (
 					<div className="center">
-						<h1>Hola</h1>
+						<h1>lista de memorias activas</h1>
+					</div>
+				),
+			},
+			{
+				type: 'nested',
+				href: '/memorias/aprobadas/:id',
+				component: (
+					<div className="center">
+						<h1>memoria aprobada</h1>
 					</div>
 				),
 			},
@@ -50,7 +77,7 @@ export const roles = {
 				href: '/memorias/aprobadas',
 				component: (
 					<div className="center">
-						<h1>Hola</h1>
+						<h1>lista de memorias aprobadas</h1>
 					</div>
 				),
 			},
