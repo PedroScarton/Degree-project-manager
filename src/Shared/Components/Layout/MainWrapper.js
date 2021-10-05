@@ -25,7 +25,7 @@ const MainWrapper = (props) => {
 	const modules = Object.keys(roles[props.role]);
 	const routes = getRoutes(props.role);
 
-	const [moduleTools, setModuleTools] = useState(false);
+	const [actualModule, setActualModule] = useState(false);
 	const [memoryCount, setMemoryCount] = useState(0);
 
 	const location = useLocation();
@@ -36,9 +36,11 @@ const MainWrapper = (props) => {
 		if (fullpath.length === 2) {
 			const actualModule = fullpath[1];
 			if (actualModule) {
-				const firstTool = roles[role][actualModule][0];
-				if (firstTool) {
-					history.push(firstTool.href);
+				const tools = roles[role][actualModule].filter(
+					(tool) => tool.type !== 'nested' && tool
+				);
+				if (tools.length !== 0) {
+					history.push(tools[0].href);
 					return;
 				}
 			}
@@ -55,8 +57,7 @@ const MainWrapper = (props) => {
 		}
 	}, [location.pathname, role, history, modules]);
 
-	useEffect(() => {
-		// obtenemos el modulo
+	const getModules = (module) => {
 		const actualModule = location.pathname.split('/')[1];
 		if (actualModule) {
 			// obtenemos las rutas de ese modulo
@@ -64,9 +65,9 @@ const MainWrapper = (props) => {
 				(tool) => tool.type !== 'nested' && tool
 			);
 			// generamos rutas para ese modulo
-			// setModuleTools(tools);
+			return tools;
 		}
-	}, [role, modules, moduleTools, location.pathname]);
+	};
 
 	const getNewRequest = useCallback(() => {}, []);
 
@@ -74,7 +75,7 @@ const MainWrapper = (props) => {
 		<React.Fragment>
 			<MainNavigation modules={modules} />
 			<div className={classes.wrapper}>
-				<Sidebar tools={moduleTools} count={memoryCount} />
+				<Sidebar tools={getModules(actualModule)} count={memoryCount} />
 				<main className={classes.mainContainer}>
 					<div className={classes.routerContainer}>
 						<Switch>
