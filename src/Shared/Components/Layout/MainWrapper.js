@@ -34,10 +34,12 @@ const MainWrapper = (props) => {
 		const fullpath = location.pathname.split('/');
 		if (fullpath.length === 2) {
 			const actualModule = fullpath[1];
-			const firstTool = roles[role][actualModule][0];
-			if (firstTool) {
-				history.push(firstTool.href);
-				return;
+			if (actualModule) {
+				const firstTool = roles[role][actualModule][0];
+				if (firstTool) {
+					history.push(firstTool.href);
+					return;
+				}
 			}
 		}
 		if (location.pathname === '/') {
@@ -67,7 +69,7 @@ const MainWrapper = (props) => {
 		<React.Fragment>
 			<MainNavigation modules={modules} />
 			<div className={classes.wrapper}>
-				<Sidebar tools={moduleTools} count={0} />
+				<Sidebar tools={moduleTools} count={10} />
 				<main className={classes.mainContainer}>
 					<div className={classes.routerContainer}>
 						<Switch>

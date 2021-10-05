@@ -14,9 +14,9 @@ const SideBarItem = (props) => {
 			>
 				<props.icon />
 				<p>{props.name}</p>
-				{props.notification && (
+				{props.type === 'notification' && (
 					<div className={classes.countItem}>
-						<p>{props.counte}</p>
+						<p>{props.count}</p>
 					</div>
 				)}
 			</NavLink>
@@ -24,7 +24,6 @@ const SideBarItem = (props) => {
 	);
 };
 const Sidebar = (props) => {
-	console.log(props.tools);
 	return (
 		<aside className={classes.sideBar}>
 			<div>

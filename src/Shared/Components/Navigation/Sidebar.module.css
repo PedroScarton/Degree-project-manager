@@ -52,3 +52,23 @@
     fill: #1089CB;
     color: #1089CB;
 }
+
+.countItem {
+    margin-left: 10px;
+    width: 30px;
+    height: 30px;
+    border-radius: 15px;
+    background-color: #EA4700;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.countItem p {
+    color: white;
+    margin: 0;
+}
+
+.itemLink:hover .countItem p {
+    color: white;
+}
