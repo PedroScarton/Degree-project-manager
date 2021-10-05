@@ -2,11 +2,30 @@
 
 .navItem {}
 
-.LinkList {}
+.LinkList {
+    display: flex;
+    list-style: none;
+}
 
-.LinkContainer {}
+.LinkContainer {
+    margin: 0 5px;
+}
 
-.Link {}
+.Link {
+    text-decoration: none;
+    color: white;
+    font-size: 1rem;
+    padding: 8px 10px;
+    border-radius: 4px;
+    text-transform: capitalize;
+    font-weight: 700;
+}
+
+.Link:hover,
+.Link:active,
+.ActiveLink {
+    background-color: #26A5EA;
+}
 
 /* MEDIA QUERY PARA PANTALLAS MEDIANAS */
 @media (min-width: 768px) {}

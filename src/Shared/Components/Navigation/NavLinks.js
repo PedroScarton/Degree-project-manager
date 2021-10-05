@@ -5,7 +5,12 @@ import classes from './NavLinks.module.css';
 
 const CustomNavLink = (props) => (
 	<li className={classes.LinkContainer}>
-		<NavLink className={classes.Link} exact={props.exact} to={props.to}>
+		<NavLink
+			className={classes.Link}
+			activeClassName={classes.ActiveLink}
+			exact={props.exact}
+			to={props.to}
+		>
 			{props.children}
 		</NavLink>
 	</li>
@@ -18,7 +23,9 @@ const NavLinks = (props) => {
 				<ul className={classes.LinkList}>
 					{props.links &&
 						props.links.map((link) => (
-							<CustomNavLink to={link.href}>{link.name}</CustomNavLink>
+							<CustomNavLink key={link} to={`/${link}`}>
+								{link}
+							</CustomNavLink>
 						))}
 				</ul>
 			</nav>
