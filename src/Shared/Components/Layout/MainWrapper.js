@@ -32,7 +32,15 @@ const MainWrapper = (props) => {
 
 	useEffect(() => {
 		const fullpath = location.pathname.split('/');
-		if (location.pathname === '/' || fullpath.length === 2) {
+		if (fullpath.length === 2) {
+			const actualModule = fullpath[1];
+			const firstTool = roles[role][actualModule][0];
+			if (firstTool) {
+				history.push(firstTool.href);
+				return;
+			}
+		}
+		if (location.pathname === '/') {
 			// aca debo enviar al usuario al primer modulo y primera herramienta
 			// obtengo el primer modulo
 			const firstModule = modules[0];
@@ -40,6 +48,7 @@ const MainWrapper = (props) => {
 			const firstTool = roles[role][firstModule][0];
 			// enviamos al usuario a la primera herramienta
 			history.push(firstTool.href);
+			return;
 		}
 	}, [location.pathname, role, history, modules]);
 
@@ -58,7 +67,7 @@ const MainWrapper = (props) => {
 		<React.Fragment>
 			<MainNavigation modules={modules} />
 			<div className={classes.wrapper}>
-				<Sidebar tools={moduleTools} />
+				<Sidebar tools={moduleTools} count={0} />
 				<main className={classes.mainContainer}>
 					<div className={classes.routerContainer}>
 						<Switch>
@@ -66,7 +75,7 @@ const MainWrapper = (props) => {
 								<Route
 									key={route.href}
 									path={route.href}
-									render={() => <h1 className="center">Hola</h1>}
+									render={() => route.component}
 								/>
 							))}
 						</Switch>
