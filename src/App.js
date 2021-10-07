@@ -57,7 +57,6 @@ const App = () => {
 	// 	>
 	// 		<Router>
 	// 			<MainWrapper role={'coordinador'} />
-	// 			{/* <Redirect to="/" /> */}
 	// 		</Router>
 	// 	</AuthContext.Provider>
 	// );

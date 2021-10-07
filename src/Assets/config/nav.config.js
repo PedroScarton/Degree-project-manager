@@ -1,5 +1,8 @@
 // IMPORT DE COMPONENTES PARA RUTAS
 // componentes de memorias
+import Solicitudes from '../../Memorias/Solicitudes/Pages/Solicitudes';
+import Aprobadas from '../../Memorias/Aprobadas/Pages/Aprobadas';
+import Activas from '../../Memorias/Activas/Pages/Activas';
 // componentes de agenda
 // componentes de docentes
 // componentes de alumnos
@@ -7,40 +10,67 @@
 // IMPORT DE ICONOS
 
 // iconos de memorias
-import { ReactComponent as Solicitudes } from '../icons/solicitudes.svg';
-import { ReactComponent as Lista } from '../icons/lista.svg';
-import { ReactComponent as Aprobadas } from '../icons/aprobadas.svg';
-import { ReactComponent as Exito } from '../icons/exito.svg';
-import { ReactComponent as Comenzar } from '../icons/comenzar.svg';
+import { ReactComponent as SolicitudesIcon } from '../icons/solicitudes.svg';
+import { ReactComponent as ListaIcon } from '../icons/lista.svg';
+import { ReactComponent as AprobadasIcon } from '../icons/aprobadas.svg';
+import { ReactComponent as ExitoIcon } from '../icons/exito.svg';
+import { ReactComponent as ComenzarIcon } from '../icons/comenzar.svg';
 
 // iconos de agenda
 
 // iconos de docentes
 
 // iconos de alumnos
-import { ReactComponent as Validacion } from '../icons/validacion.svg';
+import { ReactComponent as ValidacionIcon } from '../icons/validacion.svg';
 
 export const roles = {
 	coordinador: {
 		memorias: [
 			{
+				type: 'nested',
+				href: '/memorias/solicitudes/:id',
+				component: (
+					<div className="center">
+						<h1>solicitud de memoria</h1>
+					</div>
+				),
+			},
+			{
 				type: 'notification',
 				name: 'Lista de solicitudes',
-				icon: Solicitudes,
+				icon: SolicitudesIcon,
 				href: '/memorias/solicitudes',
-				component: '',
+				component: <Solicitudes />,
+			},
+			{
+				type: 'nested',
+				href: '/memorias/activas/:id',
+				component: (
+					<div className="center">
+						<h1>memoria activa</h1>
+					</div>
+				),
 			},
 			{
 				name: 'Memorias activas',
-				icon: Lista,
+				icon: ListaIcon,
 				href: '/memorias/activas',
-				component: '',
+				component: <Activas />,
+			},
+			{
+				type: 'nested',
+				href: '/memorias/aprobadas/:id',
+				component: (
+					<div className="center">
+						<h1>memoria aprobada</h1>
+					</div>
+				),
 			},
 			{
 				name: 'Memorias aprobadas',
-				icon: Aprobadas,
+				icon: AprobadasIcon,
 				href: '/memorias/aprobadas',
-				component: '',
+				component: <Aprobadas />,
 			},
 		],
 		agenda: [],
@@ -48,9 +78,13 @@ export const roles = {
 		alumnos: [
 			{
 				name: 'Verificar practicas',
-				icon: Validacion,
+				icon: ValidacionIcon,
 				href: '/alumnos/verificar/practicas',
-				component: '',
+				component: (
+					<div className="center">
+						<h1>Hola</h1>
+					</div>
+				),
 			},
 		],
 	},
@@ -58,21 +92,25 @@ export const roles = {
 		memorias: [
 			{
 				name: 'Memorias activas',
-				icon: Lista,
+				icon: ListaIcon,
 				href: '/memorias/activas',
-				component: '',
+				component: <Activas />,
 			},
 			{
 				name: 'Participaciones',
-				icon: Exito,
+				icon: ExitoIcon,
 				href: '/memorias/participaciones',
-				component: '',
+				component: (
+					<div className="center">
+						<h1>Hola</h1>
+					</div>
+				),
 			},
 			{
 				name: 'Memorias aprobadas',
-				icon: Aprobadas,
+				icon: AprobadasIcon,
 				href: '/memorias/aprobadas',
-				component: '',
+				component: <Aprobadas />,
 			},
 		],
 		agenda: [],
@@ -82,21 +120,29 @@ export const roles = {
 		memorias: [
 			{
 				name: 'Iniciar solicitud',
-				icon: Comenzar,
+				icon: ComenzarIcon,
 				href: '/memorias/solicitud',
-				component: '',
+				component: (
+					<div className="center">
+						<h1>Hola</h1>
+					</div>
+				),
 			},
 			{
 				name: 'Mi memoria',
-				icon: Lista,
+				icon: ListaIcon,
 				href: '/memorias/mi-memoria',
-				component: '',
+				component: (
+					<div className="center">
+						<h1>Hola</h1>
+					</div>
+				),
 			},
 			{
 				name: 'Memorias aprobadas',
-				icon: Aprobadas,
+				icon: AprobadasIcon,
 				href: '/memorias/aprobadas',
-				component: '',
+				component: <Aprobadas />,
 			},
 		],
 		agenda: [],
