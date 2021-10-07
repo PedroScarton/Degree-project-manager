@@ -1,0 +1,10 @@
+.list-_grid-template{
+    height: auto;
+    overflow: auto;
+    padding: 0.5rem 165px;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-auto-rows: 1fr;
+    grid-column-gap: 20px;
+    grid-row-gap: 20px;
+}
