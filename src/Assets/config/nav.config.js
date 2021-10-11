@@ -82,9 +82,25 @@ export const roles = {
 				href: '/alumnos/verificar/practicas',
 				component: (
 					<div className="center">
-						<h1>Hola</h1>
+						<h1>Verificacion de practicas</h1>
 					</div>
 				),
+			},
+		],
+	},
+	administrador: {
+		memorias: [
+			{
+				name: 'Verificacion inicial',
+				icon: AprobadasIcon,
+				href: '/memorias/verificacion',
+				component: <Solicitudes />,
+			},
+			{
+				name: 'Examen de grado',
+				icon: ValidacionIcon,
+				href: '/memorias/examenes',
+				component: <Solicitudes />,
 			},
 		],
 	},
@@ -139,9 +155,9 @@ export const roles = {
 				),
 			},
 			{
-				name: 'Memorias aprobadas',
+				name: 'Historial de memorias',
 				icon: AprobadasIcon,
-				href: '/memorias/aprobadas',
+				href: '/memorias/historial',
 				component: <Aprobadas />,
 			},
 		],

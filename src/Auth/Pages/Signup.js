@@ -7,7 +7,7 @@ const Login = () => {
 	return (
 		<main className={classes.main}>
 			<FormContainer>
-				<div>{/* Aca adentro los inputs */}</div>
+				<form>{/* Aca adentro los inputs */}</form>
 			</FormContainer>
 		</main>
 	);
