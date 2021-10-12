@@ -1,0 +1,66 @@
+.form-control-select {
+    margin: 1rem 0;
+}
+
+.form-control-select label,
+.form-control-select input,
+.form-control-select textarea {
+    display: block;
+}
+
+.form-control-select label {
+    font-weight: bold;
+    margin-bottom: 0.2rem;
+    color: black;
+    font-size: 1rem;
+    font-family: inherit;
+}
+
+.form-control-select button {
+    background-color: transparent;
+    border: none;
+    position: absolute;
+    right: 25px;
+    height: 35px;
+    margin: 5px;
+}
+
+.form-control-select button:focus {
+    outline: none;
+}
+
+
+.form-control-select input,
+.form-control-select select {
+    width: 100%;
+    height: 45px;
+    font: inherit;
+    border: 2px solid #26A5EA;
+    border-radius: 4px;
+    background: #DCF3FF;
+    padding: 0.15rem 0.25rem;
+    box-sizing: border-box;
+    font-weight: 600;
+}
+
+.form-control-select select {
+    outline: none;
+    appearance: none;
+    cursor: pointer;
+}
+
+.custom-selector {
+    position: relative;
+    display: block;
+}
+
+.custom-selector::after {
+    content: url('../../../Assets/icons/arrow_down.svg');
+    position: absolute;
+    right: 10px;
+    top: 10px;
+}
+
+.form-control-select select option {
+    font-weight: 600;
+}

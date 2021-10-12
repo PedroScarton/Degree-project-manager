@@ -9,6 +9,7 @@ import MainWrapper from './Shared/Components/Layout/MainWrapper';
 import Login from './Auth/Pages/Login';
 import Signup from './Auth/Pages/Signup';
 
+
 const App = () => {
 	const { token, id, name, lastname, email, rut, imageUrl, role, login, logout } =
 		useAuth();
@@ -25,25 +26,31 @@ const App = () => {
 		mainComponent = <MainWrapper role={'coordinador'} />;
 	}
 
-	return (
-		<AuthContext.Provider
-			value={{
-				isLoggedIn: !!token,
-				token,
-				id,
-				name,
-				lastname,
-				email,
-				rut,
-				imageUrl,
-				role,
-				login,
-				logout,
-			}}
-		>
-			<Router>{mainComponent}</Router>
-		</AuthContext.Provider>
+	return(
+		<React.Fragment>
+			<Login/>
+		</React.Fragment>
 	);
+
+	// return (
+	// 	<AuthContext.Provider
+	// 		value={{
+	// 			isLoggedIn: !!token,
+	// 			token,
+	// 			id,
+	// 			name,
+	// 			lastname,
+	// 			email,
+	// 			rut,
+	// 			imageUrl,
+	// 			role,
+	// 			login,
+	// 			logout,
+	// 		}}
+	// 	>
+	// 		<Router>{mainComponent}</Router>
+	// 	</AuthContext.Provider>
+	// );
 };
 
 export default App;

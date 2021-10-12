@@ -1,48 +1,47 @@
-.output-container{
+.container{
     display: flex;
-    margin: 10px;
     min-height: 40px;
     max-height: 40px;
 }
 
-.output-tittle,
-.output-detail{
+.tittle,
+.detail{
     padding: 10px;
     border: 1px solid #26A5EA;
     display: flex;
     align-items: center;
 }
 
-.output-tittle{
+.tittle{
     background-color: #DCF3FF;
     border-radius: 4px 0 0 4px;
     border-right: none;
     min-width: 110px;
 }
 
-.output-detail{
+.detail{
     border-radius: 0 4px 4px 0;
     min-width: 250px;
     justify-content: space-between;
 }
-.output-button{
+.Button{
     display: flex;
     align-items: center;
     margin-left: 20px;
 }
 
-.output-tittle p {
+.tittle p {
     font-weight: 600;
 }
 
-.output-detail button{
+.detail button{
     background: none;
     display: flex;
     border: none;
     cursor: pointer;
 }
 
-.output-detail button img{
+.detail button img{
     width: 24px;
 }
 

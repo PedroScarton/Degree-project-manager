@@ -1,19 +1,19 @@
 import React from 'react';
 
 import downloadFileIcon from '../../../Assets/icons/descargarArchivo.svg';
-import Button from './button';
+import Button from './Button';
 
-import './output.css';
+import classes from './Output.module.css';
 
 const Output = (props) => {
 
     if (props.file) {
         return (
-            <div className="output-container">
-                <div className="output-tittle">
+            <div className={classes.container}>
+                <div className={classes.title}>
                     <p>{props.title}</p>
                 </div>
-                <div className="output-detail">
+                <div className={classes.detail}>
                     <p>Descargar Archivo</p>
                     <button>
                         <img src={downloadFileIcon} alt="" />
@@ -23,14 +23,14 @@ const Output = (props) => {
         );
     } else if (props.button) {
         return (
-            <div className="output-container">
-                <div className="output-tittle">
+            <div className={classes.container}>
+                <div className={classes.title}>
                     <p>{props.title}</p>
                 </div>
-                <div className="output-detail">
+                <div className={classes.detail}>
                     <p>{props.detail}</p>
                 </div>
-                <div className="output-button">
+                <div className={classes.Button}>
                     <Button height="40px" color="#EA4700">
                         {props.button}
                     </Button>
@@ -40,11 +40,11 @@ const Output = (props) => {
     }
 
     return (
-        <div className="output-container">
-            <div className="output-tittle">
+        <div className={classes.container}>
+            <div className={classes.title}>
                 <p>{props.title}</p>
             </div>
-            <div className="output-detail">
+            <div className={classes.detail}>
                 <p>{props.detail}</p>
             </div>
         </div>

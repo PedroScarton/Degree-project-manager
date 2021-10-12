@@ -5,13 +5,16 @@
 
 .form-control label,
 .form-control input,
-.form-control textarea {
+.input-date-picker,
+.form-control textarea,
+.input-file-box {
     display: block;
     box-sizing: border-box;
 }
 
 
-.form-control label {
+.form-control label,
+.input-file-container label {
     font-weight: bold;
     margin-bottom: 0.2rem;
     color: black;
@@ -26,14 +29,33 @@
     position: absolute;
     right: 10px;
     padding: 10px 0px;
+    z-index: 5;
 }
+
+.svg-container {
+    position: absolute;
+    z-index: 2;
+    right: 10px;
+    height: 45px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+
+.input-file-box button {
+    background-color: transparent;
+    border: none;
+}
+
 
 .form-control button:focus {
     outline: none;
 }
 
-
-.form-control input {
+.form-control input,
+.input-file-box {
     width: 100%;
     height: 45px;
     font: inherit;
@@ -45,12 +67,32 @@
     font-weight: 600;
 }
 
+.input-date-picker fieldset {
+    display: none;
+}
+
+.input-date-picker input {
+    width: 100%;
+    font: inherit;
+    border: 2px solid #26A5EA;
+    border-radius: 4px;
+    cursor: pointer;
+    background: #DCF3FF;
+}
+
+.input-date-picker label {
+    display: none;
+}
 
 .form-control input:focus,
 .form-control textarea:focus {
     outline: none;
-    background: #ebebeb;
-    border-color: #c67b7f;
+    background: #B4F6E1;
+    border-color: #22A97E;
+}
+
+.form-control input:focus svg {
+    fill: #22A97E;
 }
 
 .form-control__helper {
@@ -63,6 +105,10 @@
     margin-left: 5px;
 }
 
-.input-file input[type="file"] button{
-    display: none;
+.input-file-box {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
