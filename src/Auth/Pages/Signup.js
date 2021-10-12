@@ -3,8 +3,8 @@ import React from 'react';
 import { useHistory } from 'react-router-dom';
 
 import FormContainer from '../Components/FormContainer';
-import Button from '../../Shared/Components/FormElements/button';
-import Input from '../../Shared/Components/FormElements/input';
+import Button from '../../Shared/Components/FormElements/Button';
+import Input from '../../Shared/Components/FormElements/Input';
 
 import classes from './SharedClasses.module.css';
 

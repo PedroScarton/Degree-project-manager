@@ -1,7 +1,7 @@
 import React from 'react';
 
-import Input from '../../../Shared/Components/FormElements/input';
-import Button from '../../../Shared/Components/FormElements/button';
+import Input from '../../../Shared/Components/FormElements/Input';
+import Button from '../../../Shared/Components/FormElements/Button';
 
 import classes from './Formulario.module.css';
 

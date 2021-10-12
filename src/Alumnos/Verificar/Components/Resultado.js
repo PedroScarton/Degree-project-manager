@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Button from '../../../Shared/Components/FormElements/button';
+import Button from '../../../Shared/Components/FormElements/Button';
 
 import { ReactComponent as SuccessIcon } from '../../../Assets/icons/exito.svg';
 import { ReactComponent as ErrorIcon } from '../../../Assets/icons/error.svg';

@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 
 import Card from '../../../Shared/Components/UI/Card';
-import Input from '../../../Shared/Components/FormElements/input';
-import Button from '../../../Shared/Components/FormElements/button';
+import Input from '../../../Shared/Components/FormElements/Input';
+import Button from '../../../Shared/Components/FormElements/Button';
 import FormModal from '../../../Shared/Components/Layout/FormModal';
 import AdvancedSearchForm from './AdvancedSearchForm';
 

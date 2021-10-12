@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Input from '../../../Shared/Components/FormElements/input';
+import Input from '../../../Shared/Components/FormElements/Input';
 
 import classes from './AdvancedSearchForm.module.css';
 
