@@ -104,7 +104,7 @@ const Input = (props) => {
                     {props.label}
                 </label>
                 <label htmlFor="input-file" className="input-file-box">
-                    <input type="file" id="input-file" hidden="hidden"/>
+                    <input type="file" id="input-file" hidden="hidden" />
                     <p id="file-name">{props.fileName ?? 'Seleccione un archivo...'}</p>
                     <img src={UploadIcon} alt="" />
                 </label>

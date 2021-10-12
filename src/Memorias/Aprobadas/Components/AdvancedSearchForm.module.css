@@ -1,0 +1,8 @@
+.dateContainer {
+    display: flex;
+    justify-content: space-between;
+}
+
+.inputContainer {
+    width: 50%;
+}

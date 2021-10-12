@@ -6,6 +6,7 @@ import Activas from '../../Memorias/Activas/Pages/Activas';
 // componentes de agenda
 // componentes de docentes
 // componentes de alumnos
+import VerificarPractica from '../../Alumnos/Verificar/Pages/VerificarPractica';
 
 // IMPORT DE ICONOS
 
@@ -24,128 +25,140 @@ import { ReactComponent as ComenzarIcon } from '../icons/comenzar.svg';
 import { ReactComponent as ValidacionIcon } from '../icons/validacion.svg';
 
 export const roles = {
-	coordinador: {
-		memorias: [
-			{
-				type: 'nested',
-				href: '/memorias/solicitudes/:id',
-				component: (
-					<div className="center">
-						<h1>solicitud de memoria</h1>
-					</div>
-				),
-			},
-			{
-				type: 'notification',
-				name: 'Lista de solicitudes',
-				icon: SolicitudesIcon,
-				href: '/memorias/solicitudes',
-				component: <Solicitudes />,
-			},
-			{
-				type: 'nested',
-				href: '/memorias/activas/:id',
-				component: (
-					<div className="center">
-						<h1>memoria activa</h1>
-					</div>
-				),
-			},
-			{
-				name: 'Memorias activas',
-				icon: ListaIcon,
-				href: '/memorias/activas',
-				component: <Activas />,
-			},
-			{
-				type: 'nested',
-				href: '/memorias/aprobadas/:id',
-				component: (
-					<div className="center">
-						<h1>memoria aprobada</h1>
-					</div>
-				),
-			},
-			{
-				name: 'Memorias aprobadas',
-				icon: AprobadasIcon,
-				href: '/memorias/aprobadas',
-				component: <Aprobadas />,
-			},
-		],
-		agenda: [],
-		docentes: [],
-		alumnos: [
-			{
-				name: 'Verificar practicas',
-				icon: ValidacionIcon,
-				href: '/alumnos/verificar/practicas',
-				component: (
-					<div className="center">
-						<h1>Hola</h1>
-					</div>
-				),
-			},
-		],
-	},
-	docente: {
-		memorias: [
-			{
-				name: 'Memorias activas',
-				icon: ListaIcon,
-				href: '/memorias/activas',
-				component: <Activas />,
-			},
-			{
-				name: 'Participaciones',
-				icon: ExitoIcon,
-				href: '/memorias/participaciones',
-				component: (
-					<div className="center">
-						<h1>Hola</h1>
-					</div>
-				),
-			},
-			{
-				name: 'Memorias aprobadas',
-				icon: AprobadasIcon,
-				href: '/memorias/aprobadas',
-				component: <Aprobadas />,
-			},
-		],
-		agenda: [],
-		alumnos: [],
-	},
-	alumnos: {
-		memorias: [
-			{
-				name: 'Iniciar solicitud',
-				icon: ComenzarIcon,
-				href: '/memorias/solicitud',
-				component: (
-					<div className="center">
-						<h1>Hola</h1>
-					</div>
-				),
-			},
-			{
-				name: 'Mi memoria',
-				icon: ListaIcon,
-				href: '/memorias/mi-memoria',
-				component: (
-					<div className="center">
-						<h1>Hola</h1>
-					</div>
-				),
-			},
-			{
-				name: 'Memorias aprobadas',
-				icon: AprobadasIcon,
-				href: '/memorias/aprobadas',
-				component: <Aprobadas />,
-			},
-		],
-		agenda: [],
-		docentes: [],
-	},
+  coordinador: {
+    memorias: [
+      {
+        type: 'nested',
+        href: '/memorias/solicitudes/:id',
+        component: (
+          <div className="center">
+            <h1>solicitud de memoria</h1>
+          </div>
+        ),
+      },
+      {
+        type: 'notification',
+        name: 'Lista de solicitudes',
+        icon: SolicitudesIcon,
+        href: '/memorias/solicitudes',
+        component: <Solicitudes />,
+      },
+      {
+        type: 'nested',
+        href: '/memorias/activas/:id',
+        component: (
+          <div className="center">
+            <h1>memoria activa</h1>
+          </div>
+        ),
+      },
+      {
+        name: 'Memorias activas',
+        icon: ListaIcon,
+        href: '/memorias/activas',
+        component: <Activas />,
+      },
+      {
+        type: 'nested',
+        href: '/memorias/aprobadas/:id',
+        component: (
+          <div className="center">
+            <h1>memoria aprobada</h1>
+          </div>
+        ),
+      },
+      {
+        name: 'Memorias aprobadas',
+        icon: AprobadasIcon,
+        href: '/memorias/aprobadas',
+        component: <Aprobadas />,
+      },
+    ],
+    agenda: [],
+    docentes: [],
+    alumnos: [
+      {
+        name: 'Verificar practicas',
+        icon: ValidacionIcon,
+        href: '/alumnos/verificar/practicas',
+        component: <VerificarPractica />,
+      },
+    ],
+  },
+  administrador: {
+    memorias: [
+      {
+        name: 'Verificacion inicial',
+        icon: AprobadasIcon,
+        href: '/memorias/verificacion',
+        component: <Solicitudes />,
+      },
+      {
+        name: 'Examen de grado',
+        icon: ValidacionIcon,
+        href: '/memorias/examenes',
+        component: <Solicitudes />,
+      },
+    ],
+  },
+  docente: {
+    memorias: [
+      {
+        name: 'Memorias activas',
+        icon: ListaIcon,
+        href: '/memorias/activas',
+        component: <Activas />,
+      },
+      {
+        name: 'Participaciones',
+        icon: ExitoIcon,
+        href: '/memorias/participaciones',
+        component: (
+          <div className="center">
+            <h1>Hola</h1>
+          </div>
+        ),
+      },
+      {
+        name: 'Memorias aprobadas',
+        icon: AprobadasIcon,
+        href: '/memorias/aprobadas',
+        component: <Aprobadas />,
+      },
+    ],
+    agenda: [],
+    alumnos: [],
+  },
+  alumnos: {
+    memorias: [
+      {
+        name: 'Iniciar solicitud',
+        icon: ComenzarIcon,
+        href: '/memorias/solicitud',
+        component: (
+          <div className="center">
+            <h1>Hola</h1>
+          </div>
+        ),
+      },
+      {
+        name: 'Mi memoria',
+        icon: ListaIcon,
+        href: '/memorias/mi-memoria',
+        component: (
+          <div className="center">
+            <h1>Hola</h1>
+          </div>
+        ),
+      },
+      {
+        name: 'Historial de memorias',
+        icon: AprobadasIcon,
+        href: '/memorias/historial',
+        component: <Aprobadas />,
+      },
+    ],
+    agenda: [],
+    docentes: [],
+  },
 };

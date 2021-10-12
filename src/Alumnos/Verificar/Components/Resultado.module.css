@@ -1,0 +1,32 @@
+.header {
+    margin-bottom: 25px;
+}
+
+.headerItem {
+    margin-top: 5px;
+}
+
+
+.footer {
+    margin-top: 25px;
+}
+
+.infoContainer {
+    margin-bottom: 25px;
+}
+
+.itemContainer {
+    margin-bottom: 10px;
+}
+
+.itemHeader {}
+
+.highLight {
+    display: flex;
+    align-items: center;
+    margin-top: 5px;
+}
+
+.highLight p {
+    margin-left: 10px;
+}

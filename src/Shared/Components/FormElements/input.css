@@ -95,6 +95,10 @@
     fill: #22A97E;
 }
 
+.form-control input::placeholder {
+    color: #b3b3b3;
+}
+
 .form-control__helper {
     padding-top: 5px;
 }

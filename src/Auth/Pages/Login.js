@@ -1,5 +1,10 @@
 import React from 'react';
+
+import { useHistory } from 'react-router-dom';
+
 import FormContainer from '../Components/FormContainer';
+import Button from '../../Shared/Components/FormElements/button';
+import Input from '../../Shared/Components/FormElements/input';
 
 import Card from '../../Shared/Components/UI/Card';
 import CardHeader from '../../Memorias/Shared/Components/CardComponents/CardHeader';
@@ -8,46 +13,29 @@ import CardFooter from '../../Memorias/Shared/Components/CardComponents/CardFoot
 import classes from './SharedClasses.module.css';
 
 const Login = () => {
+	const history = useHistory();
+
+	const submitHandler = (event) => {
+		event.preventDefault();
+		console.log('sesión iniciada');
+		history.push('/memorias');
+	};
 
 	return (
 		<main className={classes.main}>
-			<FormContainer>
-				<div >
-					<Card>
-						<CardHeader
-							title="Lorem ipsum dolor sit ametLorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam sit amet molestie ligula. Pellentesque magna est, vehicula ut neque condimentum, pretium pulvinar"
-							detailOne="fecha de inicio"
-							detailTwo="fecha de termino"
-						/>
-						<CardFooter
-							action="Ver Detalle"
-						/>
-					</Card>
-					<Card>
-						<CardHeader title="Lorem ipsum dolor sit ametLorem ipsum dolor sit amet, consectetur"
-							detailOne="fecha de inicio"
-						/>
-						<div style={{display:'block'}}>
-							<p>Fase actual: PT2</p>
-							<p>Fecha de entrega: por definir</p>
-						</div>
-
-						<CardFooter
-							action="Ver solicitud"
-							memberOne="Ignacio Araya"
-							guide="Hernán Olmi"
-						/>
-					</Card>
-					<Card>
-						<CardHeader title="Lorem ipsum dolor sit ametLorem ipsum dolor sit amet, consectetur"/>
-						<CardFooter
-							action="Ver solicitud"
-							memberOne="Ignacio Araya"
-							memberTwo="Pedro Scarton"
-							guide="Hernán Olmi"
-						/>
-					</Card>
-					{/* Aca adentro los inputs */}
+			<FormContainer
+				onSubmit={submitHandler}
+				title="Autenticación"
+				footer={
+					<Button outlined to="/signup">
+						Registrarme
+					</Button>
+				}
+			>
+				<Input white label="Correo institucional: *" placeholder="aa.bb@alumnos.ucentral.cl" />
+				<Input white label="Contraseña: *" type="password" />
+				<div className={classes.buttonMargin}>
+					<Button>Iniciar sesión</Button>
 				</div>
 			</FormContainer>
 		</main>

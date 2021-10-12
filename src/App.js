@@ -26,31 +26,32 @@ const App = () => {
 		mainComponent = <MainWrapper role={'coordinador'} />;
 	}
 
-	return(
+	return (
 		<React.Fragment>
-			<Login/>
+			<Login />
 		</React.Fragment>
 	);
 
-	// return (
-	// 	<AuthContext.Provider
-	// 		value={{
-	// 			isLoggedIn: !!token,
-	// 			token,
-	// 			id,
-	// 			name,
-	// 			lastname,
-	// 			email,
-	// 			rut,
-	// 			imageUrl,
-	// 			role,
-	// 			login,
-	// 			logout,
-	// 		}}
-	// 	>
-	// 		<Router>{mainComponent}</Router>
-	// 	</AuthContext.Provider>
-	// );
+
+	//   return (
+	//     <AuthContext.Provider
+	//       value={{
+	//         isLoggedIn: !!token,
+	//         token,
+	//         id,
+	//         name,
+	//         lastname,
+	//         email,
+	//         rut,
+	//         imageUrl,
+	//         role,
+	//         login,
+	//         logout,
+	//       }}
+	//     >
+	//       <Router>{mainComponent}</Router>
+	//     </AuthContext.Provider>
+	//   );
 };
 
 export default App;
