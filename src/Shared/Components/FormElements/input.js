@@ -43,7 +43,9 @@ const Input = (props) => {
 					autoCorrect="off"
 					id={props.id}
 					type={passwordMode}
-					placeholder="*******"
+					placeholder={
+						passwordMode === 'password' ? '************' : 'Contraseña...'
+					}
 				/>
 			</React.Fragment>
 		);

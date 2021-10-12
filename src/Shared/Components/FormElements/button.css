@@ -1,15 +1,14 @@
 .button {
     font: inherit;
     display: block;
-    width: 200px;
+    width: 100%;
     padding: 0.5rem 0rem;
     border: 3px solid #26A5EA;
-    border-radius: 6px;
-    margin: 15px auto;
+    border-radius: 4px;
     text-decoration: none;
     color: white;
     font-size: 1rem;
-    font-weight: 500;
+    font-weight: 700;
     background-color: #26A5EA;
     cursor: pointer;
     text-align: center;
@@ -25,7 +24,7 @@
 }
 
 
-.button--disabled{
+.button--disabled {
     background-color: #BA3838;
     border: 3px solid #BA3838;
 }

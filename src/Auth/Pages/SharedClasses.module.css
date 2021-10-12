@@ -6,3 +6,7 @@
     height: 100vh;
     background-color: #F9FDFF;
 }
+
+.buttonMargin {
+    margin-top: 25px;
+}

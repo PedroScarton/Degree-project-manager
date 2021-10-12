@@ -53,6 +53,10 @@
     border-color: #c67b7f;
 }
 
+.form-control input::placeholder {
+    color: #b3b3b3;
+}
+
 .form-control__helper {
     padding-top: 5px;
 }
@@ -63,6 +67,6 @@
     margin-left: 5px;
 }
 
-.input-file input[type="file"] button{
+.input-file input[type="file"] button {
     display: none;
 }
