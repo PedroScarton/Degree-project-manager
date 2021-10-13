@@ -7,27 +7,18 @@ import classes from './CardFooter.module.css';
 const CardFooter = (props) => {
   return (
     <div className={classes.container} style={{ margin: props.memberOne && '30px 0 0 0' }}>
-      {props.memberOne && (
+      {props.teacher && props.members && (
         <div className={classes.members}>
-          <div className={classes.membersDetail}>
-            <span>Integrante 1 :</span>
-            <p>{props.memberOne}</p>
-          </div>
-          {props.memberTwo && (
-            <div className={classes.membersDetail}>
-              <span>Integrante 2 :</span>
-              <p>{props.memberTwo}</p>
-            </div>
-          )}
-          {props.memberThree && (
-            <div className={classes.membersDetail}>
-              <span>Integrante 3 : </span>
-              <p>{props.meberThree}</p>
-            </div>
-          )}
+          {props.members.length !== 0 &&
+            props.members.map((member, index) => (
+              <div key={index} className={classes.membersDetail}>
+                <span>Integrante:</span>
+                <p>{member}</p>
+              </div>
+            ))}
           <div className={classes.membersDetail}>
             <span>Profesor guía: </span>
-            <p>{props.guide}</p>
+            <p>{props.teacher}</p>
           </div>
         </div>
       )}

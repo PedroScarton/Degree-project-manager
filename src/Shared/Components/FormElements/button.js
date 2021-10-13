@@ -7,7 +7,7 @@ import Button from '@mui/material/Button';
 
 const ContainedButton = styled(Button)({
   color: 'white',
-  backgroundColor: '#1089CB',
+  backgroundColor: '#26A5EA',
   fontFamily: [
     '-apple-system',
     'BlinkMacSystemFont',
@@ -25,8 +25,8 @@ const ContainedButton = styled(Button)({
   padding: '0.3rem 0',
   borderColor: '#D3131C',
   '&:hover': {
-    backgroundColor: '#1089CB',
-    borderColor: '#1089CB',
+    backgroundColor: '#26A5EA',
+    borderColor: '#26A5EA',
   },
   '&:disabled': {
     color: 'white',
