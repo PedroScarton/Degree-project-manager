@@ -1,0 +1,23 @@
+.head {
+    margin-bottom: 20px;
+}
+
+.footer {
+    max-width: 40%;
+}
+
+.head h1 {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: normal;
+    font-size: 1.5rem;
+    text-align: justify;
+}
+
+.head p {
+    font-size: 1rem;
+    color: #787878;
+}

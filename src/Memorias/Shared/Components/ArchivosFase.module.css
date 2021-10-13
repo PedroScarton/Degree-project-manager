@@ -1,0 +1,34 @@
+.container {
+    padding: 4rem 10rem;
+}
+
+.completeContainer {
+    display: flex;
+}
+
+.detailComplete {
+    width: 50%;
+}
+
+.subtitle {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.detail {
+    margin-bottom: 25px;
+}
+
+.detailTitle {
+    margin-bottom: 20px;
+}
+
+.detailTitle h3 {
+    font-size: 1.2rem;
+}
+
+.detailBody {
+    max-width: 70%;
+}

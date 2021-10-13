@@ -31,7 +31,7 @@ const Login = () => {
         <Input white label="Correo institucional: *" placeholder="aa.bb@alumnos.ucentral.cl" />
         <Input white label="Contraseña: *" type="password" />
         <div className={classes.buttonMargin}>
-          <Button contained>Iniciar sesión</Button>
+          <Button >Iniciar sesión</Button>
         </div>
       </FormContainer>
     </main>

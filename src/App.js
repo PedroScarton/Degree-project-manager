@@ -6,6 +6,7 @@ import { AuthContext } from './Shared/Context/auth-context';
 import { useAuth } from './Shared/Hooks/auth-hook';
 
 import MainWrapper from './Shared/Components/Layout/MainWrapper';
+import ProgramasSemestres from './Memorias/Planes/Pages/Planes';
 import Login from './Auth/Pages/Login';
 import Signup from './Auth/Pages/Signup';
 
@@ -28,7 +29,7 @@ const App = () => {
 
 	return (
 		<React.Fragment>
-			<Login />
+			<ProgramasSemestres />
 		</React.Fragment>
 	);
 

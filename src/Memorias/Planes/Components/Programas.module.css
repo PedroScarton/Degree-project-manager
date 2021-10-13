@@ -1,0 +1,24 @@
+.container {
+    margin-bottom: 50px;
+}
+
+.head {
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.head button {
+    border: none;
+    background-color: transparent;
+}
+
+.body {
+    height: auto;
+    overflow: auto;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-auto-rows: 1fr;
+    grid-column-gap: 30px;
+    grid-row-gap: 30px;
+}

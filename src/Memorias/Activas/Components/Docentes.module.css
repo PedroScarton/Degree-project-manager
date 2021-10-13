@@ -1,0 +1,22 @@
+.teacher {
+    display: flex;
+    align-items: center;
+}
+
+.teacherPosition {
+    width: 10%;
+}
+
+.teacherPosition p {
+    font-weight: bold;
+}
+
+.teacherInfo {
+    display: flex;
+    width: 90%;
+}
+
+.teacherInfoDetail {
+    min-width: 50%;
+    padding-right: 10%;
+}
