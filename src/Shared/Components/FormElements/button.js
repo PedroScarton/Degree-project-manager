@@ -1,107 +1,101 @@
 import React from 'react';
 
-import { withStyles } from '@mui/styles';
+import { Link } from 'react-router-dom';
+
+import { styled } from '@mui/material/styles';
 import Button from '@mui/material/Button';
 
-const ContainedButton = withStyles((theme) => ({
-  root: {
-    color: 'white',
+const ContainedButton = styled(Button)({
+  color: 'white',
+  backgroundColor: '#26A5EA',
+  fontFamily: [
+    '-apple-system',
+    'BlinkMacSystemFont',
+    'Rajdhani',
+    'Roboto',
+    '"Helvetica Neue"',
+    'Arial',
+    'sans-serif',
+    '"Apple Color Emoji"',
+  ].join(','),
+  fontSize: 16,
+  fontWeight: '600',
+  textTransform: 'none',
+  borderWidth: 2,
+  padding: '0.3rem 0',
+  borderColor: '#D3131C',
+  '&:hover': {
     backgroundColor: '#26A5EA',
-    fontFamily: [
-      '-apple-system',
-      'BlinkMacSystemFont',
-      'Rajdhani',
-      'Roboto',
-      '"Helvetica Neue"',
-      'Arial',
-      'sans-serif',
-      '"Apple Color Emoji"',
-    ].join(','),
-    fontSize: 14,
-    textTransform: 'none',
-    borderWidth: 2,
-    fontWeight: '400',
-    padding: '0.4rem 0',
-    borderColor: '#D3131C',
-    '&:hover': {
-      backgroundColor: '#26A5EA',
-      borderColor: '#26A5EA',
-    },
-    '&:disabled': {
-      color: 'white',
-      borderColor: '#B4B4B4',
-      backgroundColor: '#B4B4B4',
-    },
-  },
-}))(Button);
-
-const ContainedButtonOrange = withStyles((theme) => ({
-  root: {
-    color: 'white',
-    backgroundColor: '#EA4700',
-    fontFamily: [
-      '-apple-system',
-      'BlinkMacSystemFont',
-      'Rajdhani',
-      'Roboto',
-      '"Helvetica Neue"',
-      'Arial',
-      'sans-serif',
-      '"Apple Color Emoji"',
-    ].join(','),
-    fontSize: 14,
-    textTransform: 'none',
-    borderWidth: 2,
-    fontWeight: '400',
-    padding: '0.4rem 0',
-    borderColor: '#EA4700',
-    '&:hover': {
-      backgroundColor: '#EA4700',
-      borderColor: '#EA4700',
-    },
-    '&:disabled': {
-      color: 'white',
-      borderColor: '#B4B4B4',
-      backgroundColor: '#B4B4B4',
-    },
-  },
-}))(Button);
-
-const OutlinedButton = withStyles((theme) => ({
-  root: {
-    color: '#26A5EA',
     borderColor: '#26A5EA',
-    fontFamily: [
-      '-apple-system',
-      'BlinkMacSystemFont',
-      'Rajdhani',
-      'Roboto',
-      '"Helvetica Neue"',
-      'Arial',
-      'sans-serif',
-      '"Apple Color Emoji"',
-    ].join(','),
-    textTransform: 'none',
-    borderWidth: 2,
-    fontSize: 14,
-    fontWeight: '300',
-    padding: '0.3rem 0',
-    boxSizing: 'border-box',
-    backgroundColor: 'white',
-    '&:hover': {
-      borderWidth: 2,
-      borderColor: '#26A5EA',
-      color: '#26A5EA',
-      backgroundColor: 'white',
-    },
-    '&:disabled': {
-      color: '#B4B4B4',
-      borderWidth: 2,
-      backgroundColor: '#F1F1F1',
-      borderColor: '#B4B4B4',
-    },
   },
-}))(Button);
+  '&:disabled': {
+    color: 'white',
+    borderColor: '#B4B4B4',
+    backgroundColor: '#B4B4B4',
+  },
+});
+
+const ContainedButtonOrange = styled(Button)({
+  color: 'white',
+  backgroundColor: '#EA4600',
+  fontFamily: [
+    '-apple-system',
+    'BlinkMacSystemFont',
+    'Rajdhani',
+    'Roboto',
+    '"Helvetica Neue"',
+    'Arial',
+    'sans-serif',
+    '"Apple Color Emoji"',
+  ].join(','),
+  fontSize: 16,
+  fontWeight: '600',
+  textTransform: 'none',
+  borderWidth: 2,
+  padding: '0.3rem 0',
+  borderColor: '#EA4600',
+  '&:hover': {
+    backgroundColor: '#EA4600',
+    borderColor: '#EA4600',
+  },
+  '&:disabled': {
+    color: 'white',
+    borderColor: '#B4B4B4',
+    backgroundColor: '#B4B4B4',
+  },
+});
+
+const OutlinedButton = styled(Button)({
+  color: '#26A5EA',
+  borderColor: '#26A5EA',
+  fontFamily: [
+    '-apple-system',
+    'BlinkMacSystemFont',
+    'Rajdhani',
+    'Roboto',
+    '"Helvetica Neue"',
+    'Arial',
+    'sans-serif',
+    '"Apple Color Emoji"',
+  ].join(','),
+  textTransform: 'none',
+  borderWidth: 2,
+  fontSize: 16,
+  fontWeight: '600',
+  padding: '0.3rem 0',
+  boxSizing: 'border-box',
+  backgroundColor: 'transparent',
+  '&:hover': {
+    borderWidth: 2,
+    borderColor: '#26A5EA',
+    color: '#26A5EA',
+  },
+  '&:disabled': {
+    color: '#B4B4B4',
+    borderWidth: 2,
+    borderColor: '#B4B4B4',
+  },
+});
 
 const CustomButton = (props) => {
   if (props.outlined) {
@@ -113,7 +107,8 @@ const CustomButton = (props) => {
         onClick={props.type === 'submit' ? null : props.onClick}
         variant="outlined"
         color="primary"
-        href={props.href}
+        component={props.to && Link}
+        to={props.to}
         download={props.download}
         disableElevation={props.elevated}
       >
@@ -128,7 +123,8 @@ const CustomButton = (props) => {
         type={props.type}
         onClick={props.type === 'submit' ? null : props.onClick}
         color="primary"
-        href={props.href}
+        component={props.to && Link}
+        to={props.to}
         download={props.download}
       >
         {props.children}
@@ -139,12 +135,15 @@ const CustomButton = (props) => {
   return (
     <ContainedButton
       fullWidth
+      variant="contained"
       disabled={props.disabled}
       type={props.type}
       onClick={props.type === 'submit' ? null : props.onClick}
-      color="primary"
-      href={props.href}
+      component={props.to && Link}
+      to={props.to}
       download={props.download}
+      disableElevation
+      color="primary"
     >
       {props.children}
     </ContainedButton>

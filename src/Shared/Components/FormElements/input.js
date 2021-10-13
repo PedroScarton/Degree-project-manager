@@ -47,57 +47,56 @@ const Input = (props) => {
     setPasswordMode('password');
   };
 
-  let element;
-  if (props.type === 'text') {
-    element = (
-      <React.Fragment>
-        <input type={props.type} id={props.id} placeholder={props.placeholder} />
-      </React.Fragment>
-    );
-  } else if (props.type === 'password') {
-    element = (
-      <React.Fragment>
-        {eyeMode ? (
-          <button onClick={showPasswordHandler}>
-            <img src={eyeOn} alt="" />
-          </button>
-        ) : (
-          <button onClick={hidePasswordHandler}>
-            <img src={eyeOff} alt="" />
-          </button>
-        )}
+  let element = <input type={props.type} id={props.id} placeholder={props.placeholder} />;
+  switch (props.type) {
+    case 'password':
+      element = (
+        <React.Fragment>
+          {eyeMode ? (
+            <button onClick={showPasswordHandler}>
+              <img src={eyeOn} alt="" />
+            </button>
+          ) : (
+            <button onClick={hidePasswordHandler}>
+              <img src={eyeOff} alt="" />
+            </button>
+          )}
 
-        <input
-          autoComplete="off"
-          autoCorrect="off"
-          id={props.id}
-          type={passwordMode}
-          placeholder="*******"
-        />
-      </React.Fragment>
-    );
-  } else if (props.type === 'date') {
-    element = (
-      <div className="input-date-picker">
-        <div className="svg-container">
-          <CalendarIcon />
+          <input
+            autoComplete="off"
+            autoCorrect="off"
+            id={props.id}
+            type={passwordMode}
+            placeholder="*******"
+          />
+        </React.Fragment>
+      );
+      break;
+    case 'date':
+      element = (
+        <div className="input-date-picker">
+          <div className="svg-container">
+            <CalendarIcon />
+          </div>
+          <MaterialUIPickers />
         </div>
-        <MaterialUIPickers />
-      </div>
-    );
-  } else if (props.type === 'file') {
-    return (
-      <div className="input-file-container">
-        <label htmlFor={props.id} style={{ color: props.white && 'white' }}>
-          {props.label}
-        </label>
-        <label htmlFor="input-file" className="input-file-box">
-          <input type="file" id="input-file" hidden="hidden" />
-          <p id="file-name">{props.fileName ?? 'Seleccione un archivo...'}</p>
-          <img src={UploadIcon} alt="" />
-        </label>
-      </div>
-    );
+      );
+      break;
+    case 'file':
+      return (
+        <div className="input-file-container">
+          <label htmlFor={props.id} style={{ color: props.white && 'white' }}>
+            {props.label}
+          </label>
+          <label htmlFor="input-file" className="input-file-box">
+            <input type="file" id="input-file" hidden="hidden" />
+            <p id="file-name">{props.fileName ?? 'Seleccione un archivo...'}</p>
+            <img src={UploadIcon} alt="" />
+          </label>
+        </div>
+      );
+    default:
+      break;
   }
 
   return (
