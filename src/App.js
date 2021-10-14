@@ -6,6 +6,7 @@ import { AuthContext } from './Shared/Context/auth-context';
 import { useAuth } from './Shared/Hooks/auth-hook';
 
 import MainWrapper from './Shared/Components/Layout/MainWrapper';
+import Planes from './Memorias/Planes/Pages/Plan';
 import Login from './Auth/Pages/Login';
 import Signup from './Auth/Pages/Signup';
 
@@ -24,25 +25,30 @@ const App = () => {
 		mainComponent = <MainWrapper role={'coordinador'} />;
 	}
 
+
 	return (
-		<AuthContext.Provider
-			value={{
-				isLoggedIn: !!token,
-				token,
-				id,
-				name,
-				lastname,
-				email,
-				rut,
-				imageUrl,
-				role,
-				login,
-				logout,
-			}}
-		>
-			<Router>{mainComponent}</Router>
-		</AuthContext.Provider>
+		<Planes />
 	);
+
+	// return (
+	// 	<AuthContext.Provider
+	// 		value={{
+	// 			isLoggedIn: !!token,
+	// 			token,
+	// 			id,
+	// 			name,
+	// 			lastname,
+	// 			email,
+	// 			rut,
+	// 			imageUrl,
+	// 			role,
+	// 			login,
+	// 			logout,
+	// 		}}
+	// 	>
+	// 		<Router>{mainComponent}</Router>
+	// 	</AuthContext.Provider>
+	// );
 };
 
 export default App;

@@ -1,12 +1,21 @@
 .head {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
     margin-bottom: 20px;
 }
 
-.head h3 {
-    font-size: 1.5rem;
+.container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.title p {
+    color: #787878;
+    font-size: 1rem;
+}
+
+.title h3 {
+    font-size: 1.2rem;
+    font-weight: bold;
 }
 
 .buttons button {
@@ -15,18 +24,19 @@
     margin-left: 10px;
 }
 
-.bodyDetail {
+.body {
     display: flex;
     align-items: center;
-    margin: 5px 0;
 }
 
-.bodyDetail span {
-    font-size: 1rem;
-    margin-right: 20px;
-    min-width: 65px;
+.body span {
+    font-size: 1.2rem;
 }
 
-.bodyDetail p {
+.body p {
     font-size: 1rem;
+}
+
+.body span {
+    margin-right: 10px;
 }
