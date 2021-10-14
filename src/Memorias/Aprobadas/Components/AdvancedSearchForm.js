@@ -6,7 +6,7 @@ import classes from './AdvancedSearchForm.module.css';
 
 const AdvancedSearchForm = (props) => {
   const submithandler = (e) => {
-    e.preventdefault();
+    e.preventDefault();
     console.log('hola');
   };
   return (

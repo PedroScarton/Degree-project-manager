@@ -1,4 +1,6 @@
-import React from 'react';
+import React, { useContext } from 'react';
+
+import { AuthContext } from '../../Shared/Context/auth-context';
 
 import { useHistory } from 'react-router-dom';
 
@@ -9,11 +11,13 @@ import Input from '../../Shared/Components/FormElements/Input';
 import classes from './SharedClasses.module.css';
 
 const Login = () => {
+  const auth = useContext(AuthContext);
+
   const history = useHistory();
 
   const submitHandler = (event) => {
     event.preventDefault();
-    console.log('sesión iniciada');
+    auth.login();
     history.push('/memorias');
   };
   return (

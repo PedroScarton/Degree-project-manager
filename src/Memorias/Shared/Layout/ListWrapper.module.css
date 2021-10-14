@@ -1,3 +1,8 @@
 .ListHeaderContainer {
     margin-bottom: 30px;
 }
+
+.ListHeaderContainer h1 {
+    font-size: 2rem;
+
+}

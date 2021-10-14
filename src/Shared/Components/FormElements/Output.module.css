@@ -22,8 +22,15 @@
 
 .detail {
     border-radius: 0 4px 4px 0;
-    width: 100%;
+    flex: 1;
     justify-content: space-between;
+}
+
+.detail p {
+    max-width: 200px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .Button {
