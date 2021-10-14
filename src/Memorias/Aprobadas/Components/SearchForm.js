@@ -8,7 +8,7 @@ import AdvancedSearchForm from './AdvancedSearchForm';
 
 import classes from './SearchForm.module.css';
 
-const SearchForm = () => {
+const SearchForm = (props) => {
   const [isOpen, setIsOpen] = useState(false);
   const submitHandler = (event) => {
     event.preventDefault();
@@ -20,6 +20,9 @@ const SearchForm = () => {
   };
   const closeHandler = () => {
     setIsOpen(false);
+  };
+  const searchHandler = () => {
+    props.onSubmit('valores');
   };
   return (
     <div>
@@ -33,7 +36,7 @@ const SearchForm = () => {
               />
             </div>
             <div className={classes.buttonContainer}>
-              <Button>Buscar</Button>
+              <Button onClick={searchHandler}>Buscar</Button>
               <div className={classes.button}>
                 <button onClick={advanceSearch} className={classes.hyperLink}>
                   Búsqueda avanzada

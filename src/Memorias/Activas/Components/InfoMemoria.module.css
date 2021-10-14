@@ -8,6 +8,7 @@
 
 .description {
     margin-bottom: 30px;
+    white-space: pre-wrap;
 }
 
 .description p {
@@ -15,7 +16,6 @@
     text-align: justify;
 }
 
-.teachers h3,
-.members h3 {
+.members {
     margin-bottom: 20px;
 }

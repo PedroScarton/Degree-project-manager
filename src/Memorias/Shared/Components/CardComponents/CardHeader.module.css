@@ -1,8 +1,8 @@
-.container{
+.container {
     margin-bottom: 20px;
 }
 
-.container h1{
+.container h1 {
     display: -webkit-box;
     -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
@@ -13,13 +13,13 @@
     text-align: justify;
 }
 
-.subTitle{
+.subTitle {
     display: flex;
     justify-content: space-between;
     margin-top: 5px;
 }
 
-.subTitle p{
-    font-size: 0.8rem;
+.subTitle p {
+    font-size: 0.9rem;
     color: #787878;
 }

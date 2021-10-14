@@ -13,9 +13,13 @@ const Solicitudes = (props) => {
 
   // falta el loadingspinner de cuando se solicitan las memorias
 
+  const searchHandler = (values) => {
+    console.log(values);
+  };
+
   return (
     <React.Fragment>
-      <SearchForm />
+      <SearchForm onSubmit={searchHandler} />
       <ListWrapper>
         {memories &&
           memories.map((memory, index) => (

@@ -24,7 +24,7 @@ const Formulario = (props) => {
           <Input label="Rut: *" placeholder="11.222.333-4" />
         </div>
         <div className={classes.buttonContainer}>
-          <Button>Verificar</Button>
+          <Button type="submit">Verificar</Button>
         </div>
       </form>
     </React.Fragment>

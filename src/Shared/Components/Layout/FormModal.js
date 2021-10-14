@@ -43,7 +43,7 @@ const FormModal = (props) => {
           </div>
           <div className={classes.description}>{props.description}</div>
           <div className={classes.content}>{props.children}</div>
-          <div>{props.footer}</div>
+          {props.footer && <div className={classes.footer}>{props.footer}</div>}
         </div>
       </Fade>
     </Modal>

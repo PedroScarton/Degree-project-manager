@@ -1,9 +1,5 @@
 .container {
-    width: 100%;
-}
-
-.info {
-    max-width: 70%;
+    margin-top: 20px;
 }
 
 .title h3 {

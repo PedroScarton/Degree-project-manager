@@ -1,0 +1,25 @@
+.description {
+    margin-top: 20px;
+    text-align: justify;
+    white-space: pre-line;
+}
+
+
+.miniSectionHeader {
+    margin-top: 20px;
+}
+
+.miniSectionHeader h5 {
+    font-size: 1rem;
+}
+
+.footer {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-top: 50px;
+}
+
+.btnContainer {
+    width: 25%;
+}

@@ -1,8 +1,10 @@
 // IMPORT DE COMPONENTES PARA RUTAS
 // componentes de memorias
 import Solicitudes from '../../Memorias/Solicitudes/Pages/Solicitudes';
+import Solicitud from '../../Memorias/Solicitudes/Pages/Solicitud';
 import Aprobadas from '../../Memorias/Aprobadas/Pages/Aprobadas';
 import Activas from '../../Memorias/Activas/Pages/Activas';
+import Activa from '../../Memorias/Activas/Pages/Activa';
 // componentes de agenda
 // componentes de docentes
 // componentes de alumnos
@@ -30,11 +32,7 @@ export const roles = {
       {
         type: 'nested',
         href: '/memorias/solicitudes/:id',
-        component: (
-          <div className="center">
-            <h1>solicitud de memoria</h1>
-          </div>
-        ),
+        component: <Solicitud />,
       },
       {
         type: 'notification',
@@ -46,11 +44,7 @@ export const roles = {
       {
         type: 'nested',
         href: '/memorias/activas/:id',
-        component: (
-          <div className="center">
-            <h1>memoria activa</h1>
-          </div>
-        ),
+        component: <Activa />,
       },
       {
         name: 'Memorias activas',
