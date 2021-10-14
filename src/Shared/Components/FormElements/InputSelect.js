@@ -4,7 +4,7 @@ import './InputSelect.css';
 
 
 const InputSelect = (props) => {
-	
+
 
 	const { id, onInput } = props;
 	// const { value, isValid } = inputState;
@@ -25,7 +25,7 @@ const InputSelect = (props) => {
 
 	const touchHandler = () => {
 		// dispatch({
-            
+
 		// 	type: 'TOUCH',
 		// });
 	};
@@ -52,6 +52,11 @@ const InputSelect = (props) => {
 						))}
 				</select>
 			</div>
+			{props.helperText && (
+				<div className="form-control__helper">
+					<p>{props.helperText}</p>
+				</div>
+			)}
 		</div>
 	);
 };

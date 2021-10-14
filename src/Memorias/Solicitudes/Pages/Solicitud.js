@@ -9,6 +9,7 @@ import ResumeInfoMemoria from '../../Shared/Components/ResumeInfoMemoria';
 import TeacherForm from '../Components/TeacherForm';
 
 import classes from './Solicitud.module.css';
+import InputSelect from '../../../Shared/Components/FormElements/InputSelect';
 
 const Solicitud = (props) => {
   const [informante1, setInformante1] = useState(undefined);
@@ -94,6 +95,14 @@ const Solicitud = (props) => {
             erat quam hendrerit eros, sed consequat ligula nulla lobortis purus. Mauris lacus urna,
             ultrices et mi ut, tempor posuere nunc.
           </p>
+
+        </SectionHeader>
+        <SectionHeader title="Formato de solicitud Ucen">
+          <div style={{ width: "50%" }}>
+            <Output file
+              title="Solicitud formal"
+            />
+          </div>
         </SectionHeader>
         <SectionHeader title="Selección de profesores">
           <div>
@@ -131,6 +140,18 @@ const Solicitud = (props) => {
                 detail={'Hernan Olmi'}
               />
             </div>
+          </div>
+        </SectionHeader>
+        <SectionHeader title="Asignación plan de estudio y fechas">
+          <div className={classes.plan}>
+            <InputSelect
+              label="Plan de estudio: "
+              helperText="Corresponde al tipo de matricula de/los alumnos"
+            />
+            <InputSelect
+              label="Programa semestral: "
+              helperText="Corresponde a la planificación de fechas que seguirá la memoria"
+            />
           </div>
         </SectionHeader>
         <div className={classes.footer}>
