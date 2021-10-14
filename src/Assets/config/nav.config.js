@@ -5,6 +5,7 @@ import Solicitud from '../../Memorias/Solicitudes/Pages/Solicitud';
 import Aprobadas from '../../Memorias/Aprobadas/Pages/Aprobadas';
 import Activas from '../../Memorias/Activas/Pages/Activas';
 import Activa from '../../Memorias/Activas/Pages/Activa';
+import MemoryFiles from '../../Memorias/Activas/Pages/MemoryFiles';
 // componentes de agenda
 // componentes de docentes
 // componentes de alumnos
@@ -40,6 +41,11 @@ export const roles = {
         icon: SolicitudesIcon,
         href: '/memorias/solicitudes',
         component: <Solicitudes />,
+      },
+      {
+        type: 'nested',
+        href: '/memorias/activas/:id/evaluaciones/:evaluationId',
+        component: <MemoryFiles />,
       },
       {
         type: 'nested',

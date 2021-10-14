@@ -7,11 +7,11 @@ const Integrantes = (props) => {
   return (
     <div className={classes.container}>
       {props.members &&
-        props.members.map((member) => (
+        props.members.map((member, index) => (
           <Integrante
             teacher={member.teacher}
             guia={member.guia}
-            key={member.index}
+            key={index}
             index={member.index}
             rut={member.rut}
             nombre={member.nombre}

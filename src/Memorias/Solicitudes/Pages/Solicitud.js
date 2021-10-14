@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import Output from '../../../Shared/Components/FormElements/Output';
 
 import Card from '../../../Shared/Components/UI/Card';
 import Button from '../../../Shared/Components/FormElements/Button';
@@ -7,6 +6,7 @@ import FormModal from '../../../Shared/Components/Layout/FormModal';
 import SectionHeader from '../../Shared/Components/Header';
 import ResumeInfoMemoria from '../../Shared/Components/ResumeInfoMemoria';
 import TeacherForm from '../Components/TeacherForm';
+import Output from '../../../Shared/Components/FormElements/Output';
 
 import classes from './Solicitud.module.css';
 

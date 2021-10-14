@@ -37,7 +37,7 @@ const Login = () => {
         <Input white label="Contraseña: *" type="password" />
         <Input white label="Confirmar contraseña: *" type="password" />
         <div className={classes.buttonMargin}>
-          <Button>Registrarme</Button>
+          <Button type="submit">Registrarme</Button>
         </div>
       </FormContainer>
     </main>

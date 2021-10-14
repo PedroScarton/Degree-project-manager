@@ -6,6 +6,9 @@ import Button from './Button';
 import classes from './Output.module.css';
 
 const Output = (props) => {
+  const downLoadFileHandler = () => {
+    console.log('downloaded');
+  };
   if (props.file) {
     return (
       <div className={classes.container}>
@@ -13,11 +16,26 @@ const Output = (props) => {
           <p>{props.title}</p>
         </div>
         <div className={classes.detail}>
-          <p>Descargar Archivo</p>
-          <button>
-            <img src={downloadFileIcon} alt="" />
-          </button>
+          {props.archive ? (
+            <React.Fragment>
+              <p>Descargar archivo</p>
+              <button onClick={downLoadFileHandler}>
+                <img src={downloadFileIcon} alt="" />
+              </button>
+            </React.Fragment>
+          ) : (
+            <React.Fragment>
+              <p>Archivo no disponible</p>
+            </React.Fragment>
+          )}
         </div>
+        {props.action && (
+          <div className={classes.Button}>
+            <Button secondary onClick={props.onCallAction}>
+              {props.action}
+            </Button>
+          </div>
+        )}
       </div>
     );
   } else if (props.action) {
