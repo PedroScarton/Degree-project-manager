@@ -49,7 +49,6 @@ const ArchivosFase = (props) => {
                         <Output file
                             title="Informante 2"
                         />
-
                     </div>
                 </div>
 

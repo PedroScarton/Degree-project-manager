@@ -6,7 +6,7 @@ import { AuthContext } from './Shared/Context/auth-context';
 import { useAuth } from './Shared/Hooks/auth-hook';
 
 import MainWrapper from './Shared/Components/Layout/MainWrapper';
-import Planes from './Memorias/Planes/Pages/Plan';
+import Planes from './Memorias/Activas/Pages/Activa';
 import Login from './Auth/Pages/Login';
 import Signup from './Auth/Pages/Signup';
 

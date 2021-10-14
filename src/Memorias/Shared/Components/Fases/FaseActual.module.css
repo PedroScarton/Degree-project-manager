@@ -1,0 +1,41 @@
+.container {
+    margin-top: 30px;
+}
+
+.cardHead {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 25px;
+    color: #EA4700;
+}
+
+.cardFoot,
+.infoDetail {
+    display: flex;
+    align-items: end;
+}
+
+.cardFoot {
+    justify-content: space-between;
+}
+
+.infoDetail {
+    margin-top: 5px;
+}
+
+.cardHead h3 {
+    font-size: 1.5rem;
+}
+
+.infoDetail span {
+    margin-right: 10px;
+}
+
+.infoDetail span,
+.infoDetail p {
+    font-size: 1rem;
+}
+
+.footButton {
+    width: 30%;
+}

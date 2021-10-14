@@ -1,0 +1,32 @@
+.head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.head h3 {
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+.head p {
+    font-size: 1rem;
+    color: #787878;
+}
+
+.detailBody {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.detailBody span {
+    font-size: 1rem;
+    margin-right: 10px;
+    font-weight: 700;
+}
+
+.footer {
+    margin-top: 50px;
+}
