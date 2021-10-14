@@ -1,0 +1,10 @@
+.container {
+    margin-top: 30px;
+    height: auto;
+    overflow: auto;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-auto-rows: 1fr;
+    grid-row-gap: 20px;
+    grid-column-gap: 20px;
+}
