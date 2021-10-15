@@ -59,13 +59,16 @@ const MemoryFiles = (props) => {
   const location = useLocation();
 
   useEffect(() => {
-    console.log('faseId: ' + params.evaluationId);
+    // console.log('faseId: ' + params.evaluationId);
     const isActive = !!location.state && location.state.isActive;
     if (isActive) {
       setIsActive(true);
     }
-    console.log(location.state);
-    console.log('Cargando archivos desde el backend');
+    // console.log(location.state);
+    // console.log('Cargando archivos desde el backend');
+    console.log(history);
+    console.log(location);
+    console.log(params);
   }, [params, location.state]);
 
   const goBackHandler = () => {

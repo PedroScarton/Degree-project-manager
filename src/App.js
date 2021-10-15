@@ -9,7 +9,8 @@ import MainWrapper from './Shared/Components/Layout/MainWrapper';
 import Login from './Auth/Pages/Login';
 import Signup from './Auth/Pages/Signup';
 
-import { roles } from './Shared/Constants/roles';
+import { actual, roles } from './Shared/Constants/roles';
+
 const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const { token, id, name, lastname, email, rut, imageUrl, role, login, logout } = useAuth();
@@ -31,7 +32,7 @@ const App = () => {
   );
 
   if (!!isLoggedIn) {
-    mainComponent = <MainWrapper role={roles.ALUMNO} />;
+    mainComponent = <MainWrapper role={actual} />;
   }
 
   return (

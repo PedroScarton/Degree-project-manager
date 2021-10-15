@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 
 import Card from '../../../../Shared/Components/UI/Card';
 import Button from '../../../../Shared/Components/FormElements/Button';
@@ -40,7 +40,6 @@ const Fase = (props) => {
           <Button
             secondary={props.state === 'en curso'}
             disabled={!(props.state === 'en curso' || props.state === 'Finalizada')}
-            component={Link}
             to={{
               pathname: `${pathname}/evaluaciones/${props.id}`,
               state: { isActive: props.state === 'en curso' },

@@ -37,5 +37,16 @@
 }
 
 .footButton {
-    width: 30%;
+    width: 45%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.btnContainer {
+    width: 100%;
+}
+
+.btnContainer2 {
+    width: 45%;
 }

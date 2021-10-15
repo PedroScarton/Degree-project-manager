@@ -7,3 +7,5 @@ export const roles = {
   DOCENTE: DOCENTE,
   ALUMNO: ALUMNO,
 };
+
+export const actual = COORDINADOR;
