@@ -9,27 +9,6 @@ const ArchivosFase = (props) => {
   let element;
   if (props.active) {
     element = (
-      <div className={classes.completeContainer}>
-        <div className={classes.detailComplete}>
-          <div className={classes.detailTitle}>
-            <h3>Observaciones</h3>
-          </div>
-          <div className={classes.detailBody}>
-            <FileList members={props.observations} />
-          </div>
-        </div>
-        <div className={classes.detailComplete}>
-          <div className={classes.detailTitle}>
-            <h3>Evaluaciones</h3>
-          </div>
-          <div className={classes.detailBody}>
-            <FileList members={props.evaluations} />
-          </div>
-        </div>
-      </div>
-    );
-  } else {
-    element = (
       <React.Fragment>
         <div className={classes.detail}>
           <div className={classes.detailTitle}>
@@ -69,6 +48,27 @@ const ArchivosFase = (props) => {
           </div>
         </div>
       </React.Fragment>
+    );
+  } else {
+    element = (
+      <div className={classes.completeContainer}>
+        <div className={classes.detailComplete}>
+          <div className={classes.detailTitle}>
+            <h3>Observaciones</h3>
+          </div>
+          <div className={classes.detailBody}>
+            <FileList members={props.observations} />
+          </div>
+        </div>
+        <div className={classes.detailComplete}>
+          <div className={classes.detailTitle}>
+            <h3>Evaluaciones</h3>
+          </div>
+          <div className={classes.detailBody}>
+            <FileList members={props.evaluations} />
+          </div>
+        </div>
+      </div>
     );
   }
 

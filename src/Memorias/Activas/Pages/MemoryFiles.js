@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
-import { useHistory, useParams } from 'react-router-dom';
+import { useHistory, useParams, useLocation } from 'react-router-dom';
 
 import Card from '../../../Shared/Components/UI/Card';
 import Title from '../../Shared/Layout/Title';
@@ -52,14 +52,20 @@ const dummy_data = {
 
 const MemoryFiles = (props) => {
   const [isOpen, setIsOpen] = useState(false);
+  const [isActive, setIsActive] = useState(false);
 
   const history = useHistory();
   const params = useParams();
+  const location = useLocation();
 
   useEffect(() => {
-    console.log('EvaluacionesId: ' + params.evaluationId);
+    console.log('faseId: ' + params.evaluationId);
+    if (location.state.isActive) {
+      setIsActive(true);
+    }
+    console.log(location.state);
     console.log('Cargando archivos desde el backend');
-  }, [params]);
+  }, [params, location.state]);
 
   const goBackHandler = () => {
     history.goBack();
@@ -89,7 +95,7 @@ const MemoryFiles = (props) => {
         </Title>
         <ArchivosFase
           onDateChange={() => dateChangeModalHandler(true)}
-          active={dummy_data.active.finished}
+          active={isActive}
           evaluations={dummy_data.teachers}
           observations={dummy_data.members}
           sendNotification={sendNotification}

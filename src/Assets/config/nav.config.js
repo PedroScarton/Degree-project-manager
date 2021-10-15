@@ -2,10 +2,11 @@
 // componentes de memorias
 import Solicitudes from '../../Memorias/Solicitudes/Pages/Solicitudes';
 import Solicitud from '../../Memorias/Solicitudes/Pages/Solicitud';
-import Aprobadas from '../../Memorias/Aprobadas/Pages/Aprobadas';
 import Activas from '../../Memorias/Activas/Pages/Activas';
 import Activa from '../../Memorias/Activas/Pages/Activa';
 import MemoryFiles from '../../Memorias/Activas/Pages/MemoryFiles';
+import Aprobadas from '../../Memorias/Aprobadas/Pages/Aprobadas';
+import Aprobada from '../../Memorias/Aprobadas/Pages/Aprobada';
 // componentes de agenda
 // componentes de docentes
 // componentes de alumnos
@@ -60,12 +61,13 @@ export const roles = {
       },
       {
         type: 'nested',
+        href: '/memorias/aprobadas/:id/evaluaciones/:evaluationId',
+        component: <MemoryFiles />,
+      },
+      {
+        type: 'nested',
         href: '/memorias/aprobadas/:id',
-        component: (
-          <div className="center">
-            <h1>memoria aprobada</h1>
-          </div>
-        ),
+        component: <Aprobada />,
       },
       {
         name: 'Memorias aprobadas',
@@ -104,6 +106,16 @@ export const roles = {
   docente: {
     memorias: [
       {
+        type: 'nested',
+        href: '/memorias/activas/:id/evaluaciones/:evaluationId',
+        component: <MemoryFiles />,
+      },
+      {
+        type: 'nested',
+        href: '/memorias/activas/:id',
+        component: <Activa />,
+      },
+      {
         name: 'Memorias activas',
         icon: ListaIcon,
         href: '/memorias/activas',
@@ -118,6 +130,16 @@ export const roles = {
             <h1>Hola</h1>
           </div>
         ),
+      },
+      {
+        type: 'nested',
+        href: '/memorias/aprobadas/:id/evaluaciones/:evaluationId',
+        component: <MemoryFiles />,
+      },
+      {
+        type: 'nested',
+        href: '/memorias/aprobadas/:id',
+        component: <Aprobada />,
       },
       {
         name: 'Memorias aprobadas',
@@ -142,6 +164,11 @@ export const roles = {
         ),
       },
       {
+        type: 'nested',
+        href: '/memorias/mi-memoria/evaluaciones',
+        component: <MemoryFiles />,
+      },
+      {
         name: 'Mi memoria',
         icon: ListaIcon,
         href: '/memorias/mi-memoria',
@@ -150,6 +177,16 @@ export const roles = {
             <h1>Hola</h1>
           </div>
         ),
+      },
+      {
+        type: 'nested',
+        href: '/memorias/aprobadas/:id/evaluaciones/:evaluationId',
+        component: <MemoryFiles />,
+      },
+      {
+        type: 'nested',
+        href: '/memorias/aprobadas/:id',
+        component: <Aprobada />,
       },
       {
         name: 'Historial de memorias',

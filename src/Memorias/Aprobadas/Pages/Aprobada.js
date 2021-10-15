@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 import Card from '../../../Shared/Components/UI/Card';
-import InfoMemoria from '../Components/InfoMemoria';
+import InfoMemoria from '../../Activas/Components/InfoMemoria';
 import ResumeInfoMemoria from '../../Shared/Components/ResumeInfoMemoria';
 import Fases from '../../Shared/Components/Fases/Fases';
 
@@ -53,7 +53,7 @@ const dummy_data = {
   ],
 };
 
-const Activa = () => {
+const Aprobada = () => {
   const [principalPage, setPrincipalPage] = useState(true);
   const [showDetails, setShowDetails] = useState(false);
   const showDetailsHandler = (state) => {
@@ -75,8 +75,8 @@ const Activa = () => {
           <Fases
             fases={[
               { id: '1', name: 'PT 1', state: 'Finalizada' },
-              { id: '2', name: 'PT 2', state: 'en curso' },
-              { id: '3', name: 'Examen', state: 'Por comenzar' },
+              { id: '2', name: 'PT 2', state: 'Finalizada' },
+              { id: '3', name: 'Examen', state: 'Finalizada' },
             ]}
           />
         </React.Fragment>
@@ -97,4 +97,4 @@ const Activa = () => {
   );
 };
 
-export default Activa;
+export default Aprobada;

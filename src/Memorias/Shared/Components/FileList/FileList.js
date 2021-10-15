@@ -13,7 +13,7 @@ const FileList = (props) =>
       index={member.index}
       archive={member.file}
       sendNotification={props.sendNotification}
-      isActive={!member.file}
+      isActive={props.isActive && !member.file}
     />
   ));
 

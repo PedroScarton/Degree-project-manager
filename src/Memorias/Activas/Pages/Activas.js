@@ -25,7 +25,7 @@ const Activas = (props) => {
             teacher={'Hernan Olmi'}
             details={[new Date().toLocaleDateString('en-US')]}
             action={'Ver detalle'}
-            to={`/memorias/activas/${memory.id}/evaluaciones/1`}
+            to={`/memorias/activas/${memory.id}`}
           >
             <div>
               <p>
