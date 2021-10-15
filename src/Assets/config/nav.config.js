@@ -7,6 +7,7 @@ import Activa from '../../Memorias/Activas/Pages/Activa';
 import MemoryFiles from '../../Memorias/Activas/Pages/MemoryFiles';
 import Aprobadas from '../../Memorias/Aprobadas/Pages/Aprobadas';
 import Aprobada from '../../Memorias/Aprobadas/Pages/Aprobada';
+import MiMemoria from '../../Memorias/MiMemoria/MiMemoria';
 // componentes de agenda
 // componentes de docentes
 // componentes de alumnos
@@ -172,11 +173,7 @@ export const roles = {
         name: 'Mi memoria',
         icon: ListaIcon,
         href: '/memorias/mi-memoria',
-        component: (
-          <div className="center">
-            <h1>Hola</h1>
-          </div>
-        ),
+        component: <MiMemoria />,
       },
       {
         type: 'nested',
