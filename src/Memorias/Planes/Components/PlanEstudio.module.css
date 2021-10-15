@@ -22,6 +22,7 @@
     border: none;
     background-color: transparent;
     margin-left: 10px;
+    cursor: pointer;
 }
 
 .body {
@@ -39,4 +40,8 @@
 
 .body span {
     margin-right: 10px;
+}
+
+.Link {
+    margin-left: 10px;
 }
