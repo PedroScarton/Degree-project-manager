@@ -9,6 +9,8 @@ import Aprobadas from '../../Memorias/Aprobadas/Pages/Aprobadas';
 import Aprobada from '../../Memorias/Aprobadas/Pages/Aprobada';
 import MiMemoria from '../../Memorias/MiMemoria/Page/MiMemoria';
 import IniciarSolicitud from '../../Memorias/IniciarSolicitud/Pages/IniciarSolicitud';
+import Planes from '../../Memorias/Planes/Pages/Planes';
+import Plan from '../../Memorias/Planes/Pages/Plan';
 // componentes de agenda
 // componentes de docentes
 // componentes de alumnos
@@ -22,6 +24,7 @@ import { ReactComponent as ListaIcon } from '../icons/lista.svg';
 import { ReactComponent as AprobadasIcon } from '../icons/aprobadas.svg';
 import { ReactComponent as ExitoIcon } from '../icons/exito.svg';
 import { ReactComponent as ComenzarIcon } from '../icons/comenzar.svg';
+import { ReactComponent as CalendarioEditarIcon } from '../icons/calendarioEditar.svg';
 
 // iconos de agenda
 
@@ -76,6 +79,17 @@ export const roles = {
         icon: AprobadasIcon,
         href: '/memorias/aprobadas',
         component: <Aprobadas />,
+      },
+      {
+        type: 'nested',
+        href: '/memorias/plan/:id',
+        component: <Plan />,
+      },
+      {
+        name: 'Planes de estudio',
+        icon: CalendarioEditarIcon,
+        href: '/memorias/plan',
+        component: <Planes />,
       },
     ],
     agenda: [],
