@@ -7,7 +7,8 @@ import Activa from '../../Memorias/Activas/Pages/Activa';
 import MemoryFiles from '../../Memorias/Activas/Pages/MemoryFiles';
 import Aprobadas from '../../Memorias/Aprobadas/Pages/Aprobadas';
 import Aprobada from '../../Memorias/Aprobadas/Pages/Aprobada';
-import MiMemoria from '../../Memorias/MiMemoria/MiMemoria';
+import MiMemoria from '../../Memorias/MiMemoria/Page/MiMemoria';
+import IniciarSolicitud from '../../Memorias/IniciarSolicitud/Pages/IniciarSolicitud';
 // componentes de agenda
 // componentes de docentes
 // componentes de alumnos
@@ -158,11 +159,7 @@ export const roles = {
         name: 'Iniciar solicitud',
         icon: ComenzarIcon,
         href: '/memorias/solicitud',
-        component: (
-          <div className="center">
-            <h1>Hola</h1>
-          </div>
-        ),
+        component: <IniciarSolicitud />,
       },
       {
         type: 'nested',

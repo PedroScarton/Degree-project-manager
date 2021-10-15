@@ -47,14 +47,15 @@ const MainWrapper = (props) => {
       }
     }
     if (location.pathname === '/') {
-      // aca debo enviar al usuario al primer modulo y primera herramienta
-      // obtengo el primer modulo
-      const firstModule = modules[0];
-      // busco la primera herramienta del primer modulo
-      const firstTool = roles[role][firstModule][1];
-      // enviamos al usuario a la primera herramienta
-      history.push(firstTool.href);
-      return;
+      const modules = Object.keys(roles[role]);
+      const actualModule = roles[role][modules[0]];
+      if (actualModule) {
+        const tools = actualModule.filter((tool) => tool.type !== 'nested' && tool);
+        if (tools.length !== 0) {
+          history.push(tools[0].href);
+          return;
+        }
+      }
     }
   }, [location.pathname, role, history, modules]);
 

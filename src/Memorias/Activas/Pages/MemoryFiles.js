@@ -60,7 +60,8 @@ const MemoryFiles = (props) => {
 
   useEffect(() => {
     console.log('faseId: ' + params.evaluationId);
-    if (location.state.isActive) {
+    const isActive = !!location.state && location.state.isActive;
+    if (isActive) {
       setIsActive(true);
     }
     console.log(location.state);
