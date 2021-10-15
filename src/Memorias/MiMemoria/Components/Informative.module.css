@@ -1,0 +1,26 @@
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10rem;
+}
+
+.body {
+    width: 450px;
+}
+
+.body h1 {
+    font-size: 7rem;
+    text-align: center;
+    color: #26A5EA;
+    margin-bottom: 50px;
+}
+
+.body p {
+    font-size: 1rem;
+    text-align: center;
+}
+
+.Button {
+    margin-top: 50px;
+}

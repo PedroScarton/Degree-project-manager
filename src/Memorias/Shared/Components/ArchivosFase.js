@@ -68,6 +68,30 @@ const ArchivosFase = (props) => {
             />
           </div>
         </div>
+        <div className={classes.info}>
+          <div className={classes.infoDetail}>
+            <div className={classes.detailTitle}>
+              <h3>Fecha de entrega</h3>
+            </div>
+            <div className={classes.detailBody}>
+              <Output
+                title="Fecha agendada"
+                detail={props.eventDate}
+              />
+            </div>
+          </div>
+          <div className={classes.infoDetail}>
+            <div className={classes.detailTitle}>
+              <h3>Calificación</h3>
+            </div>
+            <div className={classes.detailBody}>
+              <Output
+                title="Calificación"
+                detail={props.grade}
+              />
+            </div>
+          </div>
+        </div>
       </React.Fragment>
     );
   }
