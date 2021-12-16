@@ -1,4 +1,7 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+
+import { useLocation } from 'react-router-dom';
+import { getIdFromPath } from '../../../Shared/Utils/getId';
 
 import Card from '../../../Shared/Components/UI/Card';
 import Button from '../../../Shared/Components/FormElements/Button';
@@ -7,17 +10,39 @@ import SectionHeader from '../../Shared/Components/Header';
 import ResumeInfoMemoria from '../../Shared/Components/ResumeInfoMemoria';
 import TeacherForm from '../Components/TeacherForm';
 import Output from '../../../Shared/Components/FormElements/Output';
+import InputSelect from '../../../Shared/Components/FormElements/InputSelect';
+import Fallback from '../../../Shared/Components/UI/Fallback';
 
 import classes from './Solicitud.module.css';
-import InputSelect from '../../../Shared/Components/FormElements/InputSelect';
 
 const Solicitud = (props) => {
+  const location = useLocation();
+
   const [informante1, setInformante1] = useState(undefined);
   const [informante2, setInformante2] = useState(undefined);
   const [informante3, setInformante3] = useState(undefined);
   const [guia, setGuia] = useState(undefined);
 
+  const [memoryId, setMemoryId] = useState(getIdFromPath(location.pathname));
+
   const [isModalOpen, setIsModalOpen] = useState(false);
+
+  // Cargando el id desde la url
+  useEffect(() => {
+    setMemoryId(getIdFromPath(location.pathname));
+  }, [location]);
+
+  // load the memory
+  useEffect(() => {
+    const fetchMemory = async () => {};
+    if (memoryId) {
+      fetchMemory(memoryId);
+    }
+  });
+
+  if (!memoryId) {
+    return <Fallback />;
+  }
 
   const profesorGuiaHandler = () => {
     console.log('seleccion de profesor guia');
@@ -56,7 +81,7 @@ const Solicitud = (props) => {
   };
 
   return (
-    <React.Fragment>
+    <div className={classes.container}>
       <Card>
         <ResumeInfoMemoria
           title={
@@ -95,14 +120,6 @@ const Solicitud = (props) => {
             erat quam hendrerit eros, sed consequat ligula nulla lobortis purus. Mauris lacus urna,
             ultrices et mi ut, tempor posuere nunc.
           </p>
-
-        </SectionHeader>
-        <SectionHeader title="Formato de solicitud Ucen">
-          <div style={{ width: "50%" }}>
-            <Output file
-              title="Solicitud formal"
-            />
-          </div>
         </SectionHeader>
         <SectionHeader title="Selección de profesores">
           <div>
@@ -168,7 +185,7 @@ const Solicitud = (props) => {
       <FormModal title="Asignación de profesor" open={isModalOpen} onClose={closeHandler}>
         <TeacherForm onSubmit={setTeacher} />
       </FormModal>
-    </React.Fragment>
+    </div>
   );
 };
 

@@ -1,7 +1,6 @@
 // IMPORT DE COMPONENTES PARA RUTAS
 // componentes de memorias
 import Solicitudes from '../../Memorias/Solicitudes/Pages/Solicitudes';
-import Solicitud from '../../Memorias/Solicitudes/Pages/Solicitud';
 import Activas from '../../Memorias/Activas/Pages/Activas';
 import Activa from '../../Memorias/Activas/Pages/Activa';
 import MemoryFiles from '../../Memorias/Activas/Pages/MemoryFiles';
@@ -37,11 +36,6 @@ export const roles = {
   coordinador: {
     memorias: [
       {
-        type: 'nested',
-        href: '/memorias/solicitudes/:id',
-        component: <Solicitud />,
-      },
-      {
         type: 'notification',
         name: 'Lista de solicitudes',
         icon: SolicitudesIcon,
@@ -49,25 +43,10 @@ export const roles = {
         component: <Solicitudes />,
       },
       {
-        type: 'nested',
-        href: '/memorias/activas/:id/evaluaciones/:evaluationId',
-        component: <MemoryFiles />,
-      },
-      {
-        type: 'nested',
-        href: '/memorias/activas/:id',
-        component: <Activa />,
-      },
-      {
         name: 'Memorias activas',
         icon: ListaIcon,
         href: '/memorias/activas',
         component: <Activas />,
-      },
-      {
-        type: 'nested',
-        href: '/memorias/aprobadas/:id/evaluaciones/:evaluationId',
-        component: <MemoryFiles />,
       },
       {
         type: 'nested',
@@ -122,35 +101,10 @@ export const roles = {
   docente: {
     memorias: [
       {
-        type: 'nested',
-        href: '/memorias/activas/:id/evaluaciones/:evaluationId',
-        component: <MemoryFiles />,
-      },
-      {
-        type: 'nested',
-        href: '/memorias/activas/:id',
-        component: <Activa />,
-      },
-      {
         name: 'Memorias activas',
         icon: ListaIcon,
         href: '/memorias/activas',
         component: <Activas />,
-      },
-      {
-        name: 'Participaciones',
-        icon: ExitoIcon,
-        href: '/memorias/participaciones',
-        component: (
-          <div className="center">
-            <h1>Hola</h1>
-          </div>
-        ),
-      },
-      {
-        type: 'nested',
-        href: '/memorias/aprobadas/:id/evaluaciones/:evaluationId',
-        component: <MemoryFiles />,
       },
       {
         type: 'nested',
@@ -185,11 +139,6 @@ export const roles = {
         icon: ListaIcon,
         href: '/memorias/mi-memoria',
         component: <MiMemoria />,
-      },
-      {
-        type: 'nested',
-        href: '/memorias/aprobadas/:id/evaluaciones/:evaluationId',
-        component: <MemoryFiles />,
       },
       {
         type: 'nested',

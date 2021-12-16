@@ -11,7 +11,7 @@ const Programas = (props) => {
     <div className={classes.container}>
       {dummy_planes &&
         dummy_planes.map((plan, index) => (
-          <Card>
+          <Card key={index}>
             <PlanEstudio
               key={index}
               id={plan}

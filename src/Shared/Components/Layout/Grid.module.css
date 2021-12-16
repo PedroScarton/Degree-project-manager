@@ -1,16 +1,9 @@
 .gridContainer {
-    height: auto;
-    overflow: auto;
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    grid-auto-rows: 1fr;
-    grid-column-gap: 30px;
-    grid-row-gap: 30px;
-}
-
-@media (min-width: 768px) {
-
-    .gridContainer {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
+  height: auto;
+  overflow: auto;
+  display: grid;
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+  grid-auto-rows: 1fr;
+  grid-column-gap: 30px;
+  grid-row-gap: 30px;
 }

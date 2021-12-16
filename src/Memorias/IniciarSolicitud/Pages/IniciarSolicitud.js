@@ -10,7 +10,7 @@ const IniciarSolicitud = () => {
   const [numIntegrantes, setnumIntegrantes] = useState(3);
 
   return (
-    <main className={classes.container}>
+    <div className={classes.container}>
       <div className={classes.head}>
         <h1>Solicitud de memoria</h1>
         <p>(*) indica que los campos obligatorios</p>
@@ -62,27 +62,13 @@ const IniciarSolicitud = () => {
                 />
               )}
             </div>
-            <div className={classes.memoryFile}>
-              <div className={classes.memoryFileHead}>
-                <h2>Formulario de Solicitud</h2>
-                <p>
-                  Deberá descargar la planilla que vendrá con los campos que solicita la universidad
-                  por reglamentos internos para iniciar el proceso de memoria
-                </p>
-              </div>
-              <Button>Descargar plantilla</Button>
-              <Input
-                label="Documento de solicitud: *"
-                helperText="Por favor subir el archivo Word completado descargado previamente."
-              />
-            </div>
           </div>
           <div className={classes.Button}>
             <Button>Enviar Solicitud</Button>
           </div>
         </form>
       </Card>
-    </main>
+    </div>
   );
 };
 

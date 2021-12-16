@@ -5,13 +5,13 @@ import Informative from '../Components/Informative';
 import classes from './MiMemoria.module.css';
 
 const MiMemoria = () => {
-  const requestState = true;
+  const requestState = false;
 
   let element;
   if (requestState) {
-    element = <InProcess />;
-  } else {
     element = <Informative />;
+  } else {
+    element = <InProcess />;
   }
 
   return <div className={classes.container}>{element}</div>;

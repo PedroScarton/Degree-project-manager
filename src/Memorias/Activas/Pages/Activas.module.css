@@ -1,4 +1,10 @@
 .resetLink {
-    text-decoration: none;
-    color: unset;
+  text-decoration: none;
+  color: unset;
+}
+.mainContainer {
+  flex: 1;
+  height: 100%;
+  position: relative;
+  padding: 20px;
 }

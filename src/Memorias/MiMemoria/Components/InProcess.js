@@ -1,9 +1,17 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
-import Card from '../../../Shared/Components/UI/Card';
-import ResumeInfoMemoria from '../../Shared/Components/ResumeInfoMemoria';
+// Memory Components
 import InfoMemoria from '../../Activas/Components/InfoMemoria';
+import MemoryFiles from '../../Activas/Pages/MemoryFiles';
+import ResumeInfoMemoria from '../../Shared/Components/ResumeInfoMemoria';
 import Fases from '../../Shared/Components/Fases/Fases';
+
+// General components
+import Card from '../../../Shared/Components/UI/Card';
+import FormPage from '../../../Shared/Components/Layout/FormPage';
+
+// Styles
+import classes from '../../Activas/Pages/Activa.module.css';
 
 const dummy_data = {
   title:
@@ -11,20 +19,6 @@ const dummy_data = {
   description: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent imperdiet orci eu dignissim suscipit. Maecenas ornare lorem fermentum nunc sagittis, in accumsan lacus tristique. Phasellus ut elit quis metus porta efficitur sed at urna. Suspendisse tempus neque nec condimentum vulputate. Donec varius nibh enim, eget tempor diam malesuada eu. Etiam nunc felis, interdum ac semper in, mollis ac lorem. Quisque ut dictum quam, eget gravida diam. Nunc sed ligula eget urna interdum vulputate id et dui. Praesent a metus tempor, semper enim eu, eleifend nisi. Nunc euismod, elit sit amet commodo ornare, eros lectus iaculis nisi, ut imperdiet augue libero quis augue.
           
   Proin at erat non nulla dignissim aliquam. Sed eget iaculis quam. Proin ligula sem, efficitur a tincidunt vel, lacinia nec sapien. Phasellus nec ligula nibh. Vestibulum aliquet, est ac dapibus elementum, nisl odio facilisis tortor, vel maximus felis nulla eu metus. Pellentesque sit amet ultrices magna, ac cursus orci. Ut auctor mauris quam, sit amet posuere tellus posuere et. Phasellus volutpat, quam sit amet sagittis bibendum, erat quam hendrerit eros, sed consequat ligula nulla lobortis purus. Mauris lacus urna, ultrices et mi ut, tempor posuere nunc.`,
-  mem: [
-    {
-      index: 1,
-      rut: '20.207.855-5',
-      nombre: 'Ignacio Araya Neira',
-      correo: 'correoMalo11@gmail.com',
-    },
-    {
-      index: 2,
-      rut: '20.207.855-5',
-      nombre: 'Ignacio Araya Neira',
-      correo: 'correoMalo11@gmail.com',
-    },
-  ],
   members: [
     {
       rut: '20.207.855-5',
@@ -51,17 +45,44 @@ const dummy_data = {
       teacher: true,
     },
   ],
+  fases: [
+    { id: '1', name: 'PT 1', state: 'Finalizada' },
+    { id: '2', name: 'PT 2', state: 'en curso' },
+    { id: '3', name: 'Examen', state: 'Por comenzar' },
+  ],
 };
 
-const InProcess = () => {
+const InProccess = () => {
+  // Sacar memoria por el id del usuario
   const [principalPage, setPrincipalPage] = useState(true);
   const [showDetails, setShowDetails] = useState(false);
+  const [showFormPage, setShowFormPage] = useState(false);
+  const [evaluationId, setEvaluationId] = useState(undefined);
+
+  // load the memory
+  useEffect(() => {
+    const fetchMemory = async () => {};
+    fetchMemory();
+  });
+
   const showDetailsHandler = (state) => {
     setPrincipalPage(!state);
     setShowDetails(state);
+    setEvaluationId(undefined);
   };
+
+  const showEvaluationHandler = (id) => {
+    setPrincipalPage(false);
+    setEvaluationId(id);
+  };
+
+  const showFormPageHandler = (state) => {
+    setPrincipalPage(!state);
+    setShowFormPage(state);
+  };
+
   return (
-    <React.Fragment>
+    <div className={classes.container}>
       {principalPage && (
         <React.Fragment>
           <Card>
@@ -73,11 +94,9 @@ const InProcess = () => {
             />
           </Card>
           <Fases
-            fases={[
-              { id: '1', name: 'PT 1', state: 'Finalizada' },
-              { id: '2', name: 'PT 2', state: 'en curso' },
-              { id: '3', name: 'Examen', state: 'Por comenzar' },
-            ]}
+            goTo={showEvaluationHandler}
+            openForm={() => showFormPageHandler(true)}
+            fases={dummy_data.fases}
           />
         </React.Fragment>
       )}
@@ -93,8 +112,12 @@ const InProcess = () => {
           />
         </Card>
       )}
-    </React.Fragment>
+      {evaluationId && (
+        <MemoryFiles evaluationId={evaluationId} goBack={() => showDetailsHandler(false)} />
+      )}
+      {showFormPage && <FormPage type="observación" goBack={() => showFormPageHandler(false)} />}
+    </div>
   );
 };
 
-export default InProcess;
+export default InProccess;

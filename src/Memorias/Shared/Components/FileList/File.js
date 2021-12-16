@@ -1,32 +1,29 @@
-import React from 'react';
-
-import Output from '../../../../Shared/Components/FormElements/Output';
+import React, { useContext } from 'react';
 
 import { roles } from '../../../../Shared/Constants/roles';
 
+import Output from '../../../../Shared/Components/FormElements/Output';
+import { AuthContext } from '../../../../Shared/Context/auth-context';
+
 const File = (props) => {
-  const role = roles.COORDINADOR;
+  const auth = useContext(AuthContext);
+
   let callToActionText = '';
-  switch (role) {
-    case roles.COORDINADOR:
-      callToActionText = 'Notificar';
-      break;
+  switch (auth.role) {
     case roles.DOCENTE:
-      callToActionText = 'Subir archivo';
+      callToActionText = 'Enviar formulario';
       break;
     case roles.ALUMNO:
-      callToActionText = 'Subir archivo';
+      callToActionText = 'Enviar formulario';
       break;
 
     default:
       callToActionText = '';
       break;
   }
-  const handler = () => {
-    switch (role) {
-      case roles.COORDINADOR:
-        props.sendNotification(props.name);
-        break;
+
+  const onClickHandler = () => {
+    switch (auth.role) {
       case roles.DOCENTE:
         break;
       case roles.ALUMNO:
@@ -36,15 +33,34 @@ const File = (props) => {
         break;
     }
   };
-  return (
+
+  return props.isActive ? (
     <Output
       file
+      onOpen={props.onOpen}
       archive={props.archive}
-      title={`${props.teacher ? (props.guia ? 'Guía' : 'Informante') : 'Integrante'} ${
-        !!props.index ? `°${props.index}` : ''
+      title={`${
+        props.teacher
+          ? props.guia
+            ? 'Guía'
+            : `Informante n°${props.index}`
+          : `Integrante n°${props.index}`
       }`}
-      action={props.isActive ? callToActionText : ''}
-      onCallAction={handler}
+      action={props.id === auth.id ? callToActionText : ''}
+      onCallAction={onClickHandler}
+    />
+  ) : (
+    <Output
+      file
+      onOpen={props.onOpen}
+      archive={props.archive}
+      title={`${
+        props.teacher
+          ? props.guia
+            ? 'Guía'
+            : `Informante n°${props.index}`
+          : `Integrante n°${props.index}`
+      }`}
     />
   );
 };

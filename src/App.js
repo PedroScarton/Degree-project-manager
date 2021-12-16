@@ -9,10 +9,10 @@ import MainWrapper from './Shared/Components/Layout/MainWrapper';
 import Login from './Auth/Pages/Login';
 import Signup from './Auth/Pages/Signup';
 
-import { actual, roles } from './Shared/Constants/roles';
+import { actual } from './Shared/Constants/roles';
 
 const App = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(true);
   const { token, id, name, lastname, email, rut, imageUrl, role, login, logout } = useAuth();
 
   const authHandler = () => {
@@ -40,13 +40,13 @@ const App = () => {
       value={{
         isLoggedIn: !!token,
         token,
-        id,
+        id: 'p1',
         name,
         lastname,
         email,
         rut,
         imageUrl,
-        role,
+        role: actual,
         login: authHandler,
         logout: logoutHandler,
       }}

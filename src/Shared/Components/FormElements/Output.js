@@ -1,14 +1,11 @@
 import React from 'react';
 
-import downloadFileIcon from '../../../Assets/icons/descargarArchivo.svg';
+import downloadFileIcon from '../../../Assets/icons/eye-on.svg';
 import Button from './Button';
 
 import classes from './Output.module.css';
 
 const Output = (props) => {
-  const downLoadFileHandler = () => {
-    console.log('downloaded');
-  };
   if (props.file) {
     return (
       <div className={classes.container}>
@@ -18,8 +15,8 @@ const Output = (props) => {
         <div className={classes.detail}>
           {props.archive ? (
             <React.Fragment>
-              <p>Descargar archivo</p>
-              <button onClick={downLoadFileHandler}>
+              <p>Ver archivo</p>
+              <button onClick={props.onOpen}>
                 <img src={downloadFileIcon} alt="" />
               </button>
             </React.Fragment>

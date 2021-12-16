@@ -1,14 +1,23 @@
 import React, { useState, useEffect } from 'react';
 
-import ListWrapper from '../../Shared/Layout/ListWrapper';
 import SearchForm from '../Components/SearchForm';
 import GenericCard from '../../Shared/Components/GenericCard';
+import StudentWrapper from '../Components/StudentWrapper';
+import LoadingSpinner from '../../../Shared/Components/UI/LoadingSpinner';
 
-const Solicitudes = (props) => {
+import classes from './Aprobadas.module.css';
+
+const Aprobadas = (props) => {
+  // fetched data states
   const [memories, setMemories] = useState([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]);
+  // visual states
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
-    // aqui adentro se hace el request
+    const fetchData = async () => {
+      console.log('fetching data');
+    };
+    return fetchData;
   }, []);
 
   // falta el loadingspinner de cuando se solicitan las memorias
@@ -17,14 +26,18 @@ const Solicitudes = (props) => {
     console.log(values);
   };
 
-  return (
-    <React.Fragment>
+  return isLoading ? (
+    <LoadingSpinner contained />
+  ) : (
+    <div className={classes.container}>
       <SearchForm onSubmit={searchHandler} />
-      <ListWrapper>
+      <StudentWrapper>
         {memories &&
           memories.map((memory, index) => (
             <GenericCard
               key={index}
+              selected={'1'} // aqui se debe quitar este uno y poner un undefined
+              id={memory.id}
               title={
                 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam sit amet molestie ligula. Pellentesque magna est, vehicula ut neque condimentum, pretium pulvinar...'
               }
@@ -33,9 +46,9 @@ const Solicitudes = (props) => {
               to={`/memorias/aprobadas/${memory.id}`}
             />
           ))}
-      </ListWrapper>
-    </React.Fragment>
+      </StudentWrapper>
+    </div>
   );
 };
 
-export default Solicitudes;
+export default Aprobadas;

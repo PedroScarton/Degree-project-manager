@@ -1,9 +1,13 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
 
 import Card from '../../../Shared/Components/UI/Card';
 import InfoMemoria from '../../Activas/Components/InfoMemoria';
 import ResumeInfoMemoria from '../../Shared/Components/ResumeInfoMemoria';
 import Fases from '../../Shared/Components/Fases/Fases';
+
+import classes from './Aprobada.module.css';
+import MemoryFiles from '../../Activas/Pages/MemoryFiles';
 
 const dummy_data = {
   title:
@@ -54,14 +58,32 @@ const dummy_data = {
 };
 
 const Aprobada = () => {
+  const params = useParams();
   const [principalPage, setPrincipalPage] = useState(true);
   const [showDetails, setShowDetails] = useState(false);
+  const [evaluationId, setEvaluationId] = useState(undefined);
+
+  // load the memory
+  useEffect(() => {
+    const fetchMemory = async () => {};
+    if (params.id) {
+      fetchMemory('[fetching data] Id: ' + params.id);
+    }
+  });
+
   const showDetailsHandler = (state) => {
     setPrincipalPage(!state);
     setShowDetails(state);
+    setEvaluationId(undefined);
   };
+
+  const showEvaluationHandler = (id) => {
+    setPrincipalPage(false);
+    setEvaluationId(id);
+  };
+
   return (
-    <React.Fragment>
+    <div className={classes.container}>
       {principalPage && (
         <React.Fragment>
           <Card>
@@ -73,6 +95,7 @@ const Aprobada = () => {
             />
           </Card>
           <Fases
+            goTo={showEvaluationHandler}
             fases={[
               { id: '1', name: 'PT 1', state: 'Finalizada' },
               { id: '2', name: 'PT 2', state: 'Finalizada' },
@@ -93,7 +116,14 @@ const Aprobada = () => {
           />
         </Card>
       )}
-    </React.Fragment>
+      {evaluationId && (
+        <MemoryFiles
+          isActive={false}
+          evaluationId={evaluationId}
+          goBack={() => showDetailsHandler(false)}
+        />
+      )}
+    </div>
   );
 };
 

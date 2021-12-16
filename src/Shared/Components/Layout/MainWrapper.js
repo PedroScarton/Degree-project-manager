@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import { Switch, Route, Redirect, useLocation, useHistory } from 'react-router-dom';
 
@@ -25,7 +25,9 @@ const MainWrapper = (props) => {
   const modules = Object.keys(roles[props.role]);
   const routes = getRoutes(props.role);
 
+  // eslint-disable-next-line
   const [actualModule, setActualModule] = useState(false);
+  // eslint-disable-next-line
   const [memoryCount, setMemoryCount] = useState(0);
 
   const location = useLocation();
@@ -72,22 +74,18 @@ const MainWrapper = (props) => {
     }
   };
 
-  const getNewRequest = useCallback(() => {}, []);
-
   return (
     <React.Fragment>
       <MainNavigation modules={modules} />
       <div className={classes.wrapper}>
         <Sidebar tools={getModules(actualModule)} count={memoryCount} />
         <main className={classes.mainContainer}>
-          <div className={classes.routerContainer}>
-            <Switch>
-              {routes.map((route) => (
-                <Route key={route.href} path={route.href} render={() => route.component} />
-              ))}
-              <Redirect to="/" />
-            </Switch>
-          </div>
+          <Switch>
+            {routes.map((route) => (
+              <Route key={route.href} path={route.href} render={() => route.component} />
+            ))}
+            <Redirect to="/" />
+          </Switch>
         </main>
       </div>
     </React.Fragment>

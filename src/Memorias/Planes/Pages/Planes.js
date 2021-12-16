@@ -1,14 +1,27 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import PlanesEstudio from '../Components/PlanesEstudio';
 import AddButton from '../Components/AddButton';
 import FormModal from '../../../Shared/Components/Layout/FormModal';
 import EditPlanForm from '../Components/EditPlanForm';
+import LoadingSpinner from '../../../Shared/Components/UI/LoadingSpinner';
 
 import classes from './Planes.module.css';
 
 const Planes = () => {
+  // fetched states
+  const [fetchPlans, setFetchPlans] = useState([]);
+  // visual states
+  const [isLoading, setIsLoading] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      console.log('fetching data');
+    };
+    return fetchData;
+  }, []);
+
   const modalHandler = (state) => {
     setIsModalOpen(state);
   };
@@ -18,9 +31,12 @@ const Planes = () => {
   const onDeleteHandler = (id) => {
     console.log(id);
   };
-  return (
-    <React.Fragment>
-      <div className={classes.container}>
+
+  return isLoading ? (
+    <LoadingSpinner contained />
+  ) : (
+    <div className={classes.container}>
+      <div>
         <div className={classes.title}>
           <h1>Planes de estudio</h1>
         </div>
@@ -36,7 +52,7 @@ const Planes = () => {
       >
         <EditPlanForm onSubmit={onAddPlan} />
       </FormModal>
-    </React.Fragment>
+    </div>
   );
 };
 

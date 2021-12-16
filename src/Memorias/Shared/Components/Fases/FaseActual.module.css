@@ -37,14 +37,14 @@
 }
 
 .footButton {
-    width: 45%;
+    width: 25%;
     display: flex;
-    justify-content: space-between;
     align-items: center;
 }
 
 .btnContainer {
     width: 100%;
+    margin-left: 50px;
 }
 
 .btnContainer2 {

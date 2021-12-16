@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
 
 import Card from '../../../Shared/Components/UI/Card';
 import FormModal from '../../../Shared/Components/Layout/FormModal';
@@ -11,8 +12,19 @@ import ProgramaForm from '../Components/ProgramaForm';
 import classes from './Plan.module.css';
 
 const Plan = (props) => {
+  const params = useParams();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isProgramaModalOpen, setIsProgramaModalOpen] = useState(false);
+  const [programas, setProgramas] = useState(undefined);
+
+  // fetch data from server
+  useEffect(() => {
+    const fetchData = async () => {
+      console.log('fetching', params.id);
+    };
+    return fetchData();
+  });
+
   const modalHandler = (state) => {
     setIsModalOpen(state);
   };
@@ -29,8 +41,8 @@ const Plan = (props) => {
     console.log('Programa eliminado');
   };
   return (
-    <React.Fragment>
-      <div className={classes.container}>
+    <div className={classes.container}>
+      <div>
         <Card>
           <PlanEstudio
             onDelete={onDeletePlanHandler}
@@ -45,7 +57,7 @@ const Plan = (props) => {
         </div>
         <div className={classes.body}>
           <AddButton text="Agendar programa" />
-          <Programas />
+          <Programas programas={programas} />
         </div>
       </div>
       <FormModal
@@ -62,7 +74,7 @@ const Plan = (props) => {
       >
         <ProgramaForm edit onSubmit={onEditPrograma} />
       </FormModal>
-    </React.Fragment>
+    </div>
   );
 };
 

@@ -7,7 +7,7 @@ import FaseActual from './FaseActual';
 const Fases = (props) => {
   return (
     <React.Fragment>
-      {!props.approved && <FaseActual fases={props.fases} />}
+      {!props.approved && <FaseActual openForm={props.openForm} fases={props.fases} />}
       <div className={classes.container}>
         {props.fases &&
           props.fases.map((fase, index) => (
@@ -20,6 +20,7 @@ const Fases = (props) => {
               initDate={fase.initDate}
               testDate={fase.testDate}
               calification={fase.calification}
+              action={() => props.goTo(fase.id)}
             />
           ))}
       </div>

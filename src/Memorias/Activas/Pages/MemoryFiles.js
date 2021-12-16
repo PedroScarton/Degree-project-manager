@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from 'react';
 
-import { useHistory, useParams, useLocation } from 'react-router-dom';
-
 import Card from '../../../Shared/Components/UI/Card';
 import Title from '../../Shared/Layout/Title';
 import ArchivosFase from '../../Shared/Components/ArchivosFase';
@@ -21,98 +19,136 @@ const dummy_data = {
   },
   teachers: [
     {
+      id: 'p1',
       nombre: 'Pedro Scarton',
       correo: 'correoMalo11@gmail.com',
       guia: true,
       teacher: true,
+      evaluation: {
+        id: 'e1',
+      },
     },
     {
-      index: 1,
+      id: 'p2',
+      index: '1',
       nombre: 'Ignacio Araya Neira',
       correo: 'correoMalo11@gmail.com',
       teacher: true,
+      evaluation: {
+        id: 'e2',
+      },
+      observation: {
+        id: 'o4',
+      },
     },
   ],
   members: [
     {
-      index: 1,
+      id: 'm1',
+      index: '1',
       rut: '20.207.855-5',
       nombre: 'Pedro Scarton',
       correo: 'correoMalo11@gmail.com',
+      observation: {
+        id: 'o1',
+      },
     },
     {
-      index: 2,
+      id: 'm2',
+      index: '2',
       rut: '20.207.855-5',
       nombre: 'Ignacio Araya Neira',
       correo: 'correoMalo11@gmail.com',
-      file: true,
+      observation: {
+        id: 'o2',
+      },
+    },
+    {
+      id: 'm3',
+      index: '3',
+      rut: '20.207.855-5',
+      nombre: 'Pedro Scarton',
+      correo: 'correoMalo11@gmail.com',
+      observation: {
+        id: 'o3',
+      },
     },
   ],
 };
 
 const MemoryFiles = (props) => {
+  // fetched data states
+  const [evaluationData, setEvaluationData] = useState(undefined);
+  // Visual states
+  const [showPrincipal, setShowPrincipal] = useState(true);
+  const [file, setFile] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
-  const [isActive, setIsActive] = useState(false);
 
-  const history = useHistory();
-  const params = useParams();
-  const location = useLocation();
+  // dentro de este componente tengo que solicitar la informacion de archivos de la memoria
+  // recibo si es activa
+  // recibo la informacion de los archivos
 
+  // fetching evaluation data
   useEffect(() => {
-    // console.log('faseId: ' + params.evaluationId);
-    const isActive = !!location.state && location.state.isActive;
-    if (isActive) {
-      setIsActive(true);
-    }
-    // console.log(location.state);
-    // console.log('Cargando archivos desde el backend');
-    console.log(history);
-    console.log(location);
-    console.log(params);
-  }, [params, location.state]);
-
-  const goBackHandler = () => {
-    history.goBack();
-  };
+    const fetchData = async () => {
+      console.log('fetching data', props.evaluationId);
+    };
+    fetchData();
+  });
 
   const dateChangeModalHandler = (state) => {
     setIsOpen(state);
   };
 
   const onDateChange = (value) => {
-    console.log(value);
     dateChangeModalHandler(false);
   };
 
-  const sendNotification = (user) => {
-    console.log(user);
+  const showPrincipalHandler = () => {
+    setFile(undefined);
+    setShowPrincipal(true);
+  };
+
+  const onSelectFile = (type, id) => {
+    console.log(type, id);
+    // if (type === 'evaluación') {
+    //   setFile(dummy_data.evaluations.filter((file) => file.id === id));
+    // } else {
+    //   setFile(dummy_data.observations.filter((file) => file.id === id));
+    // }
+    // setShowPrincipal(false);
   };
 
   return (
-    <React.Fragment>
-      <Card>
-        <Title goBack={goBackHandler}>
-          <div className={classes.headTitle}>
-            <h1>{dummy_data.title}</h1>
-            <p>{new Date().toLocaleDateString('en-US')}</p>
-          </div>
-        </Title>
-        <ArchivosFase
-          onDateChange={() => dateChangeModalHandler(true)}
-          active={isActive}
-          evaluations={dummy_data.teachers}
-          observations={dummy_data.members}
-          sendNotification={sendNotification}
-        />
-      </Card>
-      <FormModal
-        title="Modificación de fecha"
-        open={isOpen}
-        onClose={() => dateChangeModalHandler(false)}
-      >
-        <DateForm onSubmit={onDateChange} />
-      </FormModal>
-    </React.Fragment>
+    <div className={classes.container}>
+      {showPrincipal && (
+        <>
+          <Card>
+            <Title goBack={props.goBack}>
+              <div className={classes.headTitle}>
+                <h1>{dummy_data.title}</h1>
+                <p>{new Date().toLocaleDateString('en-US')}</p>
+              </div>
+            </Title>
+            <ArchivosFase
+              onDateChange={() => dateChangeModalHandler(true)}
+              onOpenFile={onSelectFile}
+              active={true} // debe cambiar al valor que venga del backend
+              teachers={dummy_data.teachers}
+              students={dummy_data.members}
+            />
+          </Card>
+          <FormModal
+            title="Modificación de fecha"
+            open={isOpen}
+            onClose={() => dateChangeModalHandler(false)}
+          >
+            <DateForm onSubmit={onDateChange} />
+          </FormModal>
+        </>
+      )}
+      {file && <div>hola</div>}
+    </div>
   );
 };
 

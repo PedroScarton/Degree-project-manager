@@ -97,8 +97,57 @@ const OutlinedButton = styled(Button)({
   },
 });
 
+const OutlinedButtonSecondary = styled(Button)({
+  color: '#EA4600',
+  borderColor: '#EA4600',
+  fontFamily: [
+    '-apple-system',
+    'BlinkMacSystemFont',
+    'Rajdhani',
+    'Roboto',
+    '"Helvetica Neue"',
+    'Arial',
+    'sans-serif',
+    '"Apple Color Emoji"',
+  ].join(','),
+  textTransform: 'none',
+  borderWidth: 2,
+  fontSize: 15,
+  fontWeight: '400',
+  padding: '0.4rem 0',
+  boxSizing: 'border-box',
+  backgroundColor: 'transparent',
+  '&:hover': {
+    borderWidth: 2,
+    borderColor: '#EA4600',
+    color: '#EA4600',
+  },
+  '&:disabled': {
+    color: '#B4B4B4',
+    borderWidth: 2,
+    borderColor: '#B4B4B4',
+  },
+});
+
 const CustomButton = (props) => {
-  if (props.outlined) {
+  if (props.outlined && props.secondary) {
+    return (
+      <OutlinedButtonSecondary
+        fullWidth
+        disabled={props.disabled}
+        type={props.type}
+        onClick={props.type === 'submit' ? null : props.onClick}
+        variant="outlined"
+        color="primary"
+        component={props.to && Link}
+        to={props.to}
+        download={props.download}
+        disableElevation={props.elevated}
+      >
+        {props.children}
+      </OutlinedButtonSecondary>
+    );
+  } else if (props.outlined) {
     return (
       <OutlinedButton
         fullWidth

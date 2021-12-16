@@ -11,12 +11,11 @@
 
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Lato', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, 'Lato', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell',
+    'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: #F9FDFF;
+  background-color: #f9fdff;
 }
 
 /* GENERAL STYLES */
@@ -76,16 +75,41 @@ span {
   transition: all 400ms;
 }
 
+/* ===== Scrollbar CSS ===== */
+/* Firefox */
+* {
+  scrollbar-width: auto;
+  scrollbar-color: #1089CB #ffffff;
+}
+
+/* Chrome, Edge, and Safari */
+*::-webkit-scrollbar {
+  width: 4px;
+}
+
+*::-webkit-scrollbar-track {
+  background: #ffffff;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #1089CB;
+  border-radius: 0px;
+  border: 0px solid #ffffff;
+}
 /* GENERAL MEDIA QUERIES */
 
 /* MEDIA QUERY PARA PANTALLAS MEDIANAS */
-@media (min-width: 768px) {}
+@media (min-width: 768px) {
+}
 
 /* MEDIA QUERY PARA PANTALLAS MEDIA-GRANDE */
-@media (min-width: 992px) {}
+@media (min-width: 992px) {
+}
 
 /* MEDIA QUERY PARA PANTALLAS GRANDE */
-@media (min-width: 1200px) {}
+@media (min-width: 1200px) {
+}
 
 /* MEDIA QUERY PARA PANTALLAS EXTRA GRANDE */
-@media (min-width: 1600px) {}
+@media (min-width: 1600px) {
+}
