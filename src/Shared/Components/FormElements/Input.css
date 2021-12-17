@@ -15,10 +15,10 @@
 
 .form-control label,
 .input-file-container label {
-    font-weight: bold;
+    font-weight: 600;
     margin-bottom: 0.2rem;
     color: black;
-    font-size: 1rem;
+    font-size: 0.9rem;
     font-family: inherit;
 }
 
@@ -55,6 +55,7 @@
 }
 
 .form-control input,
+.form-control textarea,
 .input-file-box {
     width: 100%;
     height: 45px;
@@ -64,7 +65,13 @@
     background: #DCF3FF;
     padding: 0.5rem 0.5rem;
     box-sizing: border-box;
-    font-weight: 600;
+    font-weight: 500;
+    font-size: 0.9rem;
+}
+
+.form-control textarea {
+    height: 80px;
+    resize: none;
 }
 
 .input-date-picker fieldset {
@@ -87,12 +94,12 @@
 .form-control input:focus,
 .form-control textarea:focus {
     outline: none;
-    background: #B4F6E1;
-    border-color: #22A97E;
+    background: #aadbf5;
+    border-color: #1089CB;
 }
 
 .form-control input:focus svg {
-    fill: #22A97E;
+    fill: #1089CB;
 }
 
 .form-control input::placeholder {

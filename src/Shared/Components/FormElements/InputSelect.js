@@ -2,32 +2,55 @@ import React, { useReducer, useEffect } from 'react';
 
 import './InputSelect.css';
 
+const inputReducer = (state, action) => {
+	switch (action.type) {
+		case 'CHANGE':
+			return {
+				...state,
+				value: action.val,
+				isValid: true,
+			};
+		case 'TOUCH':
+			return {
+				...state,
+				isTouched: true,
+			};
+		default:
+			return state;
+	}
+};
+
 
 const InputSelect = (props) => {
 
+	const [inputState, dispatch] = useReducer(inputReducer, {
+		value: props.initialValue || '',
+		isTouched: false,
+		isValid: props.initialValidity || false,
+	});
+
 
 	const { id, onInput } = props;
-	// const { value, isValid } = inputState;
+	const { value, isValid } = inputState;
 
-	// useEffect(() => {
-	// 	if (!props.outsource) {
-	// 		onInput(id, value, isValid);
-	// 	}
-	// }, [id, onInput, value, isValid, props.outsource]);
+	useEffect(() => {
+		if (!props.outsource) {
+			onInput(id, value, isValid);
+		}
+	}, [id, onInput, value, isValid, props.outsource]);
 
 	const changeHandler = (event) => {
-		// dispatch({
-		// 	type: 'CHANGE',
-		// 	val: event.target.value,
-		// 	validators: props.validators,
-		// });
+		dispatch({
+			type: 'CHANGE',
+			val: event.target.value,
+			validators: props.validators,
+		});
 	};
 
 	const touchHandler = () => {
-		// dispatch({
-
-		// 	type: 'TOUCH',
-		// });
+		dispatch({
+			type: 'TOUCH',
+		});
 	};
 
 	return (
@@ -38,7 +61,7 @@ const InputSelect = (props) => {
 					id={props.id}
 					onChange={props.outsource ? props.changeHandler : changeHandler}
 					onBlur={props.outsource ? props.touchHandler : touchHandler}
-					value={props.outsource ? props.value : 'value'}
+					value={props.outsource ? props.value : value}
 					disabled={props.disabled}
 				>
 					<option disabled defaultValue value="">
@@ -52,11 +75,6 @@ const InputSelect = (props) => {
 						))}
 				</select>
 			</div>
-			{props.helperText && (
-				<div className="form-control__helper">
-					<p>{props.helperText}</p>
-				</div>
-			)}
 		</div>
 	);
 };

@@ -9,10 +9,10 @@
 }
 
 .form-control-select label {
-    font-weight: bold;
+    font-weight: 600;
     margin-bottom: 0.2rem;
     color: black;
-    font-size: 1rem;
+    font-size: 0.9rem;
     font-family: inherit;
 }
 
@@ -40,7 +40,8 @@
     background: #DCF3FF;
     padding: 0.15rem 0.25rem;
     box-sizing: border-box;
-    font-weight: 600;
+    font-weight: 500;
+    font-size: 0.9rem;
 }
 
 .form-control-select select {
@@ -62,7 +63,7 @@
 }
 
 .form-control-select select option {
-    font-weight: 600;
+    font-weight: 500;
 }
 
 .form-control__helper {

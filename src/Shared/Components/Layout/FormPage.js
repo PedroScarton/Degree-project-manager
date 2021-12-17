@@ -2,6 +2,7 @@ import React from 'react';
 
 // Formularios
 import EvaluationForm from '../Forms/EvaluationForm';
+import FinalEvaluationForm from '../Forms/FinalEvaluationForm';
 import ObservationForm from '../Forms/ObservationForm';
 
 // General components
@@ -27,6 +28,10 @@ const FormPage = (props) => {
     case 'observación':
       form = <ObservationForm />;
       header = 'Formulario de observación';
+      break;
+    case 'evaluación-final':
+      form = <FinalEvaluationForm />;
+      header = 'Formulario de evaluación';
       break;
     default:
       form = <EvaluationForm />;

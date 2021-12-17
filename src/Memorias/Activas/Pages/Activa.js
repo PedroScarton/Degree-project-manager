@@ -70,7 +70,7 @@ const Activa = () => {
 
   // load the memory
   useEffect(() => {
-    const fetchMemory = async () => {};
+    const fetchMemory = async () => { };
     if (memoryId) {
       fetchMemory(memoryId);
     }

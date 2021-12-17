@@ -1,0 +1,31 @@
+.buttonMargin {
+    margin-top: 25px;
+}
+
+.container {
+    margin-bottom: 50px;
+}
+
+.detail {
+    height: auto;
+    overflow: auto;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-auto-rows: 1fr;
+    grid-column-gap: 30px;
+    grid-row-gap: 10px;
+}
+
+.patternTitle h2 {
+    font-size: 1.3rem;
+    text-align: center;
+}
+
+
+.subContent {
+    margin: 25px 0;
+}
+
+.subContent h3 {
+    font-size: 1.1rem;
+}
