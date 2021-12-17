@@ -45,8 +45,8 @@ const Resultado = (props) => {
         </p>
       </div>
       <div className={classes.infoContainer}>
-        <Item title="Practica operacional" success={true} />
-        <Item title="Practica profesional" success={false} />
+        <Item title="Practica operacional" success={props.operacional} />
+        <Item title="Practica profesional" success={props.profesional} />
       </div>
       <div>
         <span style={{ color: props.operacional && props.profesional ? '#00BC13' : '#E70000' }}>

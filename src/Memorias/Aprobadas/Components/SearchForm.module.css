@@ -1,38 +1,47 @@
-.form {}
+.form {
+}
 
 .container {
-    display: flex;
+  display: flex;
 }
 
 .column {
-    width: 75%;
-    padding-right: 1rem;
+  width: 75%;
+  padding-right: 1rem;
 }
 
 .buttonContainer {
-    width: 25%;
-    padding-left: 1rem;
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
+  width: 25%;
+  padding-left: 1rem;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .button {
-    position: absolute;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    bottom: calc(50% - 45px);
+  position: absolute;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  bottom: calc(50% - 45px);
 }
 
 .hyperLink {
-    border: none;
-    background-color: transparent;
-    text-decoration: underline;
-    color: #1089CB;
-    font-weight: 700;
-    cursor: pointer;
+  border: none;
+  background-color: transparent;
+  text-decoration: underline;
+  color: #1089cb;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.dateContainer {
+  display: flex;
+  justify-content: space-between;
+}
+
+.inputContainer {
+  width: 50%;
 }

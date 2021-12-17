@@ -50,7 +50,7 @@ const MainNavigation = (props) => {
         </div>
         <div onClick={() => menuHandler(true)} className={classes.menuButtonContainer}>
           <div className={classes.menuButton}>
-            <p>Nombre de usuario</p>
+            <p>{auth.name}</p>
             <MenuIcon fill="white" />
           </div>
         </div>

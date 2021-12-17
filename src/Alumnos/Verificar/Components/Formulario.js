@@ -1,15 +1,27 @@
 import React from 'react';
 
+import { useForm } from '../../../Shared/Hooks/form-hook';
+import { VALIDATOR_NUMERIC, VALIDATOR_REQUIRE } from '../../../Shared/Utils/validators';
+
 import Input from '../../../Shared/Components/FormElements/Input';
 import Button from '../../../Shared/Components/FormElements/Button';
 
 import classes from './Formulario.module.css';
 
 const Formulario = (props) => {
+  const inputs = {
+    rut: {
+      value: '',
+      isValid: false,
+    },
+  };
+  const [formState, inputHandler] = useForm(inputs, false);
+
   const submitHandler = (e) => {
     e.preventDefault();
-    props.onSubmit('rut');
+    props.onSubmit(formState.inputs.rut.value);
   };
+
   return (
     <React.Fragment>
       <div>
@@ -21,10 +33,18 @@ const Formulario = (props) => {
       </div>
       <form onSubmit={submitHandler}>
         <div className={classes.inputContainer}>
-          <Input label="Rut: *" placeholder="11.222.333-4" />
+          <Input
+            id="rut"
+            label="Rut: *"
+            type="text"
+            onInput={inputHandler}
+            validators={[VALIDATOR_REQUIRE(), VALIDATOR_NUMERIC()]}
+          />
         </div>
         <div className={classes.buttonContainer}>
-          <Button type="submit">Verificar</Button>
+          <Button type="submit" disabled={!formState.isValid}>
+            Verificar
+          </Button>
         </div>
       </form>
     </React.Fragment>

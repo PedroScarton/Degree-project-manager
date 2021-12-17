@@ -1,7 +1,7 @@
 .container {
     width: 90%;
-    max-width: 550px;
-    padding: 20px 25px;
+    max-width: 450px;
+    padding: 30px 25px;
     border-radius: 12px;
     box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.15);
     background-color: #2D3142;
@@ -23,6 +23,6 @@
 /* MEDIA QUERY PARA PANTALLAS MEDIANAS */
 @media (min-width: 768px) {
     .container {
-        padding: 15px 25px;
+        padding: 25px 25px;
     }
 }

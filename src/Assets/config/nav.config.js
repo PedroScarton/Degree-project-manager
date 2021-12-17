@@ -2,7 +2,6 @@
 // componentes de memorias
 import Solicitudes from '../../Memorias/Solicitudes/Pages/Solicitudes';
 import Activas from '../../Memorias/Activas/Pages/Activas';
-import Activa from '../../Memorias/Activas/Pages/Activa';
 import MemoryFiles from '../../Memorias/Activas/Pages/MemoryFiles';
 import Aprobadas from '../../Memorias/Aprobadas/Pages/Aprobadas';
 import Aprobada from '../../Memorias/Aprobadas/Pages/Aprobada';
@@ -21,7 +20,6 @@ import VerificarPractica from '../../Alumnos/Verificar/Pages/VerificarPractica';
 import { ReactComponent as SolicitudesIcon } from '../icons/solicitudes.svg';
 import { ReactComponent as ListaIcon } from '../icons/lista.svg';
 import { ReactComponent as AprobadasIcon } from '../icons/aprobadas.svg';
-import { ReactComponent as ExitoIcon } from '../icons/exito.svg';
 import { ReactComponent as ComenzarIcon } from '../icons/comenzar.svg';
 import { ReactComponent as CalendarioEditarIcon } from '../icons/calendarioEditar.svg';
 
@@ -33,7 +31,7 @@ import { ReactComponent as CalendarioEditarIcon } from '../icons/calendarioEdita
 import { ReactComponent as ValidacionIcon } from '../icons/validacion.svg';
 
 export const roles = {
-  coordinador: {
+  COORDINADOR: {
     memorias: [
       {
         type: 'notification',
@@ -98,7 +96,7 @@ export const roles = {
       },
     ],
   },
-  docente: {
+  PROFESOR: {
     memorias: [
       {
         name: 'Memorias activas',
@@ -121,7 +119,7 @@ export const roles = {
     agenda: [],
     alumnos: [],
   },
-  alumnos: {
+  ESTUDIANTE: {
     memorias: [
       {
         name: 'Iniciar solicitud',

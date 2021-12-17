@@ -1,0 +1,21 @@
+.ErrorChip {
+  width: 100%;
+  border: 3px solid #d3131c;
+  border-left-width: 6px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px 10px;
+  background-color: white;
+}
+.ErrorChip__textContainer {
+  max-width: 90%;
+}
+.ErrorChip__header {
+  font-weight: 700;
+  font-size: 1rem;
+}
+.ErrorChip__text {
+  font-weight: 500;
+  font-size: 0.8rem;
+}

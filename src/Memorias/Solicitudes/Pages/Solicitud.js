@@ -1,62 +1,102 @@
 import React, { useEffect, useState } from 'react';
 
-import { useLocation } from 'react-router-dom';
+import { useHistory, useLocation } from 'react-router-dom';
+
+import { useHttpClient } from '../../../Shared/Hooks/http-hook';
+import { useForm } from '../../../Shared/Hooks/form-hook';
+import { useTeachers } from '../../../Shared/Hooks/teacher-hook';
 import { getIdFromPath } from '../../../Shared/Utils/getId';
 
+// Memory components
+import ResumeInfoMemoria from '../../Shared/Components/ResumeInfoMemoria';
+import MemoryNotFound from '../../Shared/Components/MemoryNotFound';
+
+// General components
 import Card from '../../../Shared/Components/UI/Card';
 import Button from '../../../Shared/Components/FormElements/Button';
 import FormModal from '../../../Shared/Components/Layout/FormModal';
 import SectionHeader from '../../Shared/Components/Header';
-import ResumeInfoMemoria from '../../Shared/Components/ResumeInfoMemoria';
-import TeacherForm from '../Components/TeacherForm';
 import Output from '../../../Shared/Components/FormElements/Output';
 import InputSelect from '../../../Shared/Components/FormElements/InputSelect';
 import Fallback from '../../../Shared/Components/UI/Fallback';
+import LoadingSpinner from '../../../Shared/Components/UI/LoadingSpinner';
 
+// Styles
 import classes from './Solicitud.module.css';
+import { VALIDATOR_REQUIRE } from '../../../Shared/Utils/validators';
 
-const Solicitud = (props) => {
+const Solicitud = () => {
   const location = useLocation();
-
+  const history = useHistory();
+  // Memory Data States
+  const [memoryId, setMemoryId] = useState(getIdFromPath(location.pathname));
+  const [memoryData, setMemoryData] = useState(undefined);
+  // Input Handler States
   const [informante1, setInformante1] = useState(undefined);
   const [informante2, setInformante2] = useState(undefined);
   const [informante3, setInformante3] = useState(undefined);
   const [guia, setGuia] = useState(undefined);
-
-  const [memoryId, setMemoryId] = useState(getIdFromPath(location.pathname));
-
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  // Visual States
+  const [teacherType, setTeacherType] = useState(false);
+  // Hooks
+  const { isLoading, error, sendRequest, clearError } = useHttpClient();
+  const { teacher } = useTeachers();
+  const inputs = {
+    teacher: { value: '', isValid: false },
+  };
+  const [formState, inputHandler] = useForm(inputs, false);
 
   // Cargando el id desde la url
   useEffect(() => {
     setMemoryId(getIdFromPath(location.pathname));
+    setInformante1(undefined);
+    setInformante2(undefined);
+    setInformante3(undefined);
+    setGuia(undefined);
+    setTeacherType(false);
   }, [location]);
 
   // load the memory
   useEffect(() => {
-    const fetchMemory = async () => {};
-    if (memoryId) {
-      fetchMemory(memoryId);
-    }
-  });
+    const fetchData = async (id) => {
+      if (id) {
+        try {
+          const response = await sendRequest(
+            process.env.REACT_APP_BACKEND_URL + `/usuario-x-memoria?id_memoria=${id}`
+          );
+          setMemoryData(response.details);
+        } catch (err) {}
+      }
+    };
+    return fetchData(memoryId);
+  }, [sendRequest, memoryId]);
 
   if (!memoryId) {
     return <Fallback />;
   }
 
-  const profesorGuiaHandler = () => {
-    console.log('seleccion de profesor guia');
+  const memoryHandler = async (type) => {
+    const estado = type ? 'EN_CURSO' : 'RECHAZADA';
+    console.log(estado);
+    try {
+      await sendRequest(
+        process.env.REACT_APP_BACKEND_URL + `/memorias?id=${memoryId}`,
+        'PUT',
+        { estado: estado },
+        {
+          'Content-type': 'application/json',
+        }
+      );
+      history.push('/memorias');
+    } catch (err) {}
   };
 
-  const memoryHandler = (type) => {
-    console.log(type);
+  const openModal = (type) => {
+    setTeacherType(type);
   };
 
-  const openModal = () => {
-    setIsModalOpen(true);
-  };
-  const setTeacher = (value, type) => {
-    console.log('profesor asignado');
+  const setTeacher = (e, type, value) => {
+    e.preventDefault();
     switch (type) {
       case 'guia':
         setGuia(value);
@@ -77,49 +117,21 @@ const Solicitud = (props) => {
   };
 
   const closeHandler = () => {
-    setIsModalOpen(false);
+    setTeacherType(false);
   };
 
-  return (
+  return isLoading ? (
+    <LoadingSpinner contained />
+  ) : memoryData ? (
     <div className={classes.container}>
       <Card>
         <ResumeInfoMemoria
-          title={
-            'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam sit amet molestie ligula. Pellentesque magna est, vehicula ut neque condimentum, pretium pulvinar...'
-          }
-          details={[new Date().toLocaleDateString('en-US')]}
-          members={[
-            {
-              rut: '20.207.855-5',
-              nombre: 'Ignacio Araya Neira',
-              correo: 'correoMalo1reoMalo1reoMalo1reoMalo1reoMalo1reoMalo1reoMalo11@gmail.com',
-            },
-            {
-              rut: '20.207.855-5',
-              nombre: 'Ignacio Araya Neira',
-              correo: 'correoMalo11@gmail.com',
-            },
-          ]}
+          title={memoryData.memoria.titulo}
+          details={[new Date(memoryData.memoria.fecha_de_creacion).toLocaleDateString('en-US')]}
+          members={memoryData.usuarios}
         />
         <SectionHeader title="Información de solicitud">
-          <p className={classes.description}>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent imperdiet orci eu
-            dignissim suscipit. Maecenas ornare lorem fermentum nunc sagittis, in accumsan lacus
-            tristique. Phasellus ut elit quis metus porta efficitur sed at urna. Suspendisse tempus
-            neque nec condimentum vulputate. Donec varius nibh enim, eget tempor diam malesuada eu.
-            Etiam nunc felis, interdum ac semper in, mollis ac lorem. Quisque ut dictum quam, eget
-            gravida diam. Nunc sed ligula eget urna interdum vulputate id et dui. Praesent a metus
-            tempor, semper enim eu, eleifend nisi. Nunc euismod, elit sit amet commodo ornare, eros
-            lectus iaculis nisi, ut imperdiet augue libero quis augue. <br />
-            <br />
-            Proin at erat non nulla dignissim aliquam. Sed eget iaculis quam. Proin ligula sem,
-            efficitur a tincidunt vel, lacinia nec sapien. Phasellus nec ligula nibh. Vestibulum
-            aliquet, est ac dapibus elementum, nisl odio facilisis tortor, vel maximus felis nulla
-            eu metus. Pellentesque sit amet ultrices magna, ac cursus orci. Ut auctor mauris quam,
-            sit amet posuere tellus posuere et. Phasellus volutpat, quam sit amet sagittis bibendum,
-            erat quam hendrerit eros, sed consequat ligula nulla lobortis purus. Mauris lacus urna,
-            ultrices et mi ut, tempor posuere nunc.
-          </p>
+          <p className={classes.description}>{memoryData.memoria.descripcion}</p>
         </SectionHeader>
         <SectionHeader title="Selección de profesores">
           <div>
@@ -129,9 +141,9 @@ const Solicitud = (props) => {
               </div>
               <Output
                 action={'Modificar'}
-                onCallAction={openModal}
+                onCallAction={() => openModal('guia')}
                 title={'Nombre'}
-                detail={'Hernan Olmi'}
+                detail={guia}
               />
             </div>
             <div className={classes.miniSection}>
@@ -140,26 +152,26 @@ const Solicitud = (props) => {
               </div>
               <Output
                 action={'Modificar'}
-                onCallAction={openModal}
+                onCallAction={() => openModal('informante1')}
                 title={'Nombre'}
-                detail={'Hernan Olmi'}
+                detail={informante1}
               />
               <Output
                 action={'Modificar'}
-                onCallAction={openModal}
+                onCallAction={() => openModal('informante2')}
                 title={'Nombre'}
-                detail={'Hernan Olmi'}
+                detail={informante2}
               />
               <Output
                 action={'Modificar'}
-                onCallAction={openModal}
+                onCallAction={() => openModal('informante3')}
                 title={'Nombre'}
-                detail={'Hernan Olmi'}
+                detail={informante3}
               />
             </div>
           </div>
         </SectionHeader>
-        <SectionHeader title="Asignación plan de estudio y fechas">
+        {/* <SectionHeader title="Asignación plan de estudio y fechas">
           <div className={classes.plan}>
             <InputSelect
               label="Plan de estudio: "
@@ -170,22 +182,42 @@ const Solicitud = (props) => {
               helperText="Corresponde a la planificación de fechas que seguirá la memoria"
             />
           </div>
-        </SectionHeader>
+        </SectionHeader> */}
         <div className={classes.footer}>
           <div className={classes.btnContainer}>
-            <Button onClick={() => memoryHandler('reject')} secondary>
+            <Button onClick={() => memoryHandler(false)} secondary>
               Rechazar
             </Button>
           </div>
           <div className={classes.btnContainer}>
-            <Button onClick={() => memoryHandler('aprove')}>Aprobar</Button>
+            <Button onClick={() => memoryHandler(true)}>Aprobar</Button>
           </div>
         </div>
       </Card>
-      <FormModal title="Asignación de profesor" open={isModalOpen} onClose={closeHandler}>
-        <TeacherForm onSubmit={setTeacher} />
+      <FormModal title="Asignación de profesor" open={teacherType} onClose={closeHandler}>
+        <form onSubmit={(event) => setTeacher(event, teacherType, formState.inputs.teacher.value)}>
+          <InputSelect
+            id="teacher"
+            label="Profesor guía:"
+            helperText="La selección de profesor guía es opcional"
+            onInput={inputHandler}
+            validators={[VALIDATOR_REQUIRE()]}
+            type="text"
+            options={
+              teacher &&
+              teacher.map((teacher) => {
+                return { name: teacher.nombre_completo };
+              })
+            }
+          />
+          <div className={classes.btnContainer2}>
+            <Button type="submit">Asignar</Button>
+          </div>
+        </form>
       </FormModal>
     </div>
+  ) : (
+    <MemoryNotFound />
   );
 };
 

@@ -1,32 +1,47 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
+import { useHttpClient } from '../../../Shared/Hooks/http-hook';
+
+// Planes Components
 import PlanesEstudio from '../Components/PlanesEstudio';
 import AddButton from '../Components/AddButton';
-import FormModal from '../../../Shared/Components/Layout/FormModal';
 import EditPlanForm from '../Components/EditPlanForm';
+
+// General components
+import FormModal from '../../../Shared/Components/Layout/FormModal';
 import LoadingSpinner from '../../../Shared/Components/UI/LoadingSpinner';
 
+// Styles
 import classes from './Planes.module.css';
+
+const dummy_planes = [1, 2, 3, 4, 5];
 
 const Planes = () => {
   // fetched states
   const [fetchPlans, setFetchPlans] = useState([]);
   // visual states
-  const [isLoading, setIsLoading] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  // hooks
+  const { isLoading, error, sendRequest, clearError } = useHttpClient();
 
   useEffect(() => {
     const fetchData = async () => {
-      console.log('fetching data');
+      try {
+        const response = await sendRequest(process.env.REACT_APP_BACKEND_URL + '/programas');
+        setFetchPlans(response.programas);
+      } catch (err) {}
     };
-    return fetchData;
-  }, []);
+    return fetchData();
+  }, [sendRequest]);
 
   const modalHandler = (state) => {
     setIsModalOpen(state);
   };
-  const onAddPlan = () => {
-    console.log('Plan agregado');
+  const onAddPlan = async (values) => {
+    // try {
+    //   const response = await sendRequest(process.env.REACT_APP_BACKEND_URL + '/programas');
+    //   setFetchPlans(response.programas);
+    // } catch (err) {}
   };
   const onDeleteHandler = (id) => {
     console.log(id);
@@ -42,7 +57,7 @@ const Planes = () => {
         </div>
         <div className={classes.body}>
           <AddButton onClick={() => modalHandler(true)} text="Crear plan de estudio" />
-          <PlanesEstudio onDelete={onDeleteHandler} />
+          <PlanesEstudio planes={dummy_planes} onDelete={onDeleteHandler} />
         </div>
       </div>
       <FormModal

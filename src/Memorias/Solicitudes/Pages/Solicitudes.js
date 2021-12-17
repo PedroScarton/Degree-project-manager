@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 
+import { useHttpClient } from '../../../Shared/Hooks/http-hook';
 import { getIdFromPath } from '../../../Shared/Utils/getId';
 
 import Solicitud from './Solicitud';
@@ -10,21 +11,26 @@ import LoadingSpinner from '../../../Shared/Components/UI/LoadingSpinner';
 
 import classes from './Solicitudes.module.css';
 
-const Solicitudes = (props) => {
+const Solicitudes = () => {
   const location = useLocation();
 
   // fetched data states
-  const [memories, setMemories] = useState([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]);
+  const [memories, setMemories] = useState([]);
   const [memoryId, setMemoryId] = useState(undefined);
-  // visual states
-  const [isLoading, setIsLoading] = useState(false);
+  // hooks
+  const { isLoading, error, sendRequest, clearError } = useHttpClient();
 
   useEffect(() => {
     const fetchData = async () => {
-      console.log('fetching data');
+      try {
+        const response = await sendRequest(
+          process.env.REACT_APP_BACKEND_URL + '/usuario-x-memoria/all?estado=PRE_INSCRIPCION'
+        );
+        setMemories(response.memorias);
+      } catch (err) {}
     };
-    return fetchData;
-  }, []);
+    return fetchData();
+  }, [sendRequest]);
 
   // Cargando el id desde la url
   useEffect(() => {
@@ -42,16 +48,13 @@ const Solicitudes = (props) => {
               memories.map((memory, index) => (
                 <GenericCard
                   selected={memoryId}
-                  id={memory.id}
-                  key={index}
-                  title={
-                    'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam sit amet molestie ligula. Pellentesque magna est, vehicula ut neque condimentum, pretium pulvinar...'
-                  }
-                  details={[new Date().toLocaleDateString('en-US')]}
-                  members={['Pedro Scarton', 'Ignacio Araya', 'Cristian Gonzalez']}
-                  teacher={'Hernan Olmi'}
+                  id={memory.memoria.id}
+                  key={memory.memoria.id}
+                  title={memory.memoria.titulo}
+                  details={[new Date(memory.memoria.fecha_de_creacion).toLocaleDateString('en-US')]}
+                  members={memory.usuarios}
                   action={'Ver solicitud'}
-                  to={`/memorias/solicitudes/${memory.id}`}
+                  to={`/memorias/solicitudes/${memory.memoria.id}`}
                 />
               ))}
           </ListWrapper>

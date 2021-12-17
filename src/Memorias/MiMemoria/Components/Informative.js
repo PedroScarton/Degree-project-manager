@@ -10,7 +10,7 @@ const Informative = () => {
     <div className={classes.container}>
       <Card>
         <div className={classes.body}>
-          <h1>(o^^)o</h1>
+          <h1>(·_·)</h1>
           <p>
             Aún no se ha registrado el inicio o la aprobación de tu memoria. Por favor, completa el{' '}
             <Link className={classes.link} to="/memorias/solicitud">

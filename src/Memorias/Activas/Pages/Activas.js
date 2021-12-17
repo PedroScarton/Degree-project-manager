@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 
+import { useHttpClient } from '../../../Shared/Hooks/http-hook';
 import { getIdFromPath } from '../../../Shared/Utils/getId';
 
 import Activa from './Activa';
@@ -10,21 +11,26 @@ import LoadingSpinner from '../../../Shared/Components/UI/LoadingSpinner';
 
 import classes from './Activas.module.css';
 
-const Activas = (props) => {
+const Activas = () => {
   const location = useLocation();
 
   // fetched data states
-  const [memories, setMemories] = useState([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]);
+  const [memories, setMemories] = useState([]);
   const [memoryId, setMemoryId] = useState(undefined);
-  // visual states
-  const [isLoading, setIsLoading] = useState(false);
+  // Hooks
+  const { isLoading, error, sendRequest, clearError } = useHttpClient();
 
   useEffect(() => {
     const fetchData = async () => {
-      console.log('fetching data');
+      try {
+        const response = await sendRequest(
+          process.env.REACT_APP_BACKEND_URL + '/usuario-x-memoria/all?estado=EN_CURSO'
+        );
+        setMemories(response.memorias);
+      } catch (err) {}
     };
-    return fetchData;
-  }, []);
+    return fetchData();
+  }, [sendRequest]);
 
   // Cargando el id desde la url
   useEffect(() => {
@@ -43,24 +49,26 @@ const Activas = (props) => {
                 <GenericCard
                   key={index}
                   selected={memoryId}
-                  id={memory.id}
-                  title={
-                    'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam sit amet molestie ligula. Pellentesque magna est, vehicula ut neque condimentum, pretium pulvinar...'
-                  }
-                  members={['Pedro Scarton', 'Ignacio Araya']}
-                  teacher={'Hernan Olmi'}
-                  details={[new Date().toLocaleDateString('en-US')]}
+                  id={memory.memoria.id}
+                  title={memory.memoria.titulo}
+                  members={memory.usuarios}
+                  details={[new Date(memory.memoria.fecha_de_creacion).toLocaleDateString('en-US')]}
                   action={'Ver detalle'}
-                  to={`/memorias/activas/${memory.id}`}
+                  to={`/memorias/activas/${memory.memoria.id}`}
                 >
                   <div>
                     <p>
                       <span>Fase actual: </span>
-                      {memory.actualFase ?? 'PT2'}
+                      {memory.fases
+                        ? memory.fases.find((fase) => fase.fecha_de_evaluacion).tipo
+                        : 'PT1'}
                     </p>
                     <p>
                       <span>Fecha de entrega: </span>
-                      {new Date().toLocaleDateString('en-US')}
+                      {new Date(
+                        memory.memoria.fecha_de_finalizacion ??
+                          +new Date() + 30 * 24 * 60 * 60 * 1000
+                      ).toLocaleDateString('en-US')}
                     </p>
                   </div>
                 </GenericCard>

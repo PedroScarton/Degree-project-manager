@@ -1,11 +1,11 @@
-const COORDINADOR = 'coordinador';
-const DOCENTE = 'docente';
-const ALUMNO = 'alumnos';
+const COORDINADOR = 'COORDINADOR';
+const DOCENTE = 'PROFESOR';
+const ESTUDIANTE = 'ESTUDIANTE';
 
 export const roles = {
   COORDINADOR: COORDINADOR,
   DOCENTE: DOCENTE,
-  ALUMNO: ALUMNO,
+  ESTUDIANTE: ESTUDIANTE,
 };
 
 export const actual = COORDINADOR;

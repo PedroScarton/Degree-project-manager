@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from 'react';
 
+import { stringify } from 'querystring';
+import { useHttpClient } from '../../../Shared/Hooks/http-hook';
+
 import SearchForm from '../Components/SearchForm';
 import GenericCard from '../../Shared/Components/GenericCard';
 import StudentWrapper from '../Components/StudentWrapper';
@@ -9,21 +12,31 @@ import classes from './Aprobadas.module.css';
 
 const Aprobadas = (props) => {
   // fetched data states
-  const [memories, setMemories] = useState([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]);
-  // visual states
-  const [isLoading, setIsLoading] = useState(false);
+  const [memories, setMemories] = useState([]);
+  // hooks
+  const { isLoading, error, sendRequest, clearError } = useHttpClient();
 
   useEffect(() => {
     const fetchData = async () => {
-      console.log('fetching data');
+      try {
+        const response = await sendRequest(
+          process.env.REACT_APP_BACKEND_URL + '/memorias?estado=FINALIZADA'
+        );
+        setMemories(response.memorias);
+      } catch (err) {}
     };
-    return fetchData;
-  }, []);
+    return fetchData();
+  }, [sendRequest]);
 
-  // falta el loadingspinner de cuando se solicitan las memorias
+  const searchHandler = async (values) => {
+    const queries = stringify({ estado: 'FINALIZADA', ...values });
 
-  const searchHandler = (values) => {
-    console.log(values);
+    try {
+      const response = await sendRequest(
+        process.env.REACT_APP_BACKEND_URL + '/memorias?' + queries
+      );
+      setMemories(response.memorias);
+    } catch (err) {}
   };
 
   return isLoading ? (
