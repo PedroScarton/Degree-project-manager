@@ -31,10 +31,8 @@ const inputReducer = (state, action) => {
 };
 
 const MaterialUIPickers = (props) => {
-  const [value, setValue] = useState(new Date());
-
-  const handleChange = (newValue) => {
-    setValue(newValue);
+  const handleChange = (date) => {
+    props.onInput(date);
   };
 
   return (
@@ -42,7 +40,7 @@ const MaterialUIPickers = (props) => {
       <MobileDatePicker
         label="Date mobile"
         inputFormat="MM/dd/yyyy"
-        value={value}
+        value={props.value}
         onChange={handleChange}
         renderInput={(params) => <TextField {...params} fullWidth />}
       />
@@ -83,6 +81,14 @@ const Input = (props) => {
     });
   };
 
+  const dateChangeHandler = (date) => {
+    dispatch({
+      type: 'CHANGE',
+      val: date,
+      validators: props.validators,
+    });
+  };
+
   const touchHandler = () => {
     dispatch({
       type: 'TOUCH',
@@ -100,7 +106,19 @@ const Input = (props) => {
     element = (
       <input
         type={props.type}
-        id={props.id}
+        id={id}
+        placeholder={props.placeholder}
+        onChange={changeHandler}
+        onBlur={touchHandler}
+        value={value}
+      />
+    );
+  } else if (props.type === 'textarea') {
+    element = (
+      <textarea
+        id={id}
+        name={id}
+        rows={props.rows || 4}
         placeholder={props.placeholder}
         onChange={changeHandler}
         onBlur={touchHandler}
@@ -143,7 +161,7 @@ const Input = (props) => {
     element = (
       <input
         type={props.type}
-        id={props.id}
+        id={id}
         placeholder={props.placeholder}
         onChange={rutChangeHandler}
         onBlur={touchHandler}
@@ -156,7 +174,7 @@ const Input = (props) => {
         <div className="svg-container">
           <CalendarIcon />
         </div>
-        <MaterialUIPickers />
+        <MaterialUIPickers value={value} onInput={dateChangeHandler} />
       </div>
     );
   }

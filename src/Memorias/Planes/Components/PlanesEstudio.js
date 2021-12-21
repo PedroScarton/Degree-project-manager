@@ -11,11 +11,11 @@ const Programas = (props) => {
         <Card key={index}>
           <PlanEstudio
             key={index}
-            id={plan}
+            id={plan.id}
             onDelete={props.onDelete}
-            name="Diurno"
-            code="D-021"
-            fases="PT1, PT2, Defensa"
+            name={plan.nombre}
+            code={plan.codigo}
+            fases={plan.fases.join(', ')}
           />
         </Card>
       ))}

@@ -8,8 +8,12 @@ const Programas = (props) => (
   <div className={classes.container}>
     {props.programas &&
       props.programas.map((programa) => (
-        <Card>
-          <Programa code={programa.code} fases={programa.fases} />
+        <Card key={programa.id}>
+          <Programa
+            onDelete={() => props.deleteProgram(programa.id)}
+            code={programa.codigo}
+            fases={programa.fechasLimites}
+          />
         </Card>
       ))}
   </div>

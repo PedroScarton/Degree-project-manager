@@ -1,5 +1,4 @@
 import React, { useContext } from 'react';
-import { useHistory } from 'react-router-dom';
 
 import { AuthContext } from '../../Shared/Context/auth-context';
 
@@ -22,8 +21,6 @@ import classes from './SharedClasses.module.css';
 
 const Login = () => {
   const auth = useContext(AuthContext);
-
-  const history = useHistory();
 
   const inputs = {
     email: {

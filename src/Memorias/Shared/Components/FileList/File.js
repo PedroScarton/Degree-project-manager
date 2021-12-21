@@ -43,11 +43,11 @@ const File = (props) => {
         props.teacher
           ? props.guia
             ? 'Guía'
-            : `Informante n°${props.index}`
-          : `Integrante n°${props.index}`
+            : `Informante n°${props.index + 1}`
+          : `Integrante n°${props.index - 1}`
       }`}
       action={props.id === auth.id ? callToActionText : ''}
-      onCallAction={onClickHandler}
+      onCallAction={props.onOpen}
     />
   ) : (
     <Output
@@ -59,7 +59,7 @@ const File = (props) => {
           ? props.guia
             ? 'Guía'
             : `Informante n°${props.index}`
-          : `Integrante n°${props.index}`
+          : `Integrante n°${props.index - 1}`
       }`}
     />
   );

@@ -32,6 +32,7 @@ const Activa = () => {
   const [showDetails, setShowDetails] = useState(false);
   const [showFormPage, setShowFormPage] = useState(false);
   // Hooks
+  // eslint-disable-next-line
   const { isLoading, error, sendRequest, clearError } = useHttpClient();
 
   useEffect(() => {
@@ -73,6 +74,10 @@ const Activa = () => {
     setShowFormPage(state);
   };
 
+  const nextFaseHandler = (actual) => {
+    console.log('pasando de fase');
+  };
+
   return isLoading ? (
     <LoadingSpinner contained />
   ) : memoryData ? (
@@ -83,21 +88,24 @@ const Activa = () => {
             <ResumeInfoMemoria
               title={memoryData.memoria.titulo}
               details={[new Date(memoryData.memoria.fecha_de_creacion).toLocaleDateString('en-US')]}
-              members={memoryData.usuarios}
+              members={memoryData.usuarios.filter((usuario) => usuario.rol === 'MEMORISTA')}
               goToDetails={() => showDetailsHandler(true)}
             />
           </Card>
-          {/* <Fases
+          <Fases
+            skipFase={nextFaseHandler}
             goTo={showEvaluationHandler}
+            actual={memoryData.fase_actual}
             openForm={() => showFormPageHandler(true)}
             fases={memoryData.memoria.fases}
-          /> */}
+            users={memoryData.usuarios}
+          />
         </React.Fragment>
       )}
       {showDetails && (
         <Card>
           <InfoMemoria
-            title={memoryData.memoria.title}
+            title={memoryData.memoria.titulo}
             date={new Date(memoryData.memoria.fecha_de_creacion)}
             description={memoryData.memoria.description}
             members={memoryData.usuarios.filter((user) => user.rol === 'MEMORISTA')}
@@ -107,9 +115,16 @@ const Activa = () => {
         </Card>
       )}
       {evaluationId && (
-        <MemoryFiles evaluationId={evaluationId} goBack={() => showDetailsHandler(false)} />
+        <MemoryFiles
+          teachers={memoryData.usuarios.filter((user) => user.rol !== 'MEMORISTA')}
+          members={memoryData.usuarios.filter((user) => user.rol === 'MEMORISTA')}
+          fases={memoryData.memoria.fases}
+          actual={memoryData.fase_actual}
+          fase={evaluationId}
+          goBack={() => showDetailsHandler(false)}
+        />
       )}
-      {showFormPage && <FormPage type="observación" goBack={() => showFormPageHandler(false)} />}
+      {showFormPage && <FormPage type="evaluacion" goBack={() => showFormPageHandler(false)} />}
     </div>
   ) : (
     <MemoryNotFound />

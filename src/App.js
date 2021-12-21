@@ -4,7 +4,6 @@ import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-d
 
 import { AuthContext } from './Shared/Context/auth-context';
 import { useAuth } from './Shared/Hooks/auth-hook';
-import { useTeachers } from './Shared/Hooks/teacher-hook';
 
 import MainWrapper from './Shared/Components/Layout/MainWrapper';
 import Login from './Auth/Pages/Login';
@@ -12,9 +11,6 @@ import Signup from './Auth/Pages/Signup';
 
 const App = () => {
   const { id, name, email, rut, role, login, logout } = useAuth();
-
-  // eslint-disable-next-line
-  const { teacher } = useTeachers();
 
   let mainComponent = (
     <Switch>

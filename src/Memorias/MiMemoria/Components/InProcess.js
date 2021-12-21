@@ -23,14 +23,15 @@ const InProccess = () => {
 
   // Memory State
   const [memoryData, setMemoryData] = useState(undefined);
+  const [evaluationId, setEvaluationId] = useState(undefined);
 
   // Page Handler State
   const [principalPage, setPrincipalPage] = useState(true);
   const [showDetails, setShowDetails] = useState(false);
   const [showFormPage, setShowFormPage] = useState(false);
-  const [selectedFase, setSelectedFase] = useState(undefined);
 
   // Hooks
+  // eslint-disable-next-line
   const { isLoading, error, sendRequest, clearError } = useHttpClient();
 
   // load the memory
@@ -49,14 +50,12 @@ const InProccess = () => {
   const showDetailsHandler = (state) => {
     setPrincipalPage(!state);
     setShowDetails(state);
-    setSelectedFase(undefined);
+    setEvaluationId(undefined);
   };
 
   const showEvaluationHandler = (id) => {
     setPrincipalPage(false);
-    // buscar la fase en el payload de memoria
-    const faseData = memoryData.fases.filter((fase) => fase.id === id);
-    setSelectedFase(faseData);
+    setEvaluationId(id);
   };
 
   const showFormPageHandler = (state) => {
@@ -74,15 +73,18 @@ const InProccess = () => {
             <ResumeInfoMemoria
               title={memoryData.memoria.titulo}
               details={[new Date(memoryData.memoria.fecha_de_creacion).toLocaleDateString('en-US')]}
-              members={memoryData.usuarios}
+              members={memoryData.usuarios.filter((usuario) => usuario.rol === 'MEMORISTA')}
               goToDetails={() => showDetailsHandler(true)}
             />
           </Card>
-          {/* <Fases
-            goTo={showEvaluationHandler}
+          <Fases
+            student
+            actual={memoryData.fase_actual}
             openForm={() => showFormPageHandler(true)}
-            fases={memoryData.fases}
-          /> */}
+            fases={memoryData.memoria.fases}
+            users={memoryData.usuarios}
+            goTo={showEvaluationHandler}
+          />
         </React.Fragment>
       )}
       {showDetails && (
@@ -90,17 +92,24 @@ const InProccess = () => {
           <InfoMemoria
             title={memoryData.memoria.titulo}
             date={new Date(memoryData.memoria.fecha_de_creacion)}
-            description={memoryData.memoria.descripcion}
+            description={memoryData.memoria.description}
             members={memoryData.usuarios.filter((user) => user.rol === 'MEMORISTA')}
             teachers={memoryData.usuarios.filter((user) => user.rol !== 'MEMORISTA')}
             goBack={() => showDetailsHandler(false)}
           />
         </Card>
       )}
-      {selectedFase && (
-        <MemoryFiles selected={selectedFase} goBack={() => showDetailsHandler(false)} />
+      {evaluationId && (
+        <MemoryFiles
+          teachers={memoryData.usuarios.filter((user) => user.rol !== 'MEMORISTA')}
+          members={memoryData.usuarios.filter((user) => user.rol === 'MEMORISTA')}
+          fases={memoryData.memoria.fases}
+          actual={memoryData.fase_actual}
+          fase={evaluationId}
+          goBack={() => showDetailsHandler(false)}
+        />
       )}
-      {showFormPage && <FormPage type="observación" goBack={() => showFormPageHandler(false)} />}
+      {showFormPage && <FormPage type="evaluacion" goBack={() => showFormPageHandler(false)} />}
     </div>
   ) : (
     <MemoryNotFound />

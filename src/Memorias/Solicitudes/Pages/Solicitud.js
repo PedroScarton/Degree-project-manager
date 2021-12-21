@@ -5,11 +5,14 @@ import { useHistory, useLocation } from 'react-router-dom';
 import { useHttpClient } from '../../../Shared/Hooks/http-hook';
 import { useForm } from '../../../Shared/Hooks/form-hook';
 import { useTeachers } from '../../../Shared/Hooks/teacher-hook';
+import { usePlanes } from '../../../Shared/Hooks/planes-hook';
 import { getIdFromPath } from '../../../Shared/Utils/getId';
+import { VALIDATOR_REQUIRE } from '../../../Shared/Utils/validators';
 
 // Memory components
 import ResumeInfoMemoria from '../../Shared/Components/ResumeInfoMemoria';
 import MemoryNotFound from '../../Shared/Components/MemoryNotFound';
+import TeacherForm from '../Components/TeacherForm';
 
 // General components
 import Card from '../../../Shared/Components/UI/Card';
@@ -23,7 +26,6 @@ import LoadingSpinner from '../../../Shared/Components/UI/LoadingSpinner';
 
 // Styles
 import classes from './Solicitud.module.css';
-import { VALIDATOR_REQUIRE } from '../../../Shared/Utils/validators';
 
 const Solicitud = () => {
   const location = useLocation();
@@ -36,13 +38,17 @@ const Solicitud = () => {
   const [informante2, setInformante2] = useState(undefined);
   const [informante3, setInformante3] = useState(undefined);
   const [guia, setGuia] = useState(undefined);
+  const [programas, setProgramas] = useState(undefined);
   // Visual States
   const [teacherType, setTeacherType] = useState(false);
   // Hooks
   const { isLoading, error, sendRequest, clearError } = useHttpClient();
   const { teacher } = useTeachers();
+  const { planes } = usePlanes();
+
   const inputs = {
-    teacher: { value: '', isValid: false },
+    plan: { value: '', isValid: false },
+    programa: { value: '', isValid: false },
   };
   const [formState, inputHandler] = useForm(inputs, false);
 
@@ -64,6 +70,10 @@ const Solicitud = () => {
           const response = await sendRequest(
             process.env.REACT_APP_BACKEND_URL + `/usuario-x-memoria?id_memoria=${id}`
           );
+          const teacher = response.details.usuarios.find((user) => user.rol === 'GUIA');
+          if (teacher) {
+            setGuia(teacher.usuario.nombre_completo);
+          }
           setMemoryData(response.details);
         } catch (err) {}
       }
@@ -71,18 +81,59 @@ const Solicitud = () => {
     return fetchData(memoryId);
   }, [sendRequest, memoryId]);
 
+  // Manejo de planes y programas
+  useEffect(() => {
+    if (planes) {
+      const plan = planes.find((plan) => plan.codigo === formState.inputs.plan.value);
+      if (!plan) {
+        setProgramas([]);
+      } else {
+        const newProgramas = plan.programas;
+        setProgramas(newProgramas);
+      }
+    }
+  }, [formState.inputs.plan.value, planes]);
+
   if (!memoryId) {
     return <Fallback />;
   }
 
-  const memoryHandler = async (type) => {
-    const estado = type ? 'EN_CURSO' : 'RECHAZADA';
-    console.log(estado);
+  const approveMemory = async () => {
+    const profesores = [];
+
+    const programa = programas.find(
+      (programa) => programa.codigo === formState.inputs.programa.value
+    );
+    const plan = planes.find((plan) => plan.codigo === formState.inputs.plan.value);
+    let selectedTeacher;
+    if (informante1) {
+      selectedTeacher = teacher.find((teacher) => teacher.nombre_completo === informante1);
+      profesores.push({ rol: 'INFORMANTE', id: selectedTeacher.id });
+    }
+    if (informante2) {
+      selectedTeacher = teacher.find((teacher) => teacher.nombre_completo === informante2);
+      profesores.push({ rol: 'INFORMANTE', id: selectedTeacher.id });
+    }
+    if (informante3) {
+      selectedTeacher = teacher.find((teacher) => teacher.nombre_completo === informante3);
+      profesores.push({ rol: 'INFORMANTE', id: selectedTeacher.id });
+    }
+    if (guia) {
+      selectedTeacher = teacher.find((teacher) => teacher.nombre_completo === guia);
+      profesores.push({ rol: 'GUIA', id: selectedTeacher.id });
+    }
+    const payload = {
+      id_memoria: +memoryId,
+      profesores: profesores,
+      id_plan: +plan.id,
+      id_programa: +programa.id,
+    };
+
     try {
       await sendRequest(
-        process.env.REACT_APP_BACKEND_URL + `/memorias?id=${memoryId}`,
+        process.env.REACT_APP_BACKEND_URL + `/usuario-x-memoria/aceptar`,
         'PUT',
-        { estado: estado },
+        payload,
         {
           'Content-type': 'application/json',
         }
@@ -91,12 +142,18 @@ const Solicitud = () => {
     } catch (err) {}
   };
 
+  const rejectMemory = async () => {
+    try {
+      await sendRequest(process.env.REACT_APP_BACKEND_URL + `/memorias?id=${memoryId}`, 'DELETE');
+      history.push('/memorias');
+    } catch (err) {}
+  };
+
   const openModal = (type) => {
     setTeacherType(type);
   };
 
-  const setTeacher = (e, type, value) => {
-    e.preventDefault();
+  const setTeacher = (type, value) => {
     switch (type) {
       case 'guia':
         setGuia(value);
@@ -171,49 +228,51 @@ const Solicitud = () => {
             </div>
           </div>
         </SectionHeader>
-        {/* <SectionHeader title="Asignación plan de estudio y fechas">
+        <SectionHeader title="Asignación plan de estudio y fechas">
           <div className={classes.plan}>
             <InputSelect
+              id="plan"
               label="Plan de estudio: "
               helperText="Corresponde al tipo de matricula de/los alumnos"
+              onInput={inputHandler}
+              validators={[VALIDATOR_REQUIRE()]}
+              type="text"
+              options={
+                planes &&
+                planes.map((plan) => {
+                  return { name: plan.codigo };
+                })
+              }
             />
             <InputSelect
+              id="programa"
               label="Programa semestral: "
               helperText="Corresponde a la planificación de fechas que seguirá la memoria"
+              onInput={inputHandler}
+              validators={[VALIDATOR_REQUIRE()]}
+              type="text"
+              options={
+                programas &&
+                programas.map((programa) => {
+                  return { name: programa.codigo };
+                })
+              }
             />
           </div>
-        </SectionHeader> */}
+        </SectionHeader>
         <div className={classes.footer}>
           <div className={classes.btnContainer}>
-            <Button onClick={() => memoryHandler(false)} secondary>
+            <Button onClick={rejectMemory} secondary>
               Rechazar
             </Button>
           </div>
           <div className={classes.btnContainer}>
-            <Button onClick={() => memoryHandler(true)}>Aprobar</Button>
+            <Button onClick={approveMemory}>Aprobar</Button>
           </div>
         </div>
       </Card>
       <FormModal title="Asignación de profesor" open={teacherType} onClose={closeHandler}>
-        <form onSubmit={(event) => setTeacher(event, teacherType, formState.inputs.teacher.value)}>
-          <InputSelect
-            id="teacher"
-            label="Profesor guía:"
-            helperText="La selección de profesor guía es opcional"
-            onInput={inputHandler}
-            validators={[VALIDATOR_REQUIRE()]}
-            type="text"
-            options={
-              teacher &&
-              teacher.map((teacher) => {
-                return { name: teacher.nombre_completo };
-              })
-            }
-          />
-          <div className={classes.btnContainer2}>
-            <Button type="submit">Asignar</Button>
-          </div>
-        </form>
+        <TeacherForm onSelect={setTeacher} teacherType={teacherType} teacher={teacher} />
       </FormModal>
     </div>
   ) : (

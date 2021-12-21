@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 
 import { useHttpClient } from '../../../Shared/Hooks/http-hook';
 
@@ -14,8 +14,6 @@ import LoadingSpinner from '../../../Shared/Components/UI/LoadingSpinner';
 // Styles
 import classes from './Planes.module.css';
 
-const dummy_planes = [1, 2, 3, 4, 5];
-
 const Planes = () => {
   // fetched states
   const [fetchPlans, setFetchPlans] = useState([]);
@@ -24,27 +22,36 @@ const Planes = () => {
   // hooks
   const { isLoading, error, sendRequest, clearError } = useHttpClient();
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await sendRequest(process.env.REACT_APP_BACKEND_URL + '/programas');
-        setFetchPlans(response.programas);
-      } catch (err) {}
-    };
-    return fetchData();
+  const fetchPlanes = useCallback(async () => {
+    try {
+      const response = await sendRequest(process.env.REACT_APP_BACKEND_URL + '/planes');
+      setFetchPlans(response.planes);
+    } catch (err) {}
   }, [sendRequest]);
+
+  useEffect(() => {
+    return fetchPlanes();
+  }, [sendRequest, fetchPlanes]);
 
   const modalHandler = (state) => {
     setIsModalOpen(state);
   };
+
   const onAddPlan = async (values) => {
-    // try {
-    //   const response = await sendRequest(process.env.REACT_APP_BACKEND_URL + '/programas');
-    //   setFetchPlans(response.programas);
-    // } catch (err) {}
+    try {
+      await sendRequest(process.env.REACT_APP_BACKEND_URL + '/planes', 'POST', values, {
+        'Content-type': 'application/json',
+      });
+      await fetchPlanes();
+      modalHandler(false);
+    } catch (err) {}
   };
-  const onDeleteHandler = (id) => {
-    console.log(id);
+
+  const onDeleteHandler = async (id) => {
+    try {
+      await sendRequest(process.env.REACT_APP_BACKEND_URL + `/planes?id=${id}`, 'DELETE');
+      await fetchPlanes();
+    } catch (err) {}
   };
 
   return isLoading ? (
@@ -57,7 +64,7 @@ const Planes = () => {
         </div>
         <div className={classes.body}>
           <AddButton onClick={() => modalHandler(true)} text="Crear plan de estudio" />
-          <PlanesEstudio planes={dummy_planes} onDelete={onDeleteHandler} />
+          <PlanesEstudio planes={fetchPlans} onDelete={onDeleteHandler} />
         </div>
       </div>
       <FormModal

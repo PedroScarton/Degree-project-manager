@@ -26,8 +26,6 @@ export const useAuth = () => {
     );
   }, []);
 
-  console.log(id, name, email, rut, role);
-
   const logout = useCallback(() => {
     localStorage.removeItem('userData');
     setId(null);

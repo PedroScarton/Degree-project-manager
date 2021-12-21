@@ -1,5 +1,8 @@
 import React from 'react';
 
+// Hooks
+import { useHttpClient } from '../../Hooks/http-hook';
+
 // Formularios
 import EvaluationForm from '../Forms/EvaluationForm';
 import FinalEvaluationForm from '../Forms/FinalEvaluationForm';
@@ -18,26 +21,35 @@ const FormPage = (props) => {
   // esta pagina debe ser completamente dinamica en su contenido
   // deberan estar definidos tantos componentes como formularios existan dentro de la pagina
   // este componente se encargara de contener el formulario, echar para atras, y hacer el submit con la informacion al servidor
+
+  // hooks
+  const { isLoading, error, sendRequest, clearError } = useHttpClient();
+
+  const submitDocument = (values) => {
+    console.log(values);
+  };
+
   let form;
   let header;
   switch (props.type) {
     case 'evaluación':
-      form = <EvaluationForm />;
+      form = <EvaluationForm submitHandler={submitDocument} />;
       header = 'Formulario de evaluación';
       break;
     case 'observación':
-      form = <ObservationForm />;
+      form = <ObservationForm submitHandler={submitDocument} />;
       header = 'Formulario de observación';
       break;
     case 'evaluación-final':
-      form = <FinalEvaluationForm />;
+      form = <FinalEvaluationForm submitHandler={submitDocument} />;
       header = 'Formulario de evaluación';
       break;
     default:
-      form = <EvaluationForm />;
+      form = <EvaluationForm submitHandler={submitDocument} />;
       header = 'Formulario de evaluación';
       break;
   }
+
   return (
     <Card>
       <div className={classes.header}>

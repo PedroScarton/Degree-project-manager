@@ -24,8 +24,12 @@ const MiMemoria = () => {
         const response = await sendRequest(
           process.env.REACT_APP_BACKEND_URL + `/usuario-x-memoria/por-usuario?id_usuario=${auth.id}`
         );
-        if (response.memoria) {
-          setHasMemory(true);
+        if (!!response.memoria) {
+          if (response.memoria.memoria.estado === 'EN_CURSO') {
+            setHasMemory(true);
+          } else {
+            setHasMemory(false);
+          }
         } else {
           setHasMemory(false);
         }

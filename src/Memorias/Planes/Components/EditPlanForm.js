@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
 
 import { useForm } from '../../../Shared/Hooks/form-hook';
-import { VALIDATOR_REQUIRE } from '../../../Shared/Utils/validators';
+import { VALIDATOR_MAXLENGTH, VALIDATOR_REQUIRE } from '../../../Shared/Utils/validators';
 
 // General Components
 import Input from '../../../Shared/Components/FormElements/Input';
 import Button from '../../../Shared/Components/FormElements/Button';
+import CheckboxInput from '../../../Shared/Components/FormElements/checkBox';
 
 import classes from './EditPlanForm.module.css';
-import CheckboxInput from '../../../Shared/Components/FormElements/checkBox';
 
 const EditPlanForm = (props) => {
   // Fases states
@@ -35,13 +35,12 @@ const EditPlanForm = (props) => {
     const fases = [];
     PT1 && fases.push('PT1');
     PT2 && fases.push('PT2');
-    examen && fases.push('examen');
-    const payload = {
-      name: formState.inputs.name.value,
-      code: formState.inputs.code.value,
+    examen && fases.push('DEFENSA');
+    props.onSubmit({
+      nombre: formState.inputs.name.value,
+      codigo: formState.inputs.code.value,
       fases: fases,
-    };
-    props.onSubmit(payload);
+    });
   };
 
   const onFaseSelect = (type) => {
@@ -52,7 +51,7 @@ const EditPlanForm = (props) => {
       case 'PT2':
         setPT2((prev) => !prev);
         break;
-      case 'examen':
+      case 'defensa':
         setExamen((prev) => !prev);
         break;
       default:
@@ -68,20 +67,20 @@ const EditPlanForm = (props) => {
           type="text"
           label="Nombre: *"
           placeHolder="Diurno..."
-          helperText="Nombre del programa al que se le asignarán las fases."
+          helperText="Nombre del plan al que se le asignarán las fases."
           onInput={inputHandler}
           validators={[VALIDATOR_REQUIRE()]}
         />
         <Input
           id="code"
           type="text"
-          label="Código del programa: *"
+          label="Código de plan: *"
           helperText="Código que se le asignará a una memoria para determinar sus fase."
           onInput={inputHandler}
-          validators={[VALIDATOR_REQUIRE()]}
+          validators={[VALIDATOR_REQUIRE(), VALIDATOR_MAXLENGTH(10)]}
         />
         <div>
-          <p>Seleccion de etapas:</p>
+          <p className={classes.header}>Selección de etapas:</p>
           <div>
             <CheckboxInput
               id="PT1"
@@ -96,10 +95,10 @@ const EditPlanForm = (props) => {
               label="PT2"
             />
             <CheckboxInput
-              id="examen"
+              id="defensa"
               checked={examen}
-              onChange={() => onFaseSelect('examen')}
-              label="Examen"
+              onChange={() => onFaseSelect('defensa')}
+              label="Defensa"
             />
           </div>
         </div>

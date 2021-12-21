@@ -8,19 +8,21 @@ import classes from './ArchivosFase.module.css';
 const ArchivosFase = (props) => {
   return props.active ? (
     <React.Fragment>
-      <div className={classes.detail}>
-        <div className={classes.detailTitle}>
-          <h3>Fecha de entrega</h3>
+      {props.isCoordinador && (
+        <div className={classes.detail}>
+          <div className={classes.detailTitle}>
+            <h3>Fecha de entrega</h3>
+          </div>
+          <div className={classes.detailBody}>
+            <Output
+              onCallAction={props.onDateChange}
+              action="Modificar"
+              title="Fecha Agendada"
+              detail="20/05/2021"
+            />
+          </div>
         </div>
-        <div className={classes.detailBody}>
-          <Output
-            onCallAction={props.onDateChange}
-            action="Modificar"
-            title="Fecha Agendada"
-            detail="20/05/2021"
-          />
-        </div>
-      </div>
+      )}
       <div className={classes.detail}>
         <div className={classes.detailTitle}>
           <h3>Evaluaciones</h3>

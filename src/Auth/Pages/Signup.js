@@ -1,5 +1,4 @@
 import React, { useContext } from 'react';
-import { useHistory } from 'react-router-dom';
 
 import { AuthContext } from '../../Shared/Context/auth-context';
 
@@ -23,8 +22,6 @@ import classes from './SharedClasses.module.css';
 
 const Signup = () => {
   const auth = useContext(AuthContext);
-
-  const history = useHistory();
 
   const inputs = {
     name: {
@@ -67,14 +64,14 @@ const Signup = () => {
           'Content-type': 'application/json',
         }
       );
+      const userInfo = response.usuario;
       auth.login(
-        response.id,
-        response.nombre_completo,
-        response.correo_institucional,
-        response.rut,
-        response.tipo
+        userInfo.id,
+        userInfo.nombre_completo,
+        userInfo.correo_institucional,
+        userInfo.rut,
+        userInfo.tipo
       );
-      history.push('/memorias');
     } catch (err) {}
   };
   return (

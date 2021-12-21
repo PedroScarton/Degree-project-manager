@@ -1,8 +1,5 @@
 import React from 'react';
 
-import {
-  VALIDATOR_REQUIRE
-} from '../../Utils/validators';
 import { useForm } from '../../Hooks/form-hook';
 
 import Input from '../FormElements/Input';
@@ -12,7 +9,6 @@ import InputSelect from '../FormElements/InputSelect';
 import classes from './Forms.module.css';
 
 const EvaluationForm = (props) => {
-
   const inputs = {
     numRevision: {
       value: '',
@@ -38,51 +34,51 @@ const EvaluationForm = (props) => {
       value: '',
       isValid: false,
     },
-    1: {
+    pregunta1: {
       value: '',
       isValid: false,
     },
-    2: {
+    pregunta2: {
       value: '',
       isValid: false,
     },
-    3: {
+    pregunta3: {
       value: '',
       isValid: false,
     },
-    4: {
+    pregunta4: {
       value: '',
       isValid: false,
     },
-    5: {
+    pregunta5: {
       value: '',
       isValid: false,
     },
-    6: {
+    pregunta6: {
       value: '',
       isValid: false,
     },
-    7: {
+    pregunta7: {
       value: '',
       isValid: false,
     },
-    8: {
+    pregunta8: {
       value: '',
       isValid: false,
     },
-    9: {
+    pregunta9: {
       value: '',
       isValid: false,
     },
-    10: {
+    pregunta10: {
       value: '',
       isValid: false,
     },
-    11: {
+    pregunta11: {
       value: '',
       isValid: false,
     },
-    12: {
+    pregunta12: {
       value: '',
       isValid: false,
     },
@@ -95,11 +91,30 @@ const EvaluationForm = (props) => {
 
   const submitHandler = (event) => {
     event.preventDefault();
-    console.log(formState);
+    props.submitHandler({
+      numRevision: formState.inputs.numRevision.value,
+      fecha: formState.inputs.fecha.value,
+      numNota: formState.inputs.numNota.value,
+      apreciacionTema: formState.inputs.apreciacionTema.value,
+      aspectosCorregir: formState.inputs.aspectosCorregir.value,
+      fechaEntrega: formState.inputs.fechaEntrega.value,
+      pregunta1: formState.inputs.pregunta1.value,
+      pregunta2: formState.inputs.pregunta2.value,
+      pregunta3: formState.inputs.pregunta3.value,
+      pregunta4: formState.inputs.pregunta4.value,
+      pregunta5: formState.inputs.pregunta5.value,
+      pregunta6: formState.inputs.pregunta6.value,
+      pregunta7: formState.inputs.pregunta7.value,
+      pregunta8: formState.inputs.pregunta8.value,
+      pregunta9: formState.inputs.pregunta9.value,
+      pregunta10: formState.inputs.pregunta10.value,
+      pregunta11: formState.inputs.pregunta11.value,
+      pregunta12: formState.inputs.pregunta12.value,
+      comentarios: formState.inputs.comentarios.value,
+    });
   };
 
-
-  const options = [{ name: 'Si' }, { name: 'Con observación' }, { name: 'No' }]
+  const options = [{ name: 'Si' }, { name: 'Con observación' }, { name: 'No' }];
   return (
     <React.Fragment>
       <form onSubmit={submitHandler}>
@@ -174,7 +189,7 @@ const EvaluationForm = (props) => {
               <div className={classes.subContent}>
                 <h3>Aspectos formales</h3>
                 <InputSelect
-                  id="1"
+                  id="pregunta1"
                   label="1.- Se han cumplido las exigencias hasta este momento para el trabajo tales 
                 como: Tamaño de la hoja, letra, espacio, formato, etc. : *"
                   options={options}
@@ -183,7 +198,7 @@ const EvaluationForm = (props) => {
                   placeholder="Selecciona una opción..."
                 />
                 <InputSelect
-                  id="2"
+                  id="pregunta2"
                   label="2.- La redacción es coherente en términos de construcción de las frases, 
                 puntuación, ortografía: *"
                   options={options}
@@ -192,7 +207,7 @@ const EvaluationForm = (props) => {
                   placeholder="Selecciona una opción..."
                 />
                 <InputSelect
-                  id="3"
+                  id="pregunta3"
                   label="3.- El uso de referencias y citas es adecuado: *"
                   options={options}
                   onInput={inputHandler}
@@ -200,7 +215,7 @@ const EvaluationForm = (props) => {
                   placeholder="Selecciona una opción..."
                 />
                 <InputSelect
-                  id="4"
+                  id="pregunta4"
                   label="4.- Los datos de la bibliografía son completos y exactos: *"
                   options={options}
                   onInput={inputHandler}
@@ -211,7 +226,7 @@ const EvaluationForm = (props) => {
               <div className={classes.subContent}>
                 <h3>Aspectos de fondo</h3>
                 <InputSelect
-                  id="5"
+                  id="pregunta5"
                   label="5.- Introducción - Es clara y define adecuadamente los lineamentos: *"
                   options={options}
                   onInput={inputHandler}
@@ -219,7 +234,7 @@ const EvaluationForm = (props) => {
                   placeholder="Selecciona una opción..."
                 />
                 <InputSelect
-                  id="6"
+                  id="pregunta6"
                   label="6.- Objetivos del proyecto - Se formulan con claridad y apunta a los requerimientos del proyecto: *"
                   options={options}
                   onInput={inputHandler}
@@ -227,7 +242,7 @@ const EvaluationForm = (props) => {
                   placeholder="Selecciona una opción..."
                 />
                 <InputSelect
-                  id="7"
+                  id="pregunta7"
                   label="7.- Problematización - Desarrolla las principales dimensiones que intervienen en el problema. Contextualiza la situación general: *"
                   options={options}
                   onInput={inputHandler}
@@ -235,7 +250,7 @@ const EvaluationForm = (props) => {
                   placeholder="Selecciona una opción..."
                 />
                 <InputSelect
-                  id="8"
+                  id="pregunta8"
                   label="8.- Solución a la problemática - Es adecuada de acuerdo con la descripción del problema planteado. Indica con claridad el aporte ingenieril del proyecto: *"
                   options={options}
                   onInput={inputHandler}
@@ -243,7 +258,7 @@ const EvaluationForm = (props) => {
                   placeholder="Selecciona una opción..."
                 />
                 <InputSelect
-                  id="9"
+                  id="pregunta9"
                   label="9.- Marco teórico - La revisión bibliográfica es la pertinente, permitiendo diseñar las principales líneas de explicación para el problema planteado: *"
                   options={options}
                   onInput={inputHandler}
@@ -251,7 +266,7 @@ const EvaluationForm = (props) => {
                   placeholder="Selecciona una opción..."
                 />
                 <InputSelect
-                  id="10"
+                  id="pregunta10"
                   label="10.- Marco teórico - Existe coherencia entre el abordaje teórico y la problemática del proyecto: *"
                   options={options}
                   onInput={inputHandler}
@@ -259,7 +274,7 @@ const EvaluationForm = (props) => {
                   placeholder="Selecciona una opción..."
                 />
                 <InputSelect
-                  id="11"
+                  id="pregunta11"
                   label="11.- Fuentes - Todas las fuentes de información, las gráficas y tablas están documentadas y en el formato deseado: *"
                   options={options}
                   onInput={inputHandler}
@@ -267,7 +282,7 @@ const EvaluationForm = (props) => {
                   placeholder="Selecciona una opción..."
                 />
                 <InputSelect
-                  id="12"
+                  id="pregunta12"
                   label="12.- Cronograma - Se determinan las fechas para el desarrollo del proyecto: *"
                   options={options}
                   onInput={inputHandler}
