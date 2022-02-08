@@ -5,6 +5,19 @@ import Fase from './Fase';
 import FaseActual from './FaseActual';
 
 const Fases = (props) => {
+  const filterFases = () => {
+    const order = ['PT1', 'PT2', 'DEFENSA'];
+    const filtered = [];
+    for (const type of order) {
+      for (const fase of props.fases) {
+        if (type === fase.tipo) {
+          filtered.push(fase);
+        }
+      }
+    }
+    return filtered;
+  };
+  const filtered = filterFases();
   return (
     <React.Fragment>
       {!props.approved && (
@@ -18,8 +31,8 @@ const Fases = (props) => {
         />
       )}
       <div className={classes.container}>
-        {props.fases &&
-          props.fases.map((fase, index) => (
+        {filtered &&
+          filtered.map((fase, index) => (
             <Fase
               key={index}
               id={fase.id}

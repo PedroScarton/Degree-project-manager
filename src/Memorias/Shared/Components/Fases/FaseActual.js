@@ -47,7 +47,7 @@ const FaseActual = (props) => {
               </div>
               <div className={classes.footButton}>
                 <div className={classes.btnContainer}>
-                  {props.student &&
+                  {!props.student &&
                     (auth.role === 'COORDINADOR' ? (
                       <Button
                         onClick={props.nextFase}

@@ -89,7 +89,7 @@ const Signup = () => {
         <Input
           white
           id="name"
-          label="Nombre completo: *"
+          label="Nombre completo:"
           type="text"
           onInput={inputHandler}
           validators={[VALIDATOR_REQUIRE()]}
@@ -97,7 +97,7 @@ const Signup = () => {
         <Input
           white
           id="rut"
-          label="Rut: *"
+          label="Rut:"
           type="text"
           onInput={inputHandler}
           validators={[VALIDATOR_REQUIRE(), VALIDATOR_NUMERIC()]}
@@ -105,7 +105,7 @@ const Signup = () => {
         <Input
           white
           id="email"
-          label="Correo institucional: *"
+          label="Correo institucional:"
           type="text"
           onInput={inputHandler}
           validators={[VALIDATOR_REQUIRE(), VALIDATOR_EMAIL()]}
@@ -113,7 +113,7 @@ const Signup = () => {
         <Input
           white
           id="password"
-          label="Contraseña: *"
+          label="Contraseña:"
           type="password"
           onInput={inputHandler}
           validators={[VALIDATOR_REQUIRE(), VALIDATOR_MINLENGTH(7)]}
